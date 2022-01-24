@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.example.market.ShippingOffer" />
+        <import type="com.example.market.binding.BindingUtilsKt"/>
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/shio_container"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="@dimen/grid_0_5"
+        app:cardCornerRadius="@dimen/grid_1"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/white"
+        app:cardElevation="1dp"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/grid_1_5"
+            android:paddingVertical="@dimen/grid_1">
+
+            <ImageView
+                android:id="@+id/shio_imageview"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:src="@{data.photo}"
+                drawableResource="@{data.photo}"
+                tools:src="@drawable/yandex_car_icon"
+                android:layout_gravity="center_horizontal"
+                android:adjustViewBounds="true" />
+
+            <TextView
+                android:id="@+id/shio_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{data.name}"
+                android:textSize="15sp"
+                android:maxLines="1"
+                tools:text="Start"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="#333" />
+
+            <TextView
+                android:id="@+id/shio_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:maxLines="1"
+                tools:text="Bepul"
+                android:text="@{BindingUtilsKt.formatCurrency(data.cost)}"
+                android:textColor="#333"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

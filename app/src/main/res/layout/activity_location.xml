@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+   >
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="28dp"
+        >
+
+        <fragment
+            android:id="@+id/map_fragment"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/marker"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:src="@drawable/map_pin2"
+            android:layout_marginBottom="28dp"
+            android:stateListAnimator="@animator/marker_animator"
+            map:layout_constraintBottom_toBottomOf="@+id/map"
+            map:layout_constraintEnd_toEndOf="parent"
+            map:layout_constraintStart_toStartOf="@+id/map"
+            map:layout_constraintTop_toBottomOf="@+id/address_text" />
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/msg_arrowright"
+            android:rotation="180"
+            android:background="@drawable/oval_grey"
+            android:padding="@dimen/grid_1"
+            android:elevation="@dimen/grid_1"
+            android:layout_margin="12dp"
+            map:tint="@color/black" />
+        <ImageView
+            android:id="@+id/current_location_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/location_current"
+            android:rotation="180"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="297dp"
+            android:background="@drawable/oval_grey"
+            android:padding="@dimen/grid_1"
+            android:elevation="@dimen/grid_1"
+            android:layout_marginEnd="12dp"
+            map:tint="@color/black" />
+        <TextView
+            android:id="@+id/adress_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your adress: \n Daliguzar 10-uy"
+            android:textSize="16sp"
+            android:textColor="#333"
+            android:maxWidth="250dp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            />
+    </FrameLayout>
+</layout>

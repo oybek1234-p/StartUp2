@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:elevation="2dp"
+        >
+
+        <TextView
+            android:id="@+id/title_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#222"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Comments"
+            android:layout_gravity="center" />
+
+        <ImageView
+            android:id="@+id/exit_button"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/ic_close_black"
+            android:padding="11dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:layout_marginEnd="@dimen/grid_1"
+            android:layout_gravity="center_vertical|end"
+            android:contentDescription="@string/close_bottom_sheet" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#f2f2f2"
+            android:layout_gravity="bottom"
+            />
+    </FrameLayout>
+</layout>

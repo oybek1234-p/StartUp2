@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1016035599824",
+    "project_id": "yaeh-1651c",
+    "storage_bucket": "yaeh-1651c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1016035599824:android:b21a6835681e0ba23645d5",
+        "android_client_info": {
+          "package_name": "com.example.market"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1016035599824-kc72csk7a25q1nj0lcg9o3t87vah7sao.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjs6ZX6d4q7YiXmP3WM9BAY-3fzPPMtbU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1016035599824-kc72csk7a25q1nj0lcg9o3t87vah7sao.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

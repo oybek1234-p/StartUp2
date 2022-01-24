@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.example.market.Alert" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="23dp"
+        >
+
+        <ImageView
+            android:id="@+id/icon_view"
+            circleCrop="@{true}"
+            url="@{data.iconUrl}"
+            drawableResource="@{data.iconResource}"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#666" />
+
+        <TextView
+            android:id="@+id/title_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@{data.title}"
+            android:textColor="#222"
+            android:layout_marginStart="18dp"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/icon_view"
+            app:layout_constraintStart_toEndOf="@+id/icon_view"
+            app:layout_constraintTop_toTopOf="@+id/icon_view"
+            tools:text="Are you sure to delete?" />
+
+
+        <TextView
+            android:id="@+id/description_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="@{data.description}"
+            android:textColor="#222"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_view"
+            tools:text="Do you realy want to delete this product,it will be removed from list" />
+
+        <TextView
+            android:id="@+id/cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/roboto_medium"
+            android:foreground="?attr/selectableItemBackground"
+            android:onClick="@{data.cancelOnClick}"
+            android:layout_marginEnd="18dp"
+            android:text="@{data.cancelName}"
+            android:textColor="#4B91CA"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/action_button"
+            app:layout_constraintEnd_toStartOf="@+id/action_button"
+            app:layout_constraintTop_toTopOf="@+id/action_button"
+            tools:text="CANCEL" />
+
+        <TextView
+            android:id="@+id/action_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/roboto_medium"
+            android:foreground="?attr/selectableItemBackground"
+            android:onClick="@{data.actionOnClick}"
+            android:text="@{data.actionName}"
+            android:textColor="#DE3A3A"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description_view"
+            tools:text="DELETE PRODUCT" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

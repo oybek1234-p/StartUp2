@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".search.SearchFragment">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp">
+
+            <ImageView
+                android:id="@+id/back_button"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/quantum_ic_arrow_back_black_24"
+
+                android:padding="@dimen/grid_1_5"
+                android:layout_gravity="center_vertical"
+                app:tint="@color/black_3a3d4a" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginEnd="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="45dp"
+                android:background="@drawable/home_search_background">
+
+                <ImageView
+                    android:id="@+id/search_button"
+                    android:layout_width="45dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_ab_search"
+                    android:layout_gravity="end"
+                    android:padding="6dp"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/home_search_icon_background"
+                    app:tint="#FFFFFF" />
+
+                <EditText
+                    android:id="@+id/search_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="56dp"
+                    android:hint="@string/nima_qidiryapsiz"
+                    android:textSize="16sp"
+                    android:background="@null"
+                    android:textColorHint="#959595"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/grid_2"
+                    android:textColor="@color/black" />
+            </FrameLayout>
+        </FrameLayout>
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/shimmer_layout"
+            app:shimmer_base_alpha="0.9"
+            app:shimmer_auto_start="true"
+            >
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+        </com.facebook.shimmer.ShimmerFrameLayout>
+    </LinearLayout>
+</layout>

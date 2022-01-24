@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:id="@+id/base_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/wallpaper"
+        tools:context=".MainActivity">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            app:cardCornerRadius="8dp"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="84dp"
+            android:layout_marginEnd="16dp"
+            android:visibility="gone"
+            >
+
+            <com.google.android.exoplayer2.ui.PlayerView
+                android:id="@+id/exoplayer_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:use_controller="false"
+                app:resize_mode="fill"
+                app:shutter_background_color="#f2f2f2"
+                android:backgroundTint="#f2f2f2"
+                app:auto_show="true"
+                />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_margin="@dimen/grid_0_5"
+                app:lottie_autoPlay="true"
+                app:lottie_repeatCount="500"
+                app:lottie_rawRes="@raw/lottie_live"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/menu" />
+    </FrameLayout>
+
+</layout>

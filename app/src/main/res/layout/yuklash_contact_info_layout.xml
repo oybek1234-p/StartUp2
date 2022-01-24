@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <variable
+            name="data"
+            type="com.example.market.User" />
+        <variable
+            name="sellerInfoOnClick"
+            type="android.view.View.OnClickListener" />
+
+        <import type="com.example.market.utils.DrawablesKt"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:background="#07535353"
+        android:focusable="true"
+        android:clipToPadding="false"
+        android:clipToOutline="false"
+        android:clipChildren="false"
+        android:onClick="@{sellerInfoOnClick}"
+        android:paddingHorizontal="16dp"
+        app:elevation="10dp"
+        android:padding="@dimen/grid_1_5">
+
+        <TextView
+            android:id="@+id/details_company_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/grid_0_5"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@{data.name}"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/details_company_icon"
+            tools:text="@string/apple_online" />
+
+        <com.example.market.viewUtils.ImageViewLoader
+            android:id="@+id/details_company_icon"
+            circleCrop="@{true}"
+            thumbnail="@{true}"
+            url="@{data.photo}"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:background="@drawable/oval_grey"
+            android:backgroundTint="#1111"
+            android:contentDescription="@{data.photo}"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/subscribe_button"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            android:background="@drawable/oval_grey"
+            android:translationY="-12dp"
+            android:src="@drawable/plus"
+            android:padding="5dp"
+            android:backgroundTint="@color/colorRed"
+            app:layout_constraintEnd_toEndOf="@+id/details_company_icon"
+            app:layout_constraintStart_toStartOf="@+id/details_company_icon"
+            app:layout_constraintTop_toBottomOf="@+id/details_company_icon" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/grid_1_5"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@id/subscribers_view_container"
+            android:padding="@dimen/grid_0_5"
+            app:layout_constraintStart_toStartOf="@+id/details_company_title"
+            app:layout_constraintTop_toBottomOf="@+id/details_company_title">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_bold"
+                android:text="124"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/grid_0_5"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Likes"
+                android:textColor="#666"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/subscribers_view_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/grid_3"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@id/subcriptions_view_container"
+            android:padding="@dimen/grid_0_5"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout7"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout7">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:text="50"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/grid_0_5"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Subscribers"
+                android:textColor="#666"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/subcriptions_view_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/grid_3"
+            android:padding="@dimen/grid_0_5"
+            app:layout_constraintStart_toEndOf="@+id/subscribers_view_container"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout7">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:layout_gravity="center"
+                android:text="12"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/grid_0_5"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Subscriptions"
+                android:textColor="#666"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

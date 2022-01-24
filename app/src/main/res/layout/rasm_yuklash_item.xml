@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="160dp">
+<ImageView
+    android:id="@+id/rasm_yuklash_imageView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F1F1F1"
+    android:stateListAnimator="@animator/rasm_yuklash_photo_animator"
+    />
+    <CheckBox
+        android:id="@+id/rasm_yuklash_checkbox"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_gravity="end"
+        android:translationX="5dp"
+        android:buttonTint="#4FCC00"
+        />
+</FrameLayout>

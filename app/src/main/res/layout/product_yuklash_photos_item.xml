@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="100dp">
+<ImageView
+    android:id="@+id/photo_yuklash"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:src="@drawable/placeholder_image"
+    />
+    <ImageView
+        android:id="@+id/delete_photo_yuklash"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_gravity="end"
+        android:src="@drawable/close_icon"
+        android:padding="10sp"
+        android:background="#52000000" />
+</FrameLayout>

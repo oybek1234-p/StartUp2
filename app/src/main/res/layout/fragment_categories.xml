@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/action_bar"
+            layout="@layout/action_bar" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/main_shimmer_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:shimmer_repeat_count="100"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/action_bar">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/main_recycler_view"
+                android:layout_width="94dp"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="vertical"
+                tools:listitem="@layout/category_item" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/sub_recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#F8F8F8"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/main_shimmer_layout"
+            app:layout_constraintTop_toBottomOf="@+id/action_bar"
+            app:spanCount="3"
+            tools:listitem="@layout/category_item" />
+
+        <include
+            android:id="@+id/emptyScreen"
+            layout="@layout/empty_screen"
+            android:layout_width="0dp"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/main_shimmer_layout"
+            app:layout_constraintTop_toTopOf="@+id/sub_recycler_view" />
+        <ProgressBar
+            android:id="@+id/subProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/sub_recycler_view"
+            app:layout_constraintEnd_toEndOf="@+id/sub_recycler_view"
+            app:layout_constraintStart_toEndOf="@+id/main_shimmer_layout"
+            app:layout_constraintTop_toTopOf="@+id/sub_recycler_view" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

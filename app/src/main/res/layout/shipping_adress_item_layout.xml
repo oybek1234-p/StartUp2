@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.example.market.ShippingLocation" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:paddingVertical="@dimen/grid_2"
+        android:paddingHorizontal="@dimen/grid_1"
+        android:clipToPadding="false"
+        android:background="@drawable/background_radius_stroke"
+        android:stateListAnimator="@animator/item_press_animator"
+        android:focusable="true"
+        android:clickable="true"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/msg_location"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/A" />
+
+        <TextView
+            android:id="@+id/shipping_adress_adress_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/grid_0_5"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@{data.adress}"
+            android:textColor="#222"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/shipping_adress_options_view"
+            android:breakStrategy="high_quality"
+            app:layout_constraintStart_toEndOf="@+id/imageView7"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/shipping_adress_options_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_ab_other"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"
+            app:tint="#666" />
+
+        <TextView
+            android:id="@+id/shipping_adress_number_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/grid_0_5"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/_998_97_855_42_24"
+            android:textColor="#222"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/grid_2"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shipping_adress_adress_view" />
+
+        <TextView
+            android:id="@+id/shipping_adress_name_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/grid_0_5"
+            android:fontFamily="@font/roboto_regular"
+            android:visibility="gone"
+            android:textColor="#222"
+            android:layout_marginTop="@dimen/grid_1"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shipping_adress_number_view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.example.market.model.Message" />
+
+        <import type="com.example.market.model.MessageKt"/>
+        <import type="android.view.View"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:paddingHorizontal="@dimen/grid_2"
+        android:paddingVertical="@dimen/grid_1"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        >
+
+        <ImageView
+            android:id="@+id/message_sender_photo"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            url="@{data.user.photo}"
+            circleCrop="@{true}"
+            android:background="@drawable/oval_grey"
+            android:backgroundTint="#F1F1F1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@{data.id}" />
+
+        <TextView
+            android:id="@+id/message_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/grid_0_5"
+            android:paddingHorizontal="@dimen/grid_0_5"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@{data.user.name}"
+            android:textColor="#222"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@id/message_subtitle"
+            app:layout_constraintStart_toEndOf="@+id/message_sender_photo"
+            app:layout_constraintTop_toTopOf="@+id/message_sender_photo"
+            tools:text="Akmal Payziyev" />
+
+        <TextView
+            android:id="@+id/message_subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_regular"
+            android:lineSpacingExtra="2dp"
+            android:paddingHorizontal="@dimen/grid_0_5"
+            android:textColor="#979797"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/message_sender_photo"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
+            app:layout_constraintStart_toStartOf="@+id/message_title"
+            app:layout_constraintTop_toBottomOf="@+id/message_title"
+            tools:text="Salom, shu telefoni olmoqchi edim, boshqa turlari ham bormi" />
+
+        <FrameLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/message_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="#999"
+                android:textSize="13sp"
+                android:visibility="@{data.type==MessageKt.MESSAGE_TYPE_MESSAGE ? View.VISIBLE : View.GONE }"
+                tools:text="Bugun 9:45" />
+
+            <TextView
+                android:id="@+id/message_subscribe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/grid_0_5"
+                android:background="@drawable/background_radius_filled"
+                android:backgroundTint="@color/colorRed"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/roboto_medium"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingHorizontal="@dimen/grid_1_5"
+                android:paddingVertical="@dimen/grid_0_5"
+                android:text="See profile"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:visibility="@{data.type==MessageKt.MESSAGE_TYPE_SUBSCRIBE ? View.VISIBLE : View.GONE }" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/message_photo_card"
+                android:layout_width="48dp"
+                android:layout_height="54dp"
+                android:visibility="@{data.type==MessageKt.MESSAGE_TYPE_LIKE  || data.type == MessageKt.MESSAGE_TYPE_PRODUCT_NEW_COMMENT ? View.VISIBLE : View.GONE }"
+                app:cardCornerRadius="4dp">
+
+                <ImageView
+                    android:id="@+id/message_photo"
+                    fade="@{true}"
+                    url="@{data.product.photo}"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/message_photo" />
+            </androidx.cardview.widget.CardView>
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

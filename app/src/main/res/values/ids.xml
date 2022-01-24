@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="home" type="id"/>
+    <item name="sevimli" type="id"/>
+    <item name="korzina" type="id"/>
+    <item name="messages" type="id"/>
+    <item name="produktlar" type="id"/>
+    <item name="zakazlar" type="id"/>
+    <item name="profile" type="id"/>
+</resources>

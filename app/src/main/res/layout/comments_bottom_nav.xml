@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="56dp"
+        android:paddingBottom="@dimen/grid_1"
+        android:layout_gravity="bottom">
+
+        <EditText
+            android:id="@+id/comment_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/grid_1"
+            android:autofillHints="@null"
+            android:background="@drawable/background_radius_filled"
+            android:fitsSystemWindows="true"
+            android:padding="@dimen/grid_1"
+            android:layout_marginStart="@dimen/grid_1_5"
+            android:backgroundTint="#F3F3F3"
+            android:fontFamily="@font/roboto_regular"
+            android:textColorHint="#999"
+            android:hint="@string/add_comment"
+            android:inputType="textMultiLine"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/attach_document_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/attach_document_button"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/attach_document"
+            android:padding="@dimen/grid_1"
+            android:src="@drawable/input_attach"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/attach_stricker_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#666" />
+
+        <ImageView
+            android:id="@+id/attach_stricker_button"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/attach_sticker"
+            android:padding="@dimen/grid_1"
+            android:src="@drawable/input_sticker"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/comment_send_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#666" />
+
+        <ImageView
+            android:id="@+id/comment_send_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/oval_grey"
+            android:backgroundTint="@color/red"
+            android:contentDescription="@string/send_comment"
+            android:padding="@dimen/grid_1"
+            android:layout_marginEnd="@dimen/grid_1_5"
+            android:src="@drawable/ic_send"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.526"
+            app:tint="#FFFFFF" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#1000"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

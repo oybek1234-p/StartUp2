@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<item android:id="@+id/home"
+    android:title="@string/home"
+    android:icon="@drawable/home_icon"
+    />
+    <item android:id="@+id/zakazlar"
+        android:title="@string/zakazlar"
+        android:icon="@drawable/heart_icon"
+        />
+    <item android:id="@+id/korzina"
+        android:title=""
+        />
+    <item android:id="@+id/messages"
+        android:title="Messages"
+        android:icon="@drawable/profile_newmsg"
+        />
+    <item android:id="@+id/profile"
+        android:title="Profile"
+        android:icon="@drawable/seller_profile_icon"
+        />
+</menu>

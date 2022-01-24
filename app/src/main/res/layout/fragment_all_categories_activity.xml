@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF">
+
+        <FrameLayout
+            android:id="@+id/frameLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/allCat_backView"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:padding="10sp"
+                android:src="@drawable/quantum_ic_arrow_back_black_24" />
+
+            <ImageView
+                android:id="@+id/allCat_searchView"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="10sp"
+                android:padding="12sp"
+                android:src="@drawable/search"
+                app:tint="#DD2C00" />
+
+            <TextView
+                android:id="@+id/allCat_titleView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="70dp"
+                android:text="Nima qidiryapsiz?"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="normal" />
+
+        </FrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/allCat_recyclerview"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            android:elevation="3dp"
+            android:orientation="vertical"
+            tools:itemCount="8"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout3"
+            tools:listitem="@layout/all_categories_mini_item" />
+
+        <com.example.market.recycler.EmptyRecyclerView
+            android:id="@+id/allCat_subRecyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="@dimen/grid_1_5"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/allCat_recyclerview"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout3"
+            app:spanCount="3"
+            tools:listitem="@layout/all_categories_mini_item" />
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/allCat_subRecyclerView"
+            app:layout_constraintStart_toEndOf="@+id/allCat_recyclerview"
+            app:layout_constraintTop_toTopOf="@+id/allCat_subRecyclerView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

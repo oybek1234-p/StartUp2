@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.example.market.model.Product" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <com.example.market.viewUtils.ImageViewLoader
+            android:id="@+id/imageView_home"
+            aspectRatio="@{data.scaleRatio}"
+            fade="@{true}"
+            thumbnail="@{true}"
+            url="@{data.photo}"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="#F8F8F8"
+            android:contentDescription="@string/imageviewproduct"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.example.market.viewUtils.MeasureText
+            android:id="@+id/narxi_textView_home"
+            cost="@{data.narxi}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/grid_1"
+            android:autoSizeMaxTextSize="16sp"
+            android:autoSizeMinTextSize="13sp"
+            android:autoSizeTextType="uniform"
+            android:breakStrategy="simple"
+            android:ellipsize="end"
+            android:visibility="gone"
+            android:fontFamily="@font/roboto_medium"
+            android:maxLines="1"
+            android:textColor="#222"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_home"
+            tools:text="UZS 1 000 000 " />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/grid_0_5"
+            android:backgroundTint="@color/gray_3a3e4a_55p"
+            app:layout_constraintBottom_toTopOf="@+id/narxi_textView_home"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="16sp"
+                android:layout_gravity="center"
+                android:src="@drawable/msg_message" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_regular"
+                tools:text="12"
+                android:shadowColor="#9E9E9E"
+                android:shadowRadius="1"
+                android:shadowDy="1"
+                android:text="@{String.valueOf(data.viewsCount)}"
+                android:layout_marginStart="2dp"
+                android:textColor="@color/white"
+                android:textSize="12dp" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

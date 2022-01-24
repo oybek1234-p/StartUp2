@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_radius_filled"
+        android:paddingHorizontal="@dimen/grid_1_5"
+        android:backgroundTint="#363742"
+        android:paddingVertical="@dimen/grid_1"
+        android:layout_marginHorizontal="@dimen/grid_1_5">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/icon_view"
+            android:layout_width="24dp"
+            android:layout_height="25dp"
+            android:src="@drawable/bot_music"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/message_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_regular"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/icon_view"
+            android:layout_marginStart="@dimen/grid_1_5"
+            app:layout_constraintStart_toEndOf="@+id/icon_view"
+            app:layout_constraintTop_toTopOf="@+id/icon_view"
+            tools:text="You are listening popular music." />
+
+        <ImageView
+            android:id="@+id/action_icon_view"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/photo_undo"
+            android:layout_marginEnd="@dimen/grid_0_5"
+            app:layout_constraintBottom_toBottomOf="@+id/action_name_view"
+            app:layout_constraintEnd_toStartOf="@+id/action_name_view"
+            app:layout_constraintTop_toTopOf="@+id/action_name_view"
+            app:tint="#74FFEA" />
+
+        <TextView
+            android:id="@+id/action_name_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_medium"
+            android:maxLines="1"
+            tools:text="UNDO"
+            android:shadowDy="2"
+            android:shadowRadius="2"
+            android:shadowColor="#B8FFF4"
+            android:textColor="#74FFEA"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
