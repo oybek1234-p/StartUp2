@@ -25,12 +25,17 @@ class PaymentFragment : BaseFragment<PaymentFragmentBinding>(R.layout.payment_fr
     ) {
         binding.apply {
             actionBar.apply {
-                backButton.setOnClickListener { closeLastFragment() }
+                backButton.setOnClickListener {
+                    closeLastFragment()
+                }
                 titleContainer.gravity = Gravity.START
                 title.text = getString(R.string.pay_cards)
+
                 options.apply {
                     setImageResource(R.drawable.menu_add)
-                    setOnClickListener { openAddNewCartFragment() }
+                    setOnClickListener {
+                        openAddNewCartFragment()
+                    }
                 }
             }
 
@@ -43,6 +48,7 @@ class PaymentFragment : BaseFragment<PaymentFragmentBinding>(R.layout.payment_fr
                 titleView.text = getString(R.string.card_empty)
                 subtitleView.text = getString(R.string.card_empty_subtitle)
             }
+
             recyclerView.adapter = PaymentsAdapter().also { listAdapter = it }
         }
     }
@@ -56,14 +62,12 @@ class PaymentFragment : BaseFragment<PaymentFragmentBinding>(R.layout.payment_fr
         binding.progressBar.visibleOrGone(true)
 
         getPaymentCards(object : ResultCallback<ArrayList<PaymentCard>> {
-
             @SuppressLint("NotifyDataSetChanged")
             override fun onSuccess(result: ArrayList<PaymentCard>?) {
                 binding.apply {
                     progressBar.visibleOrGone(false)
                     emptyScreen.root.visibleOrGone(payCards.isEmpty())
                 }
-
                 listAdapter?.notifyDataSetChanged()
             }
         })

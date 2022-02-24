@@ -16,12 +16,13 @@ import com.example.market.viewUtils.toast
 import com.example.market.viewUtils.vibrate
 
 class AddPayCardFragment : BaseFragment<FragmentAddPayCardBinding>(R.layout.fragment_add_pay_card) {
+
     fun checkCorrect(cardNumber: String,expDate: String,cvv: String): Boolean {
         return cardNumber.length==16 && expDate.length == 4 && cvv.length == 3
     }
 
     fun savePayCard(payCard: PaymentCard) {
-        addNewPaymentCard(payCard,object : Result{
+        addNewPaymentCard(payCard,object : Result {
             override fun onSuccess(any: Any?) {
                 //fill
             }
@@ -42,10 +43,15 @@ class AddPayCardFragment : BaseFragment<FragmentAddPayCardBinding>(R.layout.frag
         binding: FragmentAddPayCardBinding
     ) {
         binding.apply {
+
             actionBar.apply {
-                backButton.setOnClickListener { closeLastFragment() }
+                backButton.setOnClickListener {
+                    closeLastFragment()
+                }
+
                 title.text = getString(R.string.add_card)
                 titleContainer.gravity = Gravity.START
+
                 options.apply {
                     setImageResource(R.drawable.ic_done)
                     setOnClickListener {
@@ -83,6 +89,7 @@ class AddPayCardFragment : BaseFragment<FragmentAddPayCardBinding>(R.layout.frag
                             }
                         }
                     }
+
                     setOnFocusChangeListener { _, hasFocus ->
                         val isWrong = text.length!=19 && !hasFocus
 
@@ -110,6 +117,7 @@ class AddPayCardFragment : BaseFragment<FragmentAddPayCardBinding>(R.layout.frag
                             lastIndex = expiryDateText.length
                         }
                     }
+
                     setOnFocusChangeListener { _, hasFocus ->
                         val isWrong = text.length!=5 && !hasFocus
                         isErrorEnabled = isWrong
