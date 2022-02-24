@@ -10,47 +10,14 @@ import com.example.market.databinding.FragmentEditUserInfoBinding
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 
-class EditUserInfoFragment : BaseFragment() {
-    override fun onBeginSlide() {
-    }
-
-
-    override fun onConnectionChanged(state: Boolean) {
-
-    }
-
-    override fun onBackPressed() {
-
-    }
-
-    override fun onViewFullyVisible() {
-
-    }
-
-    override fun onViewFullyHiden() {
-
-    }
-
-    override fun onViewAttachedToParent() {
-
-    }
-
-    override fun onViewDetachedFromParent() {
-
-    }
-
-    override fun canBeginSlide(): Boolean {
-        return false
-    }
-
-    private var binding: FragmentEditUserInfoBinding?=null
+class EditUserInfoFragment : BaseFragment<FragmentEditUserInfoBinding>(R.layout.fragment_edit_user_info) {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = inflateBinding(container,R.layout.fragment_edit_user_info)
-        binding?.apply {
+        savedInstanceState: Bundle?,
+        binding: FragmentEditUserInfoBinding
+    ) {
+        binding.apply {
             actionBar.apply {
                 backButton.setOnClickListener {
                     closeLastFragment()
@@ -84,7 +51,5 @@ class EditUserInfoFragment : BaseFragment() {
                 }
             }
         }
-        return binding?.root
     }
-
 }

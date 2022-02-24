@@ -20,8 +20,8 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--keep class com.example.market.model.Product { *; }
--keep class com.example.market.model.Category { *; }
+-keep class com.example.market.models.Product { *; }
+-keep class com.example.market.models.Category { *; }
 -keep class com.example.market.Bann { *; }
 # For more details, see
 #   http://developer.android.com/guide/developing/tools/proguard.html

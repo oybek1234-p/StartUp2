@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:background="#07535353"
+        android:background="@color/white"
         android:focusable="true"
         android:clipToPadding="false"
         android:clipToOutline="false"
@@ -27,14 +27,14 @@
         android:onClick="@{sellerInfoOnClick}"
         android:paddingHorizontal="16dp"
         app:elevation="10dp"
-        android:padding="@dimen/grid_1_5">
+        android:padding="@dimen/grid_2">
 
         <TextView
             android:id="@+id/details_company_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/grid_0_5"
-            android:fontFamily="@font/roboto_bold"
+            android:fontFamily="@font/roboto_medium"
             android:text="@{data.name}"
             android:textColor="@color/black"
             android:textSize="16sp"

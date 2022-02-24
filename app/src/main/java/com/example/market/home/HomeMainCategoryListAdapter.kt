@@ -46,15 +46,13 @@ class HomeMainCategoryListAdapter : DataBoundAdapter<HomeMainCategoryItemBinding
         }
     }
 
-
     override fun bindItem(
-        holder: DataBoundViewHolder<HomeMainCategoryItemBinding>?,
+        holder: DataBoundViewHolder<HomeMainCategoryItemBinding>,
+        binding: HomeMainCategoryItemBinding,
         position: Int,
-        model: MainCategory?,
+        model: MainCategory,
     ) {
-        holder?.binding?.apply {
 
-        }
     }
 
 }

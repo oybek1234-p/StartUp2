@@ -2,49 +2,26 @@ package com.example.market.favourite
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import com.example.market.BaseFragment
 import com.example.market.R
+import com.example.market.databinding.FragmentFavouriteBinding
 
-class FavouriteFragment : BaseFragment() {
-    override fun onBeginSlide() {
-
-    }
-
-    override fun isSwapBackEnabled(): Boolean {
-       return false
-    }
-
-    override fun onConnectionChanged(state: Boolean) {
-
-    }
-
-    override fun onBackPressed() {
-    }
-
-    override fun onViewFullyVisible() {
-    }
-
-    override fun onViewFullyHiden() {
-    }
-
-    override fun onViewAttachedToParent() {
-    }
-
-    override fun onViewDetachedFromParent() {
-    }
-
-    override fun canBeginSlide(): Boolean {
-        return false
-    }
+class FavouriteFragment : BaseFragment<FragmentFavouriteBinding>(R.layout.fragment_favourite) {
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favourite, container, false)
+        binding: FragmentFavouriteBinding,
+    ) {
+
+
     }
 
+    fun loadTasks() {
+
+        binding.favourite.text = getString(R.string._1)
+
+    }
 }

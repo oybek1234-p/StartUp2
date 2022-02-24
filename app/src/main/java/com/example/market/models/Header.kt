@@ -1,4 +1,4 @@
-package com.example.market.model
+package com.example.market.models
 
 import androidx.recyclerview.widget.RecyclerView
 

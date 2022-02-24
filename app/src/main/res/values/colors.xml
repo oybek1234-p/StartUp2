@@ -348,6 +348,8 @@
     <color name="AliHomeBannerOverlay">#11000000</color>
     <color name="AliHomeYOUMAYALSOLIKE">#23000000</color>
     <color name="AliOrange">#ffc600</color>
+    <color name="main_red">#ff4747</color>
+    <color name="red_fff8f8">#fff8f8</color>
     <color name="AliOrangeText">#f27300</color>
     <color name="B">#000000</color>
     <color name="Black">#000000</color>

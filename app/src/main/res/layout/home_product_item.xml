@@ -6,7 +6,7 @@
     <data>
         <variable
             name="data"
-            type="com.example.market.model.Product" />
+            type="com.example.market.models.Product" />
         <import type="com.example.market.utils.DrawablesKt"/>
         <import type="com.example.market.binding.BindingAdaptersKt"/>
 

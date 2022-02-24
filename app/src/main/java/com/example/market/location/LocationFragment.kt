@@ -1,5 +1,6 @@
 package com.example.market.location
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
 import android.content.Context
@@ -18,11 +19,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import com.example.market.*
 import com.example.market.R
+import com.example.market.auth.LoginFragment
 import com.example.market.binding.inflateBinding
 import com.example.market.databinding.ActivityLocationBinding
 import com.example.market.databinding.AlertDialogBinding
 import com.example.market.databinding.LocationBottomSheetBinding
 import com.example.market.databinding.ShippingOfferItemBinding
+import com.example.market.permission.PermissionController
+import com.example.market.permission.PermissionResult
 import com.example.market.recycler.databoundrecycler.DataBoundAdapter
 import com.example.market.recycler.databoundrecycler.DataBoundViewHolder
 import com.example.market.utils.AndroidUtilities
@@ -43,30 +47,27 @@ import kotlinx.coroutines.withContext
 import java.lang.Exception
 import java.util.*
 
-class LocationActivity(private val updateLocationInfo: (() -> Unit?)? =null) : BaseFragment(), OnMapReadyCallback {
+class LocationActivity(private val onGetLocationInfo: (location: ShippingLocation) -> Unit) : BaseFragment<ActivityLocationBinding>(R.layout.activity_location), OnMapReadyCallback {
 
     private var mMap: GoogleMap?=null
-    private var binding: ActivityLocationBinding?=null
     private var isCreated = false
     private var location:LatLng = LatLng(41.311081, 69.240562)
     private lateinit var locationRequest: LocationRequest
     private var geocoder: Geocoder?=null
     private var lastAddress: String?=null
-    private var bottomSheetDialog: BottomSheetDialog?=null
+    private var bottomSheetBehavior: BottomSheetBehavior<ViewGroup> ?= null
     private var bottomSheetBinding:LocationBottomSheetBinding?=null
     private var offerAdapter: LocationOfferAdapter?=null
     private var mapFragment: SupportMapFragment?=null
-    private var bottomSheetHeight = AndroidUtilities.dp(287f)
 
     override fun onDestroyView() {
         super.onDestroyView()
         mMap = null
-        binding = null
         isCreated = false
         geocoder = null
         lastAddress = null
-        bottomSheetDialog?.dismiss()
-        bottomSheetDialog = null
+        bottomSheetBehavior?.state = BottomSheetBehavior.STATE_HIDDEN
+        bottomSheetBehavior = null
         bottomSheetBinding = null
         offerAdapter = null
         mapFragment = null
@@ -85,97 +86,41 @@ class LocationActivity(private val updateLocationInfo: (() -> Unit?)? =null) : B
                 }, iconResource = R.drawable.msg_location)
             alertDialogView.data = alert
             alertDialogView.executePendingBindings()
-            binding?.root?.let {
-                popupDialog.show(it,Gravity.CENTER,0,0,true)
-            }
+            binding.root.let { popupDialog.show(it,Gravity.CENTER,0,0,true) }
         } else {
-            if (lastAddress!=null) {
+            if (lastAddress != null && checkCurrentUser()) {
                 val shippingLocation = ShippingLocation().apply {
                     location.let {
                         latLang = com.example.market.LatLng(it.latitude,it.longitude)
                         adress = lastAddress
                         offerAdapter?.let {
-                            shippingCost = it.selectedShipping.cost.toString()
-                            shippingType = it.selectedShipping.name
+                            cost = it.selectedShipping.cost.toString()
+                            type = it.selectedShipping.name
                         }
                     }
                 }
                 setShippingLocation(shippingLocation,null)
 
-                updateLocationInfo?.let { it() }
+                onGetLocationInfo(shippingLocation)
 
                 closeLastFragment()
-                bottomSheetDialog?.dismiss()
+            } else {
+                presentFragmentRemoveLast(LoginFragment(),false)
             }
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = DataBindingUtil.inflate(inflater,R.layout.activity_location,container,false)
+    private val sheetPeekHeight = AndroidUtilities.dp(84f)
 
-        binding?.apply {
-            mapFragment = (childFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment).apply {
-                getMapAsync(this@LocationActivity)
-            }
-
-            backButton.setOnClickListener {
-                closeLastFragment()
-                bottomSheetDialog?.dismiss()
-            }
-
-            bottomSheetDialog = BottomSheetDialog(requireContext()).apply {
-                behavior.state = BottomSheetBehavior.STATE_EXPANDED
-                behavior.peekHeight = AndroidUtilities.dp(38f)
-                (inflateBinding(null,R.layout.location_bottom_sheet) as LocationBottomSheetBinding).apply {
-                    bottomSheetBinding = this
-
-                    offerAdapter = LocationOfferAdapter.also {
-                        shippingTypesRecyclerview.adapter = it
-                    }
-
-                        window?.apply {
-                            setupBottomSheet()
-
-                            setOnShowListener {
-                                setupBottomSheet()
-                            }
-                        }
-
-                        continueButton.setOnClickListener {
-                            saveLocation()
-                        }
-                        //val savedLocation = currentUser?.shippingLocation
-                        setContentView(root)
-
-                }
-            }
-        }
-
-        return binding!!.root
-    }
-
-    fun setupBottomSheet() {
-        bottomSheetDialog?.apply {
-            window?.apply {
-                clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
-                setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL)
-                attributes.gravity = Gravity.BOTTOM
-                setLayout(WindowManager.LayoutParams.MATCH_PARENT,bottomSheetHeight)
-                findViewById<View>(R.id.design_bottom_sheet)?.setBackgroundColor(Color.TRANSPARENT)
-            }
-        }
-    }
     private fun start() {
         try {
-            geocoder = Geocoder(requireContext(), Locale.getDefault())
+            if (mMap != null && binding != null && !isStarted) {
+                geocoder = Geocoder(requireContext(), Locale.getDefault())
 
-            setCurrentLocation(location)
-            addMarkerListener()
-            isCreated = true
+                setCurrentLocation(location)
+                addMarkerListener()
+                isStarted = true
+            }
         } catch (e: Exception) {
             log(e)
         }
@@ -190,17 +135,35 @@ class LocationActivity(private val updateLocationInfo: (() -> Unit?)? =null) : B
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        lifecycleScope.launch (Dispatchers.IO){
-            locationRequest = LocationRequest()
-                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                .setInterval(1000)
-                .setFastestInterval(1000)
+        PermissionController.getInstance().requestPermissions(
+            requireContext(),
+            789,
+            arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION),
+            object : PermissionResult {
+                override fun onGranted() {
 
-            turnOnGps()
-        }
+                    lifecycleScope.launch (Dispatchers.IO){
+                        locationRequest = LocationRequest()
+                            .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+                            .setInterval(1000)
+                            .setFastestInterval(1000)
+
+                        turnOnGps()
+
+                        start()
+
+                        isCreated = true
+                    }
+                }
+
+                override fun onDenied() {
+                    closeLastFragment()
+                }
+            }
+        )
 
     }
-
+    private var isStarted = false
     private fun turnOnGps() {
         val locationSettingsRequest = LocationSettingsRequest.Builder()
             .addLocationRequest(locationRequest)
@@ -288,7 +251,7 @@ class LocationActivity(private val updateLocationInfo: (() -> Unit?)? =null) : B
 
     private fun setAdressText(text:String) {
         bottomSheetBinding?.locationAdressView?.text = text
-        binding?.adressView?.text = "Your adress: \n$text"
+        binding.adressView.text = "Your adress: \n$text"
     }
 
     private fun setCurrentLocation(newLocation: LatLng) {
@@ -306,19 +269,18 @@ class LocationActivity(private val updateLocationInfo: (() -> Unit?)? =null) : B
     }
 
     private fun onCameraChanged(move: Boolean) {
-        binding?.apply {
+        binding.apply {
             backButton.animate().alpha(if (move) 0f else 1f).setDuration(300).start()
             marker.animate().translationY(if (move) -AndroidUtilities.dp(12f).toFloat() else 0f).setDuration(300).start()
             currentLocationView.animate().alpha(if (move) 0f else 1f).setDuration(300).start()
         }
-        bottomSheetDialog?.apply {
-            if (move) {
-                hide()
-            } else {
-                behavior.state = BottomSheetBehavior.STATE_EXPANDED
-                show()
-            }
 
+        bottomSheetBehavior?.apply {
+            if (move) {
+                state = BottomSheetBehavior.STATE_COLLAPSED
+            } else {
+                state = BottomSheetBehavior.STATE_EXPANDED
+            }
         }
     }
 
@@ -328,7 +290,7 @@ class LocationActivity(private val updateLocationInfo: (() -> Unit?)? =null) : B
     private fun addMarkerListener(){
         mMap?.apply {
             isMyLocationEnabled = true
-            binding?.currentLocationView?.setOnClickListener {
+            binding.currentLocationView.setOnClickListener {
                 try {
                     myLocation.let {
                         setCurrentLocation(LatLng(it.latitude,it.longitude))
@@ -362,41 +324,50 @@ class LocationActivity(private val updateLocationInfo: (() -> Unit?)? =null) : B
             }
         }
     }
-    override fun onBeginSlide() {
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+        binding: ActivityLocationBinding,
+    ) {
+        binding.apply {
+            mapFragment = (childFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment).apply {
+                getMapAsync(this@LocationActivity)
+            }
+
+            backButton.setOnClickListener {
+                closeLastFragment()
+                bottomSheetBehavior?.state = BottomSheetBehavior.STATE_HIDDEN
+            }
+            bottomSheetBinding = bottomSheet.apply {
+                bottomSheetBehavior = BottomSheetBehavior.from(this.root as ViewGroup).apply {
+                    peekHeight = sheetPeekHeight
+
+                    addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+                        override fun onStateChanged(bottomSheet: View, newState: Int) {
+                            val offset = - (MyApplication.displaySize.second - bottomSheet.top - sheetPeekHeight) / 2
+                            marker.animate().translationY((if (newState == BottomSheetBehavior.STATE_EXPANDED) offset else 0).toFloat()).setDuration(300).start()
+                            mapFragment?.requireView()?.animate()?.translationY((if (newState == BottomSheetBehavior.STATE_EXPANDED) offset else 0).toFloat())?.setDuration(300)?.start()
+                        }
+
+                        override fun onSlide(bottomSheet: View, slideOffset: Float) {
+                            //    toast("Slide offset $slideOffset")
+                        }
+                    })
+                }
+                offerAdapter = LocationOfferAdapter.also {
+                    shippingTypesRecyclerview.adapter = it
+                }
+                continueButton.setOnClickListener {
+                    saveLocation()
+                }
+            }
+
+        }
 
     }
 
-    override fun isSwapBackEnabled(): Boolean {
-        return false
-    }
-
-    override fun onConnectionChanged(state: Boolean) {
-
-    }
-
-    override fun onBackPressed() {
-
-    }
-
-    override fun onViewFullyVisible() {
-
-    }
-
-    override fun onViewFullyHiden() {
-
-    }
-
-    override fun onViewAttachedToParent() {
-
-    }
-
-    override fun onViewDetachedFromParent() {
-
-    }
-
-    override fun canBeginSlide(): Boolean {
-        return true
-    }
     companion object {
         private val markerColor = ContextCompat.getColor(MyApplication.appContext,R.color.marker)
         private val markerCenterColor = ContextCompat.getColor(MyApplication.appContext,R.color.markerCenter)
@@ -468,14 +439,16 @@ class LocationActivity(private val updateLocationInfo: (() -> Unit?)? =null) : B
         }
 
         override fun bindItem(
-            holder: DataBoundViewHolder<ShippingOfferItemBinding>?,
+            holder: DataBoundViewHolder<ShippingOfferItemBinding>,
+            binding: ShippingOfferItemBinding,
             position: Int,
-            model: ShippingOffer?,
+            model: ShippingOffer,
         ) {
-            holder?.binding?.apply {
+            binding.apply {
                 data = list[position]
                 shioContainer.cardElevation = if (selectedPostition == position) AndroidUtilities.dp(8f).toFloat() else 0f
             }
         }
+
     }
 }

@@ -21,6 +21,7 @@
             android:background="@drawable/oval_grey"
             android:backgroundTint="#DCDCDC"
             android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/circleImageViewStyle"
             android:layout_marginTop="@dimen/grid_1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

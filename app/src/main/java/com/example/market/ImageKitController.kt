@@ -1,7 +1,9 @@
 package com.example.market
 
 import android.graphics.Bitmap
+import android.graphics.Color
 import com.example.market.utils.log
+import com.example.market.viewUtils.toast
 import com.imagekit.ImageKit
 import com.imagekit.ImageKitCallback
 import com.imagekit.android.entity.TransformationPosition
@@ -30,7 +32,7 @@ fun isImageKit(fileName: String): Boolean{
     return false
 }
 
-fun getUrlForImage(path:String,width: Int,height: Int,blur: Int?=null): String {
+fun getUrlForImage(path: String,width: Int,height: Int,circleCrop: Boolean = false,radius: Int ?= null,blur: Int ?= null): String {
     var kit = ImageKit.getInstance()
         .url(
             path = "/Images/$path",
@@ -39,14 +41,14 @@ fun getUrlForImage(path:String,width: Int,height: Int,blur: Int?=null): String {
         .height(height)
         .width(width)
 
-    if (blur!=null) {
-        kit.quality(50)
-        kit.progressive(true)
+    if (blur != null) {
         kit = kit.blur(40)
     }
-    return kit.create().also {
-        log("Image kit Url: $it")
+    if (circleCrop) {
+        kit = kit.radius(80)
     }
+    if (radius != null) { kit = kit.radius(radius = radius) }
+    return kit.create().also { log("Image kit Url: $it") }
 }
 
 fun initImageKit() {

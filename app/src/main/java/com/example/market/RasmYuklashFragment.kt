@@ -1,4 +1,6 @@
 package com.example.market
+
+import android.Manifest
 import android.graphics.Color
 import android.graphics.Rect
 import android.os.Build
@@ -18,58 +20,47 @@ import com.bumptech.glide.Glide
 import com.example.market.binding.inflateBinding
 import com.example.market.databinding.FragmentRasmYuklashBinding
 import com.example.market.navigation.bottomNavVisiblity
+import com.example.market.permission.PermissionController
+import com.example.market.permission.PermissionResult
+import com.example.market.viewUtils.toast
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class RasmYuklashFragment(var onGetPhoto: ((photo: String) -> Unit?)? =null) : BaseFragment(){
-    private lateinit var galeryRecyclerView:RecyclerView
+class RasmYuklashFragment(var onGetPhoto: ((photo: String) -> Unit?)? = null) : BaseFragment<FragmentRasmYuklashBinding>(R.layout.fragment_rasm_yuklash) {
     private lateinit var imagesListUri: ArrayList<String>
-    private var mAdapter: RasmYuklashAdapter?=null
-    lateinit var yuklashButton: Button
-    private lateinit var actionBar: FrameLayout
-    private lateinit var backButton: ImageView
-    override fun onBeginSlide() {
-
-    }
-
-    override fun isSwapBackEnabled(): Boolean {
-        return true
-    }
-
-    override fun onConnectionChanged(state: Boolean) {
-
-    }
-
-    override fun onBackPressed() {
-
-    }
+    private var mAdapter: RasmYuklashAdapter? = null
 
     override fun onViewFullyVisible() {
-        initFragment()
+        PermissionController.getInstance().requestPermissions(
+            requireContext(),
+            8484,
+            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE),
+            object : PermissionResult {
+                override fun onGranted() {
+                    toast("On granted")
+                    initFragment()
+                }
+
+                override fun onDenied() {
+                    closeLastFragment()
+                }
+            })
     }
 
-    override fun onViewFullyHiden() {
-
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
-    override fun onViewAttachedToParent() {
-
-    }
-
-    override fun onViewDetachedFromParent() {
-
-    }
-
-    override fun canBeginSlide(): Boolean {
-        return true
-    }
-
-    private fun initFragment(){
+    private fun initFragment() {
         getAllImages()
-        yuklashButton.setOnClickListener {
+        binding.rasmniYuklash.setOnClickListener {
             mAdapter?.apply {
-                if (selectedItems.isNotEmpty()){
+                if (selectedItems.isNotEmpty()) {
                     onGetPhoto?.let { it1 -> it1(selectedItems.first()) }
                 }
                 bundleAny = selectedItems
@@ -77,14 +68,14 @@ class RasmYuklashFragment(var onGetPhoto: ((photo: String) -> Unit?)? =null) : B
             closeLastFragment()
         }
     }
-    private var binding: FragmentRasmYuklashBinding?=null
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        binding =  inflateBinding<FragmentRasmYuklashBinding>(container,R.layout.fragment_rasm_yuklash).apply {
+        binding: FragmentRasmYuklashBinding
+    ) {
+        binding.apply {
             actionBar.apply {
                 backButton.setOnClickListener {
                     closeLastFragment()
@@ -92,43 +83,38 @@ class RasmYuklashFragment(var onGetPhoto: ((photo: String) -> Unit?)? =null) : B
                 title.text = getString(R.string.rasm_yuklash)
             }
         }
-
-        galeryRecyclerView = binding!!.galeryImagesRecyclerView
-        yuklashButton = binding!!.rasmniYuklash
-        bottomNavVisiblity(context,false)
-
-        return binding?.root
     }
 
-    private fun getAllImages(){
-        GlobalScope.launch (Dispatchers.IO){
-            val cursor = requireContext().contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                arrayOf(MediaStore.MediaColumns.DATA)
-                ,null,null,null)
+    private fun getAllImages() {
+        GlobalScope.launch(Dispatchers.IO) {
+            val cursor =
+                requireContext().contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                    arrayOf(MediaStore.MediaColumns.DATA), null, null, null)
             imagesListUri = ArrayList()
-            while (cursor!!.moveToNext()){
-                val imagePath : String = cursor.getString(cursor.getColumnIndex(MediaStore.MediaColumns.DATA))
+            while (cursor!!.moveToNext()) {
+                val imagePath: String =
+                    cursor.getString(cursor.getColumnIndex(MediaStore.MediaColumns.DATA))
                 imagesListUri.add(imagePath)
             }
             imagesListUri.reverse()
-            GlobalScope.launch (Dispatchers.Main){
-                if (imagesListUri.isNotEmpty()){
-                    galeryRecyclerView.apply {
+            GlobalScope.launch(Dispatchers.Main) {
+                if (imagesListUri.isNotEmpty()) {
+                    binding.galeryImagesRecyclerView.apply {
                         setHasFixedSize(true)
                         val edgeSpace = 10
                         val space = 5
-                        layoutManager = GridLayoutManager(context,3).apply {
+                        layoutManager = GridLayoutManager(context, 3).apply {
 
                             addItemDecoration(object : RecyclerView.ItemDecoration() {
                                 override fun getItemOffsets(
                                     outRect: Rect,
                                     view: View,
                                     parent: RecyclerView,
-                                    state: RecyclerView.State
+                                    state: RecyclerView.State,
                                 ) {
                                     val pos = parent.getChildAdapterPosition(view)
-                                    spanSizeLookup.getSpanIndex(pos,3).let {
-                                        when(it){
+                                    spanSizeLookup.getSpanIndex(pos, 3).let {
+                                        when (it) {
                                             0 -> {
                                                 outRect.apply {
                                                     left = edgeSpace
@@ -137,7 +123,7 @@ class RasmYuklashFragment(var onGetPhoto: ((photo: String) -> Unit?)? =null) : B
                                                     bottom = 0
                                                 }
                                             }
-                                            1-> {
+                                            1 -> {
                                                 outRect.apply {
                                                     left = space
                                                     right = space
@@ -145,7 +131,7 @@ class RasmYuklashFragment(var onGetPhoto: ((photo: String) -> Unit?)? =null) : B
                                                     bottom = 0
                                                 }
                                             }
-                                            2-> {
+                                            2 -> {
                                                 outRect.apply {
                                                     left = space
                                                     right = edgeSpace
@@ -162,9 +148,7 @@ class RasmYuklashFragment(var onGetPhoto: ((photo: String) -> Unit?)? =null) : B
                         }
                         mAdapter = RasmYuklashAdapter(object : ChangeButtonColor {
                             override fun change(enable: Boolean) {
-                                yuklashButton.apply {
-                                    setBackgroundColor(if (enable) Color.GREEN else Color.LTGRAY)
-                                }
+                                binding.rasmniYuklash.setBackgroundColor(if (enable) Color.GREEN else Color.LTGRAY)
                             }
                         }, (context as MainActivity).selectedUriPhotos ?: ArrayList()).apply {
                             uriList = imagesListUri
@@ -178,38 +162,52 @@ class RasmYuklashFragment(var onGetPhoto: ((photo: String) -> Unit?)? =null) : B
 
     }
 
-    class RasmYuklashAdapter(private var changeButtonColor:ChangeButtonColor, var selectedItems : ArrayList<String>) : RecyclerView.Adapter<RasmYuklashAdapter.ViewHolder>(){
+    class RasmYuklashAdapter(
+        private var changeButtonColor: ChangeButtonColor,
+        var selectedItems: ArrayList<String>,
+    ) : RecyclerView.Adapter<RasmYuklashAdapter.ViewHolder>() {
         var uriList = ArrayList<String>()
 
-        class ViewHolder(itemView: View,list:ArrayList<String>,selectedItems: ArrayList<String>) : RecyclerView.ViewHolder(itemView) {
-            val imageView: ImageView? = itemView.findViewById<ImageView>(R.id.rasm_yuklash_imageView)
+        class ViewHolder(
+            itemView: View,
+            list: ArrayList<String>,
+            selectedItems: ArrayList<String>,
+        ) : RecyclerView.ViewHolder(itemView) {
+            val imageView: ImageView? =
+                itemView.findViewById<ImageView>(R.id.rasm_yuklash_imageView)
             val checkBox: CheckBox? = itemView.findViewById<CheckBox>(R.id.rasm_yuklash_checkbox)
 
 
-            fun checkSelected(position: Int,uriList:ArrayList<String>,selectedItems: ArrayList<String>): Boolean{
+            fun checkSelected(
+                position: Int,
+                uriList: ArrayList<String>,
+                selectedItems: ArrayList<String>,
+            ): Boolean {
                 var isAviable = false
                 for (i in selectedItems) {
-                    if (uriList[position] == i){
+                    if (uriList[position] == i) {
                         isAviable = true
                     }
                 }
                 return isAviable
             }
         }
+
         @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         override fun onCreateViewHolder(
             parent: ViewGroup,
             viewType: Int,
         ): ViewHolder {
-            val itemView = LayoutInflater.from(parent.context).inflate(R.layout.rasm_yuklash_item,parent,false)
-            return ViewHolder(itemView,uriList,selectedItems).apply {
+            val itemView = LayoutInflater.from(parent.context)
+                .inflate(R.layout.rasm_yuklash_item, parent, false)
+            return ViewHolder(itemView, uriList, selectedItems).apply {
                 checkBox?.setOnCheckedChangeListener { buttonView, isChecked ->
 
-                    val checkSelected = checkSelected(adapterPosition,uriList,selectedItems)
-                    if (isChecked){
-                        if (!checkSelected){
+                    val checkSelected = checkSelected(adapterPosition, uriList, selectedItems)
+                    if (isChecked) {
+                        if (!checkSelected) {
                             selectedItems.add(uriList[adapterPosition])
-                            if (!imageView!!.isSelected){
+                            if (!imageView!!.isSelected) {
                                 imageView.isSelected = true
                             }
                             if (!checkBox.isChecked) {
@@ -217,9 +215,9 @@ class RasmYuklashFragment(var onGetPhoto: ((photo: String) -> Unit?)? =null) : B
                             }
                         }
                     } else {
-                        if (checkSelected){
+                        if (checkSelected) {
                             selectedItems.remove(uriList[adapterPosition])
-                            if (imageView!!.isSelected){
+                            if (imageView!!.isSelected) {
                                 imageView.isSelected = false
                             }
                             if (checkBox.isChecked) {
@@ -227,7 +225,7 @@ class RasmYuklashFragment(var onGetPhoto: ((photo: String) -> Unit?)? =null) : B
                             }
                         }
                     }
-                    changeButtonColor.change(selectedItems.size>0)
+                    changeButtonColor.change(selectedItems.size > 0)
                 }
             }
         }
@@ -235,18 +233,18 @@ class RasmYuklashFragment(var onGetPhoto: ((photo: String) -> Unit?)? =null) : B
         @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.apply {
-               checkSelected(adapterPosition, uriList, selectedItems).let {
-                   checkBox?.apply {
-                       if (isChecked!=it) {
-                           isChecked = it
-                       }
-                   }
-                   imageView?.apply {
-                       if (isSelected!=it){
-                           isSelected = it
-                       }
-                   }
-               }
+                checkSelected(adapterPosition, uriList, selectedItems).let {
+                    checkBox?.apply {
+                        if (isChecked != it) {
+                            isChecked = it
+                        }
+                    }
+                    imageView?.apply {
+                        if (isSelected != it) {
+                            isSelected = it
+                        }
+                    }
+                }
                 Glide.with(itemView.context).load(uriList[position]).centerCrop().into(imageView!!)
             }
         }
@@ -258,6 +256,7 @@ class RasmYuklashFragment(var onGetPhoto: ((photo: String) -> Unit?)? =null) : B
     }
 
 }
+
 interface ChangeButtonColor {
     fun change(enable: Boolean)
 }

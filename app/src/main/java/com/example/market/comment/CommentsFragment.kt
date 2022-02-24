@@ -1,6 +1,5 @@
 package com.example.market.comment
 import android.animation.ArgbEvaluator
-import android.animation.IntEvaluator
 import android.animation.ValueAnimator
 import android.app.Dialog
 import android.content.res.ColorStateList
@@ -8,7 +7,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
-import android.widget.LinearLayout
 import androidx.annotation.Nullable
 import androidx.core.widget.TextViewCompat
 import androidx.databinding.ViewDataBinding
@@ -19,12 +17,10 @@ import com.example.market.databinding.CommentItemBinding
 import com.example.market.databinding.CommentLoadingLayoutBinding
 import com.example.market.databinding.CommentSingleTextViewBinding
 import com.example.market.databinding.FragmentCommentsBinding
-import com.example.market.model.Product
-import com.example.market.navigation.FragmentController
+import com.example.market.models.Product
 import com.example.market.profile.ProfileFragmentSeller
 import com.example.market.recycler.BaseViewHolder
 import com.example.market.recycler.EndlessRecyclerViewScrollListener
-import com.example.market.recycler.RecyclerItemClickListener
 import com.example.market.recycler.SimpleAdapter
 import com.example.market.utils.*
 import com.example.market.viewUtils.getRecyclerChildSafe
@@ -34,14 +30,9 @@ import com.example.market.viewUtils.toast
 import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import de.mrapp.android.bottomsheet.BottomSheet
-import de.mrapp.android.util.ViewUtil
-import java.lang.reflect.Field
 
 const val COMMENTS = "comments"
 

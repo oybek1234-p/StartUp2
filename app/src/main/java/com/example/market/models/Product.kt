@@ -1,4 +1,4 @@
-package com.example.market.model
+package com.example.market.models
 
 import com.example.market.categories.Category
 import com.example.market.colors.productMoreColors
@@ -26,6 +26,8 @@ class Product {
      var soldCount = 0
      var viewsCount = 0
      var date = ""
+     var storePhoto = ""
+     var storeName = ""
      var timestamp = 0L
      var thumbnailObject: Blob?=null
     /**

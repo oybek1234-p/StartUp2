@@ -2,11 +2,9 @@ package com.example.market.navigation
 
 import android.animation.*
 import android.annotation.SuppressLint
-import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.os.Trace
 import android.view.MotionEvent
 import android.view.VelocityTracker
 import android.view.View
@@ -17,20 +15,16 @@ import android.view.animation.AnimationUtils
 import android.view.animation.DecelerateInterpolator
 import android.widget.EditText
 import android.widget.FrameLayout
-import android.widget.Toast
 import androidx.core.animation.doOnEnd
 import androidx.core.view.doOnNextLayout
 import androidx.fragment.app.Fragment
 import com.example.market.*
 import com.example.market.R.id.*
 import com.example.market.cart.KorzinaFragment
-import com.example.market.cart.ZakazlarFragment
 import com.example.market.home.HomeFragment
 import com.example.market.favourite.FavouriteFragment
 import com.example.market.messages.MessagesFragment
-import com.example.market.profile.ProfileFragmentClient
 import com.example.market.profile.ProfileFragmentSeller
-import com.example.market.search.SearchFragment
 import com.example.market.utils.AndroidUtilities
 import com.example.market.utils.getDrawable
 import com.example.market.utils.log
@@ -139,8 +133,8 @@ import kotlin.math.min
                 return@setOnItemSelectedListener true
             }
 
-            var currentFragment: BaseFragment?= findFrgamentByTag(currentFragmentDestination.toString())
-            val previousFragment: BaseFragment?= findFrgamentByTag(previousFragmentDestination.toString())
+            var currentFragment: BaseFragment<*>?= findFrgamentByTag(currentFragmentDestination.toString())
+            val previousFragment: BaseFragment<*>?= findFrgamentByTag(previousFragmentDestination.toString())
 
             fragmentManager.apply {
                 beginTransaction().apply {
@@ -153,7 +147,7 @@ import kotlin.math.min
                         currentFragment = createFragment(currentFragmentDestination)
                         currentFragment?.apply {
                             add(container.id,this,currentFragmentDestination.toString())
-                            baseFragmentLifecyle = object : BaseFragmentLifecyle {
+                            baseFragmentLifecycle = object : BaseFragmentLifecyle {
                                 override fun onViewCreated(view: View) {
                                     onViewAttachedToParent()
                                     onViewFullyVisible()
@@ -175,8 +169,8 @@ import kotlin.math.min
         }
     }
 
-    private fun createFragment(id: Int): BaseFragment? {
-        var fragment: BaseFragment?=null
+    private fun createFragment(id: Int): BaseFragment<*>? {
+        var fragment: BaseFragment<*>?=null
         when(id) {
             home -> {
                 fragment = HomeFragment()
@@ -194,7 +188,7 @@ import kotlin.math.min
                 fragment = MessagesFragment()
             }
             zakazlar -> {
-                fragment = ZakazlarFragment()
+                fragment = KorzinaFragment()
             }
             profile -> {
                 fragment = ProfileFragmentSeller()
@@ -202,174 +196,116 @@ import kotlin.math.min
         }
         return fragment
     }
-    fun findFrgamentByTag(id: String): BaseFragment? = fragmentManager.findFragmentByTag(id) as BaseFragment?
+
+    fun findFrgamentByTag(id: String): BaseFragment<*>? = fragmentManager.findFragmentByTag(id) as BaseFragment<*>?
 
     fun changeUserBottomNav(who: String) {
         return
-        context.bottomNavigationView.apply {
-            when(who) {
-                USER_SELLER -> {
-                    changeNavItem(
-                        this,
-                        sevimli,
-                        produktlar,
-                        R.drawable.product_icon,
-                        context.getString(R.string.produktlar)
-                    )
-                    changeNavItem(
-                        this,
-                        korzina,
-                        zakazlar,
-                        R.drawable.zakaz_icon,
-                        context.getString(R.string.zakazlar)
-                    )
-                    changeNavItem(
-                        this,
-                        messages,
-                        messages,
-                        R.drawable.profile_newmsg,
-                        context.getString(R.string.messages)
-                    )
-                    changeNavItem(
-                        this,
-                        profile,
-                        profile,
-                        R.drawable.search_users,
-                        context.getString(R.string.profile)
-                    )
-                }
-                USER_CLIENT -> {
-                    changeNavItem(
-                        this,
-                        produktlar,
-                        sevimli,
-                        R.drawable.heart_icon,
-                        context.getString(R.string.sevimli)
-                    )
-                    changeNavItem(
-                        this,
-                        zakazlar,
-                        korzina,
-                        R.drawable.cart_icon,
-                        context.getString(R.string.korzina)
-                    )
-                    changeNavItem(
-                        this,
-                        messages,
-                        messages,
-                        R.drawable.profile_newmsg,
-                        context.getString(R.string.messages)
-                    )
-                    changeNavItem(
-                        this,
-                        profile,
-                        profile,
-                        R.drawable.search_users,
-                        context.getString(R.string.profile)
-                    )
-                }
-            }
-        }
     }
 
     private fun resetGraphState(){
         graphIds.clear()
         graphIds.add(currentFragmentDestination.toString())
     }
+
     fun findFragmentById(id: String) {
 
     }
-    fun presentFragmentRemoveLast(fragment: BaseFragment?, anim: Array<Int>, removeLast: Boolean) {
-        if (fragment==null) return
-        if (fragment.tag == currentFragmentDestination.toString()){
-            toast(context,"Cant show fragment on main graph")
-            return
-        }
-        val id = System.currentTimeMillis().toString()
 
-        fragmentManager.apply {
-           val currentFragment = if (graphIds.size>0) findFrgamentByTag(graphIds[graphIds.size-1]) else null
-            var bundle: Any?=null
-            currentFragment?.let {
-                bundle = it.bundleAny
+    fun presentFragmentRemoveLast(mFragment: Fragment?, anim: Array<Int>, removeLast: Boolean) {
+        if (mFragment==null) return
+        if (mFragment is BaseFragment<*>) {
+            val fragment = mFragment
+            if (fragment.tag == currentFragmentDestination.toString()) {
+                toast(context,"Cant show fragment on main graph")
+                return
             }
-            fragment.apply {
-                bundle?.let {
-                log("Bundle not null")
-                    bundleAny = bundle
+            val id = System.currentTimeMillis().toString()
+
+            fragmentManager.apply {
+                val currentFragment = if (graphIds.size>0) findFrgamentByTag(graphIds[graphIds.size-1]) else null
+                var bundle: Any?=null
+                currentFragment?.let {
+                    bundle = it.bundleAny
                 }
-                beginTransaction().apply {
-                    val trace = System.currentTimeMillis()
-                    val anim0 = AnimationUtils.loadAnimation(container.context,anim[0]).apply {
-                        interpolator = decelerateInterpolator
+                fragment.apply {
+                    bundle?.let {
+                        bundleAny = bundle
                     }
+                    beginTransaction().apply {
+                        val trace = System.currentTimeMillis()
+                        val anim0 = AnimationUtils.loadAnimation(container.context,anim[0]).apply {
+                            interpolator = decelerateInterpolator
+                        }
 
-                    val anim1 = AnimationUtils.loadAnimation(container.context,anim[1]).apply {
-                        interpolator = accelerateDecelerateInterpolator
-                    }
+                        val anim1 = AnimationUtils.loadAnimation(container.context,anim[1]).apply {
+                            interpolator = accelerateDecelerateInterpolator
+                        }
 
-                    fragment.id = id
-                    graphIds.add(id)
-                    add(container.id,fragment,id)
+                        fragment.id = id
+                        graphIds.add(id)
+                        add(container.id,fragment,id)
 
-                    baseFragmentLifecyle = object : BaseFragmentLifecyle {
-                        override fun onViewCreated(view: View) {
-                            log("fragment background is not null")
-                            view.doOnNextLayout {
-                                currentFragment?.let {
-                                    onViewAttachedToParent()
+                        baseFragmentLifecycle = object : BaseFragmentLifecyle {
+                            override fun onViewCreated(view: View) {
+                                log("fragment background is not null")
+                                view.doOnNextLayout {
+                                    currentFragment?.let {
+                                        onViewAttachedToParent()
 
-                                    if (view.background == null) { view.setBackgroundColor(Color.WHITE) }
-                                    container.bringChildToFront(view)
-                                    anim0.setAnimationListener(object : Animation.AnimationListener{
-                                        override fun onAnimationEnd(animation: Animation?) {
-                                            onViewFullyVisible()
-                                        }
-
-                                        override fun onAnimationRepeat(animation: Animation?) {
-
-                                        }
-
-                                        override fun onAnimationStart(animation: Animation?) {
-
-                                        }
-                                    })
-                                    if (it.view!=null) {
-                                        anim1.setAnimationListener(object : Animation.AnimationListener{
+                                        if (view.background == null) { view.setBackgroundColor(Color.WHITE) }
+                                        container.bringChildToFront(view)
+                                        anim0.setAnimationListener(object : Animation.AnimationListener{
                                             override fun onAnimationEnd(animation: Animation?) {
-                                                it.onViewFullyHiden()
-                                                beginTransaction().apply {
-                                                    if (removeLast){
-                                                        remove(it)
-                                                        fragments.remove(it)
-                                                        graphIds.removeAt(graphIds.size-2)
-                                                    } else {
-                                                        hide(it)
-                                                    }
-                                                    commit()
-                                                }
+                                                onViewFullyVisible()
                                             }
+
                                             override fun onAnimationRepeat(animation: Animation?) {
 
                                             }
+
                                             override fun onAnimationStart(animation: Animation?) {
 
                                             }
                                         })
-                                        it.onViewDetachedFromParent()
-                                    }
-                                    view.startAnimation(anim0)
-                                    currentFragment.requireView().startAnimation(anim1)
-                                    baseFragmentLifecyle = null
-                            } }
+                                        if (it.view!=null) {
+                                            anim1.setAnimationListener(object : Animation.AnimationListener{
+                                                override fun onAnimationEnd(animation: Animation?) {
+                                                    it.onViewFullyHiden()
+                                                    beginTransaction().apply {
+                                                        if (removeLast){
+                                                            remove(it)
+                                                            fragments.remove(it)
+                                                            graphIds.removeAt(graphIds.size-2)
+                                                        } else {
+                                                            hide(it)
+                                                        }
+                                                        commit()
+                                                    }
+                                                }
+                                                override fun onAnimationRepeat(animation: Animation?) {
+
+                                                }
+                                                override fun onAnimationStart(animation: Animation?) {
+
+                                                }
+                                            })
+                                            it.onViewDetachedFromParent()
+                                        }
+                                        view.startAnimation(anim0)
+                                        currentFragment.requireView().startAnimation(anim1)
+                                        baseFragmentLifecycle = null
+                                    } }
+
+                            }
 
                         }
-
+                        commit()
                     }
-                    commit()
                 }
             }
         }
+
     }
 
 
@@ -403,7 +339,7 @@ import kotlin.math.min
                                 }
                             })
                         }
-                        baseFragmentLifecyle = null
+                        baseFragmentLifecycle = null
 
                         show(previousFragment)
 
@@ -454,7 +390,7 @@ import kotlin.math.min
     fun onTouchEvent(ev: MotionEvent?): Boolean {
 
             if (graphIds.size > 1) {
-                val currentFragment: BaseFragment = findFrgamentByTag(graphIds[graphIds.size-1]) as BaseFragment
+                val currentFragment = findFrgamentByTag(graphIds[graphIds.size-1]) as BaseFragment
                 val previousFragment = findFrgamentByTag(graphIds[graphIds.size-2]) as BaseFragment
                 if (ev != null && ev.action == MotionEvent.ACTION_DOWN && !startedTracking && !maybeStartTracking) {
 
@@ -649,7 +585,7 @@ import kotlin.math.min
         beginTrackingSent = false
 
         if (graphIds.size>1){
-            val currentFragment: BaseFragment = findFrgamentByTag(graphIds[graphIds.size-1]) as BaseFragment
+            val currentFragment = findFrgamentByTag(graphIds[graphIds.size-1]) as BaseFragment
             val previousFragment = findFrgamentByTag(graphIds[graphIds.size-2]) as BaseFragment
             if (currentFragment.view==null&&previousFragment.view==null) return
             val currentTimeMilis = System.currentTimeMillis()

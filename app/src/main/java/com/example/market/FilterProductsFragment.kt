@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import com.example.market.binding.inflateBinding
 import com.example.market.databinding.FragmentProductFiltersLayoutBinding
-import com.example.market.model.Product
-import com.example.market.utils.log
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.firestore.Query
 

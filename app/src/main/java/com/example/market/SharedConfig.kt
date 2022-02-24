@@ -65,8 +65,8 @@ class SharedConfig {
                                     longtitude = getString("longtitude","").toString().toDouble()
                                 }
                                 adress = getString("adress","")
-                                shippingType = getString("shippingType","").toString()
-                                shippingCost = getString("shippingCost","").toString()
+                                type = getString("type","").toString()
+                                cost = getString("cost","").toString()
                             }
                         }catch (e: java.lang.Exception) {
 
@@ -141,8 +141,8 @@ class SharedConfig {
                                     putString("longtitude", longtitude.toString())
                                 }
                                 putString("adress", adress)
-                                putString("shippingType", shippingType)
-                                putString("shippingCost", shippingCost)
+                                putString("shippingType", type)
+                                putString("shippingCost", cost)
                             }
                         } catch (e: java.lang.Exception) {
 

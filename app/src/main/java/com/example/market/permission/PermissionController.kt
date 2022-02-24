@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.example.market.utils.AndroidUtilities
+import com.example.market.viewUtils.toast
 
 class PermissionController {
 
@@ -27,7 +28,7 @@ class PermissionController {
             permissions.forEach {
                 if (context.checkSelfPermission(it) == PackageManager.PERMISSION_DENIED) {
 
-                    if (shouldRequest==null) {
+                    if (shouldRequest == null) {
                         shouldRequest = ArrayList()
                     }
 
@@ -38,9 +39,7 @@ class PermissionController {
             return if (shouldRequest==null) {
                 null
             } else {
-                val array = arrayOf<String>()
-                shouldRequest?.toArray(array)
-                array
+                return shouldRequest!!.toTypedArray()
             }
         }
 
@@ -48,6 +47,7 @@ class PermissionController {
 
     fun requestPermissions(context: Context,requestId: Int,permissions: Array<String>,resultListener: PermissionResult) {
         if (context !is Activity||context !is AppCompatActivity) {
+            toast("Not activity")
             return
         }
 
@@ -56,17 +56,13 @@ class PermissionController {
 
         val shouldRequest = checkPermissions(context,permissions)
 
-        if (shouldRequest==null) {
+        if (shouldRequest==null || shouldRequest.isEmpty()) {
 
             resultListener.onGranted()
 
         } else {
-            if (Build.VERSION.SDK_INT >= 23) {
-                ActivityCompat.requestPermissions(context,shouldRequest,requestId)
-            } else {
-                context.requestPermissions(permissions,requestId)
-            }
 
+            context.requestPermissions(shouldRequest,requestId)
         }
     }
 
@@ -84,10 +80,10 @@ class PermissionController {
                     }
                 }
                 onGranted()
+                permissionResultListener = null
             }
         }
-        this.requestId = null
-        this.permissionResultListener = null
+        this.requestId = -1
     }
 
 }

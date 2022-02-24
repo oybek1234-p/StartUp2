@@ -7,17 +7,20 @@ import android.content.Context
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.view.animation.AnticipateOvershootInterpolator
 import android.widget.*
 import androidx.core.animation.addPauseListener
 import androidx.core.animation.doOnCancel
 import androidx.core.animation.doOnEnd
 import androidx.core.view.setPadding
 import androidx.fragment.app.FragmentController
+import com.example.market.MainActivity
 import com.example.market.MyApplication
 import com.example.market.R
 import com.example.market.utils.AndroidUtilities
@@ -30,7 +33,6 @@ class PopupDialog (private val popupWindowLayout: PopupWindowLayout, var animtio
         isOutsideTouchable = true
         isFocusable = true
         setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
         popupWindowLayout.dissmis = {
             dismiss()
         }
@@ -38,7 +40,6 @@ class PopupDialog (private val popupWindowLayout: PopupWindowLayout, var animtio
 
     private var show = false
     private var animation = ValueAnimator.ofFloat(0f,1f).apply {
-        interpolator = com.example.market.navigation.FragmentController.decelerateInterpolator
         duration = 200
         popupWindowLayout.apply {
             addUpdateListener {
@@ -50,10 +51,11 @@ class PopupDialog (private val popupWindowLayout: PopupWindowLayout, var animtio
                     translationY = -100 + 100*animatedValue
                     translationX = 100 + -100*animatedValue
                 } else {
-                    scaleX = 0.8f + 0.2f * animatedValue
-                    scaleY = 0.8f + 0.2f * animatedValue
+                    scaleX = 0.9f + 0.1f * animatedValue
+                    scaleY = 0.9f + 0.1f * animatedValue
                 }
-                if (animatedValue==0f&&!show) {
+                dimBehind(0.6f * animatedValue)
+                if (animatedValue==0f && !show) {
                     super.dismiss()
                 }
             }
@@ -64,22 +66,30 @@ class PopupDialog (private val popupWindowLayout: PopupWindowLayout, var animtio
         show = false
         animation.reverse()
     }
-    private fun dimBehind() {
-        val c = contentView.rootView
-        val context = contentView.context
-        val wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        val p = c.layoutParams as WindowManager.LayoutParams
-        p.flags = p.flags or WindowManager.LayoutParams.FLAG_DIM_BEHIND
-        p.dimAmount = 0.2f
-        wm.updateViewLayout(c, p)
+
+    val windowMargin = AndroidUtilities.dp(48f).toFloat()
+
+    private fun dimBehind(dimAmount: Float = 0.6f) {
+        try {
+            val c = contentView.rootView
+            val context = contentView.context
+            val wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+            val p = c.layoutParams as WindowManager.LayoutParams
+            p.flags = p.flags or WindowManager.LayoutParams.FLAG_DIM_BEHIND
+            p.dimAmount = dimAmount
+            if (animtionType == DIALOG_ANIMATION_ALERT_DIALOG) {
+                p.width = (MyApplication.displaySize.first - windowMargin).toInt()
+                p.gravity = Gravity.CENTER
+            }
+            wm.updateViewLayout(c, p)
+        } catch (e: Exception) {
+
+        }
     }
 
-    fun show(view: View,gravity: Int,x: Int,y: Int,dimBehind: Boolean) {
+    fun show(view: View,gravity: Int,x: Int,y: Int,dimBehind: Boolean = true) {
         show = true
         showAtLocation(view,gravity,x, y)
         animation.start()
-        if (dimBehind){
-            dimBehind()
-        }
     }
 }

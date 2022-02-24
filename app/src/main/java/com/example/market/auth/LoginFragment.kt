@@ -20,76 +20,27 @@ import com.example.market.viewUtils.toast
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.launch
 
-class LoginFragment : BaseFragment() {
-    override fun onBeginSlide() {
-
-    }
-
-    override fun isSwapBackEnabled(): Boolean {
-       return true
-    }
-
-    override fun onConnectionChanged(state: Boolean) {
-
-    }
-
-    override fun onBackPressed() {
-
-    }
-
-    override fun onViewFullyVisible() {
-
-    }
-
-    override fun onViewFullyHiden() {
-
-    }
-
-    override fun onViewAttachedToParent() {
-
-    }
-
-    override fun onViewDetachedFromParent() {
-
-    }
-
-    override fun canBeginSlide(): Boolean {
-        return true
-    }
-    private var binding: FragmentKirishBinding?=null
+class LoginFragment : BaseFragment<FragmentKirishBinding>(R.layout.fragment_kirish) {
     private var skipVisible = false
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        binding = inflateBinding(container,R.layout.fragment_kirish)
-
-        binding?.apply {
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+        binding: FragmentKirishBinding,
+    ) {
+        binding.apply {
             bottomNavVisiblity(context,false)
 
-
-            backButton.setOnClickListener {
-                closeLastFragment()
-            }
+            backButton.setOnClickListener { closeLastFragment() }
             continueButton.apply {
-                if (skipVisible) {
-                    visibility = View.VISIBLE
-                }
-                setOnClickListener {
-                    closeLastFragment()
-                }
+                if (skipVisible) { visibility = View.VISIBLE }
+                setOnClickListener { closeLastFragment() }
             }
-            accountYoqmiButton.setOnClickListener {
-                presentFragmentRemoveLast(
-                    RegistratsiyaFragment(),
-                    true
-                )
-            }
+            accountYoqmiButton.setOnClickListener { presentFragmentRemoveLast(RegistratsiyaFragment(), true) }
 
             continueButton.setOnClickListener {
-                if (checkIsEmptyForParent(binding!!.root as ViewGroup)) {
+                if (checkIsEmptyForParent(binding.root as ViewGroup)) {
                     val email = emailKiritish.text
                     val password = passwordKiritish.text
                     if (!email.isNullOrEmpty()&&!password.isNullOrEmpty()) {
@@ -109,7 +60,6 @@ class LoginFragment : BaseFragment() {
                 }
             }
         }
-        return binding?.root
     }
 
 }

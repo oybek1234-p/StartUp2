@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.market.model.Product
+import com.example.market.models.Product
 import kotlinx.coroutines.*
 
 class HomeViewModel() : ViewModel() {

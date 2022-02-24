@@ -10,57 +10,19 @@ import com.example.market.databinding.FragmentFillLocationInfoBinding
 import com.example.market.viewUtils.toast
 import com.google.android.gms.maps.model.LatLng
 
-class FillLocationInfoFragment : BaseFragment() {
-    private var binding: FragmentFillLocationInfoBinding?=null
-
-    override fun onBeginSlide() {
-
-    }
-
-    override fun isSwapBackEnabled(): Boolean {
-        return false
-    }
-
-    override fun onConnectionChanged(state: Boolean) {
-
-    }
-
-    override fun onBackPressed() {
-
-    }
-
-    override fun onViewFullyVisible() {
-
-    }
-
-    override fun onViewFullyHiden() {
-
-    }
-
-    override fun onViewAttachedToParent() {
-
-    }
-
-    override fun onViewDetachedFromParent() {
-
-    }
-    
-    override fun canBeginSlide(): Boolean {
-        return false
-    }
-
+class FillLocationInfoFragment : BaseFragment<FragmentFillLocationInfoBinding>(R.layout.fragment_fill_location_info) {
     private var data: ShippingLocation?=null
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View {
-        // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_fill_location_info, container, false)
+        binding: FragmentFillLocationInfoBinding
+    ) {
         if (bundleData==null){
             closeLastFragment()
         }
-        binding?.apply {
+        binding.apply {
             getBundleData()
             backButton.setOnClickListener {
                 closeLastFragment()
@@ -72,12 +34,10 @@ class FillLocationInfoFragment : BaseFragment() {
                 fliLocationView.shippingAdressAdressView.text = adress
             }
         }
-        return binding!!.root
     }
     private fun uploadLocation(){
 
     }
-
     private fun getBundleData(){
         bundleData?.apply {
             val mlat = getDouble("lat")

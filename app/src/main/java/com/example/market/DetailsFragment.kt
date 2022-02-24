@@ -40,7 +40,7 @@ import com.example.market.home.VIEW_TYPE_SIMPLE_TEXT
 import com.example.market.location.LocationActivity
 import com.example.market.location.LocationController
 import com.example.market.location.LocationProvider
-import com.example.market.model.Product
+import com.example.market.models.Product
 import com.example.market.navigation.FragmentController
 import com.example.market.navigation.bottomNavVisiblity
 import com.example.market.profile.ProfileFragmentSeller
@@ -67,9 +67,8 @@ import java.lang.StringBuilder
 import java.util.*
 import kotlin.collections.ArrayList
 
-class DetailsFragment(var product: Product) : BaseFragment() {
+class DetailsFragment(var product: Product) : BaseFragment<FragmentDetailsBinding>(R.layout.fragment_details) {
 
-    private var binding: FragmentDetailsBinding? = null
     private var photosAdapter: DetailsPagerAdapter? = null
     private var photosList: ArrayList<String>? = ArrayList()
     private var nestedBinding: DetailsNastedLayoutBinding? = null
@@ -126,7 +125,6 @@ class DetailsFragment(var product: Product) : BaseFragment() {
         bottomShLocation = null
         sellerInfoDialog = null
         sheetBinding = null
-        binding = null
         photosList = null
         photosAdapter = null
         nestedBinding = null
@@ -168,23 +166,27 @@ class DetailsFragment(var product: Product) : BaseFragment() {
     }
 
     override fun onViewFullyVisible() {
+        addToCartFragment?.dialog?.window?.decorView?.visibility = View.VISIBLE
     }
 
     override fun onViewFullyHiden() {
 
     }
-
     override fun onViewAttachedToParent() {
         subscribedToThisSeller = checkSubscribed(product.sellerId)
-        toast("Subscribed $subscribedToThisSeller")
+
         sellerInfo?.let {
             applySellerInfo(it)
         }
-    }
 
+    }
+    private var addToCartFragment: AddToCartFragment ?= null
     override fun onViewDetachedFromParent() {
 
     }
+    private var isLocationAsked = false
+
+    fun checkLocation() = isLocationAsked && currentUser?.shippingLocation != null
 
     override fun canBeginSlide(): Boolean {
         return true
@@ -210,7 +212,6 @@ class DetailsFragment(var product: Product) : BaseFragment() {
         } catch (e: Exception) {
             log(e.message)
         }
-
     }
     //Safe
     private fun addCurrentMarker(latLong: LatLng) {
@@ -450,7 +451,7 @@ class DetailsFragment(var product: Product) : BaseFragment() {
                 sheetBinding = null
                 subscribeDrawale = null
             }
-            dissmissVisibleDialog()
+            dismissVisibleDialog()
             visibleDialog = this
             show()
             notifySubscribed()
@@ -619,7 +620,7 @@ class DetailsFragment(var product: Product) : BaseFragment() {
             setContentView(createSpecificationLayout(
                 specifications
             ))
-                dissmissVisibleDialog(this)
+                dismissVisibleDialog(this)
             show()
         }
     }
@@ -832,7 +833,13 @@ class DetailsFragment(var product: Product) : BaseFragment() {
                 }
 
                 detailsInfoSellerInfoShippingView.root.setOnClickListener {
-                    presentFragmentRemoveLast(LocationActivity { detailsInfoSellerInfoShippingView.executePendingBindings() },false)
+                    presentFragmentRemoveLast(LocationActivity {
+                        toast("Get location info")
+                        detailsInfoSellerInfoShippingView.apply {
+                            this.invalidateAll()
+                        }
+                        isLocationAsked = true
+                    },false)
                 }
 
                 val layoutParams =
@@ -846,15 +853,9 @@ class DetailsFragment(var product: Product) : BaseFragment() {
                 bottomLayoutBinding = inflateBinding(this.root as ViewGroup, R.layout.details_bottom_layout)
 
                 bottomLayoutBinding?.apply {
-                    buyNowButton.setOnClickListener {
-                        fragmentController?.fragmentManager?.let {
-                            AddToCartFragment(this@DetailsFragment.product).apply {
-                                dissmissVisibleDialog()
-                                show(it,null)
-                            }
-                        }
-
-                    }
+                    openStoreButton.setOnClickListener { openSellerInfo() }
+                    addToCartButton.setOnClickListener {openAddToCartFragment(true)}
+                    buyNowButton.setOnClickListener {openAddToCartFragment(false)}
                     //
                     addView(root,CoordinatorLayout.LayoutParams(CoordinatorLayout.LayoutParams.MATCH_PARENT,AndroidUtilities.dp(56f)).apply {
                         gravity = Gravity.BOTTOM
@@ -866,6 +867,18 @@ class DetailsFragment(var product: Product) : BaseFragment() {
         }
     }
 
+    fun openAddToCartFragment(cart: Boolean) {
+        fragmentController?.fragmentManager?.let {
+            addToCartFragment = AddToCartFragment(this@DetailsFragment.product,checkLocation(),cart).apply {
+                dismissVisibleDialog()
+                show(it,null)
+
+                dialog?.setOnDismissListener {
+                    addToCartFragment = null
+                }
+            }
+        }
+    }
     //Safe
     private fun createLocationRequest(): LocationRequest {
         return LocationRequest()
@@ -903,8 +916,8 @@ class DetailsFragment(var product: Product) : BaseFragment() {
                         latLang = com.example.market.LatLng(it.latitude,it.longitude)
                         adress = lastAddress
                         shippingOfferAdapter?.let {
-                            shippingCost = it.selectedShipping.cost.toString()
-                            shippingType = it.selectedShipping.name
+                            cost = it.selectedShipping.cost.toString()
+                            type = it.selectedShipping.name
                         }
                     }
                 }
@@ -1017,7 +1030,7 @@ class DetailsFragment(var product: Product) : BaseFragment() {
 
                 }
             }
-            dissmissVisibleDialog(this@apply)
+            dismissVisibleDialog(this@apply)
             mapFragmentOpened = true
             show()
         }
@@ -1092,13 +1105,11 @@ class DetailsFragment(var product: Product) : BaseFragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View {
-        // Inflate the layout for this fragment
-        binding = DataBindingUtil
-            .inflate(LayoutInflater.from(context), R.layout.fragment_details, container, false)
-
+        binding: FragmentDetailsBinding
+    ) {
         bottomNavVisiblity(context, false)
 
         setLightStatusBar(requireActivity(), true)
@@ -1108,7 +1119,7 @@ class DetailsFragment(var product: Product) : BaseFragment() {
 
         subscribeDrawale = getDrawable(R.drawable.account_add)
 
-        binding?.apply {
+        binding.apply {
             detailsBackView.apply {
                 isFocusable = true
                 setOnClickListener {
@@ -1138,37 +1149,36 @@ class DetailsFragment(var product: Product) : BaseFragment() {
                 showOption(it)
             }
 
-                photosAdapter = null
+            photosAdapter = null
 
-                photosList?.apply {
-                    clear()
-                    add(product.photo)
-                }
+            photosList?.apply {
+                clear()
+                add(product.photo)
+            }
 
-                photosAdapter = DetailsPagerAdapter.apply {
-                    setDataList(photosList)
-                }
+            photosAdapter = DetailsPagerAdapter.apply {
+                setDataList(photosList)
+            }
 
-                detailsPhotoViewPager.apply {
-                    adapter = photosAdapter
-                    registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-                        override fun onPageSelected(position: Int) {
-                            super.onPageSelected(position)
+            detailsPhotoViewPager.apply {
+                adapter = photosAdapter
+                registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                    override fun onPageSelected(position: Int) {
+                        super.onPageSelected(position)
 
-                            photosAdapter?.let {
-                                val text = "${position + 1}/${photosList!!.size}"
-                                detailsPhotosCountView.text = text
+                        photosAdapter?.let {
+                            val text = "${position + 1}/${photosList!!.size}"
+                            detailsPhotosCountView.text = text
 
-                            }
                         }
-                    })
-                }
+                    }
+                })
+            }
 
         }
         if (openAndSelectCommentId!=null) {
             AndroidUtilities.runOnUIThread({openComments()},600)
         }
-        return binding!!.root
     }
 
     private fun showOption(view: View) {
@@ -1251,7 +1261,7 @@ class DetailsFragment(var product: Product) : BaseFragment() {
          }
 
          commentsDialog?.apply {
-             dissmissVisibleDialog()
+             dismissVisibleDialog()
              fragmentController?.removeIfContainsAlready(this)
              fragmentController?.fragmentManager?.let {
                  show(it,null)
@@ -1269,17 +1279,17 @@ class DetailsFragment(var product: Product) : BaseFragment() {
         }
 
         override fun bindItem(
-            holder: DataBoundViewHolder<DetailsPhotoPagerItemBinding>?,
+            holder: DataBoundViewHolder<DetailsPhotoPagerItemBinding>,
+            binding: DetailsPhotoPagerItemBinding,
             position: Int,
-            model: String?,
+            model: String,
         ) {
-            //Just overriden to make final
+
         }
+
     }
+
     object LocationOffer : DataBoundAdapter<ShippingOfferItemBinding, ShippingOffer>(R.layout.shipping_offer_item) {
-        const val SHIPPING_TYPE_START = "Start"
-        const val SHIPPING_TYPE_FAST = "Fast"
-        const val SHIPPING_TYPE_ULTRA = "Ultra"
         /**
          * Offers list
          */
@@ -1328,17 +1338,17 @@ class DetailsFragment(var product: Product) : BaseFragment() {
         }
 
         override fun bindItem(
-            holder: DataBoundViewHolder<ShippingOfferItemBinding>?,
+            holder: DataBoundViewHolder<ShippingOfferItemBinding>,
+            binding: ShippingOfferItemBinding,
             position: Int,
-            model: ShippingOffer?,
+            model: ShippingOffer,
         ) {
-            holder?.binding?.apply {
+            binding.apply {
                 data = list[position]
                 shioContainer.cardElevation = if (selectedPostition == position) AndroidUtilities.dp(8f).toFloat() else 0f
             }
         }
     }
-
 }
 
 enum class Currency {
@@ -1361,10 +1371,13 @@ class ShippingLocation {
     var id = System.currentTimeMillis()
     var latLang:com.example.market.LatLng?=null
     var adress: String?=null
-    var shippingType = ""
-    var shippingCost = ""
+    var type = SHIPPING_TYPE_START
+    var cost = "0"
+    var timeSpendMinute = 45
 }
-
+const val SHIPPING_TYPE_START = "Start"
+const val SHIPPING_TYPE_FAST = "Fast"
+const val SHIPPING_TYPE_ULTRA = "Ultra"
 data class ShippingOffer(val photo: Int, val name: String, var cost: Long)
 
 const val PICASSO_PRODUCT_DETAILS = "of4j4iopfj"

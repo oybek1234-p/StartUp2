@@ -3,55 +3,34 @@ package com.example.market
 import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
-import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.navigation.*
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.core.content.getSystemService
-import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.children
-import androidx.lifecycle.lifecycleScope
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.SimpleTarget
-import com.bumptech.glide.request.transition.Transition
 import com.example.market.binding.appInflater
-import com.example.market.camera.CameraFragment
-import com.example.market.model.Message
-import com.example.market.model.Product
+import com.example.market.binding.inflateBinding
+import com.example.market.binding.visibleOrGone
+import com.example.market.databinding.EmptyScreenBinding
+import com.example.market.models.Empty
+import com.example.market.models.Message
 import com.example.market.navigation.FragmentController
 import com.example.market.permission.PermissionController
 import com.example.market.utils.AndroidUtilities
 import com.example.market.viewUtils.presentFragmentRemoveLast
 import com.example.market.viewUtils.toast
-import com.google.android.exoplayer2.ui.PlayerView
-import com.google.android.gms.tasks.Task
 import com.google.android.material.badge.BadgeDrawable
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.firestore.Blob
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import com.google.firebase.storage.CancellableTask
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import java.io.ByteArrayOutputStream
-import java.io.OutputStream
 
 class MainActivity : AppCompatActivity() {
     lateinit var controller: NavController
@@ -65,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     var result: Result?=null
     private lateinit var networkTextView: TextView
     private var lastAviable = false
-    private lateinit var exoPlayerView: PlayerView
+    private lateinit var progressBar: ProgressBar
 
     fun onConnectionChanged(aviable: Boolean) {
         if (aviable==lastAviable) {
@@ -106,7 +85,6 @@ class MainActivity : AppCompatActivity() {
         //bottomNavVisiblity()
         appInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         setWindowBackgroundColor(Color.rgb(241,241,241))
-        exoPlayerView = findViewById(R.id.exoplayer_view)
 
 //        val exoPlayer = ExoPlayer.Builder(this).build()
 //        exoPlayerView.player = exoPlayer
@@ -142,31 +120,29 @@ class MainActivity : AppCompatActivity() {
             elevation = AndroidUtilities.dp(4f).toFloat()
         }
 
-        MyApplication.internetAviableCallback.observe(this,{
-            onConnectionChanged(it)
-        })
+        MyApplication.internetAviableCallback.observe(this) { onConnectionChanged(it) }
 
         //this class handles connection status
         getSystemService<ConnectivityManager>()?.let {
             connectivityChecker = ConnectivityChecker(it)
             //we will set observer with livedata to get connection updates
-            connectivityChecker?.connectedStatus?.observe(this,
-                {
-                        t ->
-                    t?.let {
-                        isConnectedToInternet = it
-                    }
-                })
+            connectivityChecker?.connectedStatus?.observe(this
+            ) { t ->
+                t?.let {
+                    isConnectedToInternet = it
+                }
+            }
 
             connectivityChecker?.startMonitoringConnectivity()
         }
         bottomNavigationView = findViewById(R.id.bottom_nav)
+        progressBar = findViewById(R.id.progress_bar)
 
         bottomNavigationView.addView(ImageView(this).apply {
             setImageResource(R.drawable.msg_addbot)
             imageTintList = ColorStateList.valueOf(Color.BLACK)
             setOnClickListener {
-                presentFragmentRemoveLast(this@MainActivity,CameraFragment(),false)
+                presentFragmentRemoveLast(this@MainActivity,ProduktYuklashFragment(),false)
             }
         },FrameLayout.LayoutParams(120,120).apply {
             gravity = Gravity.CENTER
@@ -174,7 +150,9 @@ class MainActivity : AppCompatActivity() {
 
         fragmentController = FragmentController(this).also {
             fragmentContainerView = it.fragmentContainer
-            findViewById<FrameLayout>(R.id.base_container)?.addView(fragmentContainerView,FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,FrameLayout.LayoutParams.MATCH_PARENT))
+            findViewById<FrameLayout>(R.id.base_container)?.addView(fragmentContainerView,FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,FrameLayout.LayoutParams.MATCH_PARENT).apply {
+                bottomMargin = AndroidUtilities.dp(56f)
+            })
         }
 
         fragmentContainerView?.parent?.bringChildToFront(fragmentContainerView)
@@ -208,9 +186,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    companion object {
-        const val container_id = R.id.container
-    }
+    var isProgress = false
 
     var messageFragmetCallback:MessageCallback?=null
 

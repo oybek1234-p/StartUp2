@@ -111,5 +111,11 @@
     <string name="addnewcategory">Add new category</string>
     <string name="addnewoptions">Add new options</string>
     <string name="string_catgs">Categories</string>
+    <string name="no_results">No results found</string>
+    <string name="provide_more_info">Please provide more information</string>
+    <string name="add_card">Add card</string>
+    <string name="card_empty">Your cards is empty</string>
+    <string name="card_empty_subtitle">Add your bank card to purchese online</string>
+    <string name="pay_cards">Payment cards</string>
 
 </resources>

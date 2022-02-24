@@ -1,9 +1,11 @@
-package com.example.market.model
+package com.example.market.models
 import com.example.market.User
 import com.example.market.utils.getCurrentDateTimestamp
 import com.example.market.utils.getCurrentTime
 
 const val MESSAGE_TYPE_MESSAGE = 0
+const val MESSAGE_TYPE_NEW_ORDER_TO_SELLER = 5
+const val MESSAGE_TYPE_NEW_ORDER_ADDED_TO_CART_TO_SELLER = 6
 const val MESSAGE_TYPE_LIKE = 1
 const val MESSAGE_TYPE_SUBSCRIBE = 2
 const val MESSAGE_TYPE_PRODUCT_NEW_COMMENT = 3

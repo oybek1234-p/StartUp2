@@ -38,7 +38,7 @@
             app:layout_constraintStart_toEndOf="@+id/backButton"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
+            <com.example.market.viewUtils.ImageViewLoader
                 android:id="@+id/icon"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
@@ -62,17 +62,16 @@
 
         <ImageView
             android:id="@+id/options"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="56dp"
+            android:layout_height="match_parent"
             android:layout_gravity="end|center_vertical"
             android:clickable="true"
+            android:padding="16dp"
             android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            android:padding="@dimen/grid_2"
             android:src="@drawable/ic_ab_other"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/black" />
+            app:tint="#333" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

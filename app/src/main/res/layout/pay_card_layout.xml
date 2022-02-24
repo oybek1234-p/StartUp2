@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardBackgroundColor="@null"
+        app:cardElevation="0dp"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="38dp"
+            android:background="@drawable/sweet_rain_gradient_9"
+            >
+
+            <ImageView
+                android:id="@+id/imageView18"
+                android:layout_width="50dp"
+                android:layout_height="45dp"
+                android:src="@drawable/credit_card"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/card_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_bold"
+                android:text="1456 6489 5445 5554"
+                android:textColor="@color/white"
+                android:shadowColor="#575757"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:textSize="22sp"
+                android:layout_marginVertical="@dimen/grid_1_5"
+                app:layout_constraintStart_toStartOf="@+id/imageView18"
+                app:layout_constraintTop_toBottomOf="@+id/imageView18" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/grid_1"
+                android:shadowColor="#8C8C8C"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                android:text="GOOD\nTHRU"
+                android:textSize="12sp"
+                android:textColor="#FFFFFF"
+                app:layout_constraintStart_toStartOf="@+id/card_number"
+                app:layout_constraintTop_toBottomOf="@+id/card_number" />
+
+            <TextView
+                android:id="@+id/year_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_bold"
+                android:shadowColor="#8C8C8C"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                android:text="25/54"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:layout_marginStart="@dimen/grid_1"
+                app:layout_constraintBottom_toBottomOf="@+id/textView11"
+                app:layout_constraintStart_toEndOf="@+id/textView11"
+                app:layout_constraintTop_toTopOf="@+id/textView11" />
+
+            <TextView
+                android:id="@+id/user_name_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/grid_1_5"
+                android:fontFamily="@font/open_sans_bold"
+                android:shadowColor="#575757"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="Oybek Qodirov"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/imageView18"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

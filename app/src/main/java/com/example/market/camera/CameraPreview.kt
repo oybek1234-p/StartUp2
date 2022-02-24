@@ -24,7 +24,7 @@ class CameraPreview(context: Context): SurfaceView(context),SurfaceHolder.Callba
             if (field!=null) {
                 startPreview()
             } else {
-                log("${CameraFragment.TAG} Camera is null")
+
             }
         }
     }
@@ -43,11 +43,11 @@ class CameraPreview(context: Context): SurfaceView(context),SurfaceHolder.Callba
                     camera?.apply {
                         setPreviewDisplay(it)
                         startPreview()
-                        log(CameraFragment.TAG + " : Start preview")
+
                     }
                 }
             }catch (e: Exception) {
-                log(CameraFragment.TAG + ": Error while starting preview")
+
             }
         }.run()
     }
@@ -61,7 +61,7 @@ class CameraPreview(context: Context): SurfaceView(context),SurfaceHolder.Callba
                 holder?.surface?.apply {
                     if (isValid) {
                         release()
-                        log("${CameraFragment.TAG} Release surface")
+
                     }
                 }
             }catch (e: Exception) {
@@ -73,20 +73,20 @@ class CameraPreview(context: Context): SurfaceView(context),SurfaceHolder.Callba
     private fun stopPreview() {
         try {
             camera?.stopPreview()
-            log(CameraFragment.TAG + " Stoping preview!")
+
         }catch (e: Exception) {
             throw e
         }
     }
 
     override fun surfaceCreated(holder: SurfaceHolder) {
-        log("${CameraFragment.TAG} Surface created")
+
         startPreview()
     }
 
     override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
         //Empty
-        log("${CameraFragment.TAG} Surface changed")
+
 
         stopPreview()
 
@@ -96,7 +96,7 @@ class CameraPreview(context: Context): SurfaceView(context),SurfaceHolder.Callba
 
     override fun surfaceDestroyed(holder: SurfaceHolder) {
         releaseSurface()
-        log("${CameraFragment.TAG} Surface destroyed")
+
     }
 
 

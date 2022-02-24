@@ -34,6 +34,9 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/grid_1"
+                android:background="@drawable/background_radius_filled_16"
+                android:backgroundTint="#94E4E4E4"
                 android:orientation="horizontal">
 
                 <ImageView

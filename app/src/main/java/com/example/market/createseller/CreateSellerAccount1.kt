@@ -14,70 +14,15 @@ import com.example.market.profile.ProfileFragmentSeller
 import com.example.market.viewUtils.*
 import kotlinx.coroutines.launch
 
-class CreateSellerAccount1 : BaseFragment() {
-
-    override fun onBeginSlide() {
-    }
-
-    override fun isSwapBackEnabled(): Boolean {
-      return true
-    }
-
-    override fun onConnectionChanged(state: Boolean) {
-
-    }
-
-    override fun onBackPressed() {
-
-    }
-
-    override fun onViewFullyVisible() {
-
-    }
-
-    override fun onViewFullyHiden() {
-
-    }
-
-    private fun setAdress() {
-//        (bundleAny!! as ShippingLocation).let {
-//            sellerAccount.shippingLocation = it
-//            if(it.adress!!.isNotEmpty()) {
-//                binding?.adressTextView?.text = getString(R.string.adres) + it.adress!!
-//            } else {
-//                binding?.adressTextView?.text = getString(R.string.magazin_adresini_kiritish)
-//            }
-//        }
-    }
-
-    override fun onViewAttachedToParent() {
-//        bundleAny?.let {
-//            if (it is ShippingLocation) {
-//                setAdress()
-//            }
-//        }
-    }
-
-    override fun onViewDetachedFromParent() {
-
-    }
-
-    override fun canBeginSlide(): Boolean {
-      return true
-    }
-
-    private var binding: CreateSellerAccount1Binding?=null
-
+class CreateSellerAccount1 : BaseFragment<CreateSellerAccount1Binding>(R.layout.create_seller_account_1) {
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-
-        binding = inflateBinding(container,R.layout.create_seller_account_1)
-
+        binding: CreateSellerAccount1Binding
+    ) {
         bottomNavVisiblity(context,false)
-        binding?.apply {
+        binding.apply {
             actionBar.apply {
                 backButton.setOnClickListener {
                     closeLastFragment()
@@ -87,11 +32,10 @@ class CreateSellerAccount1 : BaseFragment() {
             }
 
             adressContainer.setOnClickListener {
-                presentFragmentRemoveLast(LocationActivity(),false)
             }
             continueButton.apply {
                 setOnClickListener {
-                    if (checkIsEmptyForParent(binding?.root as ViewGroup)) {
+                    if (checkIsEmptyForParent(binding.root as ViewGroup)) {
                         currentUser?.apply {
 
                             lifecycleScope.launch {
@@ -108,13 +52,12 @@ class CreateSellerAccount1 : BaseFragment() {
                                         super.onFailed()
                                         presentFragmentRemoveLast(LoginFragment(),false)
                                     }
-                                                                                     },this@apply)
+                                },this@apply)
                             }
                         }
                     }
                 }
             }
         }
-        return binding?.root
     }
 }

@@ -10,12 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.core.graphics.minus
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.market.*
 import com.example.market.auth.LoginFragment
 import com.example.market.binding.inflateBinding
@@ -24,54 +22,26 @@ import com.example.market.databinding.AlertDialogBinding
 import com.example.market.databinding.FragmentProfileSellerBinding
 import com.example.market.databinding.ProfileRegisterLayoutBinding
 import com.example.market.home.HomeListAdapter
-import com.example.market.home.HomeListDecoration
 import com.example.market.home.VIEW_TYPE_PRODUCT_SIMPLE
 import com.example.market.messages.MessagesFragment
-import com.example.market.model.MESSAGE_TYPE_LIKE
-import com.example.market.model.MESSAGE_TYPE_SUBSCRIBE
-import com.example.market.model.MESSAGE_TYPE_SUBSCRIPTION
-import com.example.market.model.Product
+import com.example.market.models.MESSAGE_TYPE_LIKE
+import com.example.market.models.MESSAGE_TYPE_SUBSCRIBE
+import com.example.market.models.MESSAGE_TYPE_SUBSCRIPTION
+import com.example.market.models.Product
 import com.example.market.navigation.bottomNavVisiblity
 import com.example.market.recycler.EndlessRecyclerViewScrollListener
 import com.example.market.recycler.RecyclerItemClickListener
 import com.example.market.utils.AndroidUtilities
 import com.example.market.utils.FirestorePaging
-import com.example.market.utils.uploadImageFromPath
 import com.example.market.viewUtils.DIALOG_ANIMATION_ALERT_DIALOG
 import com.example.market.viewUtils.PopupDialog
 import com.example.market.viewUtils.PopupWindowLayout
 import com.example.market.viewUtils.toast
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.Query
-import com.otaliastudios.cameraview.controls.Grid
 import java.util.*
 
-class ProfileFragmentSeller(val userId: String? = null) : BaseFragment() {
-    override fun onBeginSlide() {
-
-    }
-
-    override fun onConnectionChanged(state: Boolean) {
-
-    }
-
-    override fun onBackPressed() {
-
-    }
-
-    override fun onViewFullyVisible() {
-
-    }
-
-    override fun onViewFullyHiden() {
-
-    }
-
-    override fun isSwapBackEnabled(): Boolean {
-        return super.isSwapBackEnabled()
-    }
+class ProfileFragmentSeller(val userId: String? = null) : BaseFragment<FragmentProfileSellerBinding>(R.layout.fragment_profile_seller) {
 
     override fun onViewAttachedToParent() {
         updateRegisterLayout()
@@ -111,13 +81,10 @@ class ProfileFragmentSeller(val userId: String? = null) : BaseFragment() {
         return false
     }
 
-    private var binding: FragmentProfileSellerBinding? = null
     private var registerLayout: ProfileRegisterLayoutBinding? = null
 
     override fun onDestroyView() {
         super.onDestroyView()
-
-        binding = null
         registerLayout = null
         paging?.clear()
         paging = null
@@ -147,20 +114,16 @@ class ProfileFragmentSeller(val userId: String? = null) : BaseFragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        binding = inflateBinding(container, R.layout.fragment_profile_seller)
-
+        binding: FragmentProfileSellerBinding
+    ) {
         if (userId == null) {
             bottomNavVisiblity(requireContext(), true)
         }
         createView()
-        toast("OnCreateView")
-        return binding?.root
     }
-
     private var productsAdapter: HomeListAdapter? = null
     private var paging: FirestorePaging<Product>? = null
     private var buttonsContainer: LinearLayout? = null
@@ -174,7 +137,7 @@ class ProfileFragmentSeller(val userId: String? = null) : BaseFragment() {
         }
 
     private fun updateRegisterLayout() {
-        binding?.apply {
+        binding.apply {
             if (currentUser == null && userId == null) {
                 appBarLayout.visibility = View.GONE
                 recyclerView.visibility = View.GONE
@@ -236,9 +199,9 @@ class ProfileFragmentSeller(val userId: String? = null) : BaseFragment() {
             }
         }
     }
+
     private fun createView() {
         binding?.apply {
-
             if (userId == null) {
                 getMainActivity().bottomNavigationView.selectedItemId = R.id.profile
             }
@@ -248,12 +211,11 @@ class ProfileFragmentSeller(val userId: String? = null) : BaseFragment() {
                 root.elevation = 0f
                 if (userId != null) {
                     backButton.visibility = View.VISIBLE
-                    backButton.setOnClickListener {
-                        closeLastFragment()
-                    }
+                    backButton.setOnClickListener { closeLastFragment() }
                 } else {
                     backButton.visibility = View.GONE
                 }
+
                 options.setOnClickListener {
                     PopupWindowLayout(requireContext()).apply {
                         addItem(0, "Sign out", R.drawable.preview_back) {
@@ -306,10 +268,10 @@ class ProfileFragmentSeller(val userId: String? = null) : BaseFragment() {
             }
 
             if (userId == null) {
-                currentUserLiveData.observe(viewLifecycleOwner,
-                    { d ->
-                        d?.let { setData(it) }
-                    })
+                currentUserLiveData.observe(viewLifecycleOwner
+                ) { d ->
+                    d?.let { setData(it) }
+                }
             } else {
                 user?.let { setData(it) }
             }
@@ -431,29 +393,18 @@ class ProfileFragmentSeller(val userId: String? = null) : BaseFragment() {
     private var subscribedMutableLiveData = MutableLiveData<Boolean>(null)
 
     private fun signOutIn() {
-        val alertDialog =
-            inflateBinding<AlertDialogBinding>(null,
-                R.layout.alert_dialog)
+        val alertDialog = inflateBinding<AlertDialogBinding>(null, R.layout.alert_dialog)
         alertDialog.apply {
-            val popupWindow =
-                PopupWindowLayout(requireContext()).apply { addView(alertDialog.root) }
-            val popupDialog = PopupDialog(popupWindow,
-                DIALOG_ANIMATION_ALERT_DIALOG)
-            data = Alert("Log out",
-                "Do you realy want to sign out?",
-                "CANCEL",
-                "SIGN OUT",
-                {
-                    popupDialog.dismiss()
-                },
+            val popupWindow = PopupWindowLayout(requireContext()).apply { addView(alertDialog.root) }
+            val popupDialog = PopupDialog(popupWindow, DIALOG_ANIMATION_ALERT_DIALOG)
+            data = Alert("Log out", "Do you realy want to sign out?", "CANCEL", "SIGN OUT", { popupDialog.dismiss() },
                 {
                     signOut()
                     paging?.clear()
                     getMainActivity().updateBottomNav()
                     createView()
                     popupDialog.dismiss()
-                },
-                iconResource = R.drawable.search_users)
+                }, iconResource = R.drawable.search_users)
             popupDialog.show(requireView(), Gravity.CENTER, 0, 0, true)
         }
     }

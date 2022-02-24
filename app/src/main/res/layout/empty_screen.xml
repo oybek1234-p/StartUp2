@@ -13,6 +13,7 @@
         android:layout_margin="36dp"
         android:paddingHorizontal="@dimen/grid_3"
         android:paddingVertical="@dimen/grid_3"
+        android:background="@drawable/background_radius_stroke"
         >
 
         <com.airbnb.lottie.LottieAnimationView

@@ -42,6 +42,15 @@ import kotlinx.coroutines.*
 import java.lang.Runnable
 import java.lang.reflect.Field
 import java.util.concurrent.Future
+import android.os.VibrationEffect
+
+import androidx.core.content.ContextCompat.getSystemService
+
+import android.os.Vibrator
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+
+
 fun dpToPx(value: Float): Int {
     return TypedValue.applyDimension(
         TypedValue.COMPLEX_UNIT_DIP,
@@ -84,7 +93,7 @@ fun View.setFlickerView() {
         DEFAULT_BACKGROUND_COLOR
     )
 }
- var anticipateInterpolator = AnticipateOvershootInterpolator(2f)
+ var anticipateInterpolator = AnticipateOvershootInterpolator(10f)
 
 /**
  * Sets item layout full span
@@ -158,7 +167,7 @@ fun getPixelsInCM(cm: Float): Float {
     return cm / 2.54f * MyApplication.appContext.resources.displayMetrics.xdpi
 }
 
-fun presentFragmentRemoveLast(context: Context,fragment: BaseFragment,removeLast: Boolean,anim: Array<Int> = FragmentController.openSearchFragment) {
+fun presentFragmentRemoveLast(context: Context,fragment: Fragment,removeLast: Boolean,anim: Array<Int> = FragmentController.openSearchFragment) {
     (context as MainActivity).apply {
         fragmentController?.presentFragmentRemoveLast(fragment, anim, removeLast)
     }
@@ -179,12 +188,20 @@ fun toast(text:String?){
     toast(message = text)
 }
 fun getCostText(cost: String): String {
-    var mCost = getTrimmedText(cost,16)
-    mCost = "4516548651"
+    val mCost = getTrimmedText(cost,16)
     val currency = if (MyApplication.currency == CURRENCY_UZS) SUM else DOLLAR
     return getNumberFormat(mCost.toLong()) + " $currency"
 }
+fun vibrate(millis: Long = 500) {
+    val v = MyApplication.appContext.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator?
 
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        v!!.vibrate(VibrationEffect.createOneShot(millis, VibrationEffect.DEFAULT_AMPLITUDE))
+    } else {
+        //deprecated in API 26
+        v!!.vibrate(millis)
+    }
+}
 fun getDiscountText(discountPercent: Int,cost: String): String {
     val mCost = 7484844.toString()
     val discountCost = discountPercent * mCost.toLong() / 100

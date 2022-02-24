@@ -1,7 +1,7 @@
 package com.example.market.products
 
 import com.example.market.getProductsReference
-import com.example.market.model.Product
+import com.example.market.models.Product
 import com.example.market.parseDocumentSnapshot
 import com.google.firebase.firestore.Query
 import kotlin.collections.ArrayList

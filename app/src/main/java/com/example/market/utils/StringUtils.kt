@@ -1,12 +1,9 @@
 package com.example.market.utils
+import android.widget.TextView
 import androidx.annotation.StringRes
 import com.example.market.MyApplication
 import com.example.market.R
-import com.example.market.binding.formatCurrency
-import com.example.market.model.Product
 import java.lang.StringBuilder
-import kotlin.math.cos
-
 
 
 fun getString(@StringRes id: Int): String {
@@ -28,4 +25,17 @@ fun joinWithSpace(vararg string: String) : String {
         }
 
     }.toString()
+}
+
+fun replaceMultiple(text: String,array: Array<Char>,replace: String) : String {
+    val stringBuilder = StringBuilder().apply {
+        text.forEach { c ->
+            if (array.contains(c)) {
+                append(replace)
+            } else {
+                append(c)
+            }
+        }
+    }
+    return stringBuilder.toString()
 }

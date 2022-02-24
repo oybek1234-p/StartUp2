@@ -14,12 +14,11 @@ class HomeBannerAdapter: DataBoundAdapter<HomeBannerItemBinding,Banner>(R.layout
     }
 
     override fun bindItem(
-        holder: DataBoundViewHolder<HomeBannerItemBinding>?,
+        holder: DataBoundViewHolder<HomeBannerItemBinding>,
+        binding: HomeBannerItemBinding,
         position: Int,
-        model: Banner?,
+        model: Banner,
     ) {
 
     }
-
-
 }

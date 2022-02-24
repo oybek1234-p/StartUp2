@@ -28,7 +28,6 @@
                 android:id="@+id/main_recycler_view"
                 android:layout_width="94dp"
                 android:layout_height="match_parent"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="vertical"
                 tools:listitem="@layout/category_item" />
         </com.facebook.shimmer.ShimmerFrameLayout>

@@ -3,16 +3,15 @@ package com.example.market.binding
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.LayoutRes
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.market.*
 import com.example.market.comment.Comment
-import com.example.market.model.Product
-import com.example.market.utils.AndroidUtilities
+import com.example.market.models.Order
+import com.example.market.models.Product
 import com.example.market.viewUtils.ImageViewLoader
-import com.example.market.viewUtils.OnMeasureCallback
-import com.example.market.viewUtils.toast
 
 
 /**
@@ -34,6 +33,7 @@ fun commentUserName(textView: TextView,comment: Comment) {
         } else userName
     }
 }
+
 /**
  * Drawable thumbnail size
  * */
@@ -43,8 +43,8 @@ private const val THUMBNAIL_SIZE = 0.007f
 fun ImageView.load(
     url: String?=null,
     drawableResource:Int?=null,
-    placeHolder: Int?=null,
-    circleCrop: Boolean?=null,
+    @LayoutRes placeHolder: Int?=null,
+    circleCrop: Boolean = false,
     fade: Boolean ?=null,
     overrideWidth: Int ?=null,
     overrideHeight: Int ?= null,
@@ -69,6 +69,21 @@ fun ImageView.load(
     }
 }
 
+fun increaseOrderCount(order: Order, increase: Boolean, view: TextView?=null) {
+    order.apply {
+        count = if (increase) count + 1 else if (count > 1) count - 1 else count
+        view?.let { setOrderCount(count,it) }
+    }
+}
+
+fun setOrderCount(count: Int,view: TextView) {
+    view.apply {
+        text = count.toString()
+        animate().scaleY(1.2f).scaleX(1.2f).setDuration(200).withEndAction {
+            animate().scaleX(1f).scaleY(1f).duration = 200
+        }
+    }
+}
 /**
  * Sets text into textview check wether texts are same
  */
@@ -100,15 +115,15 @@ fun TextView.cost(cost: String) {
 @BindingAdapter("shipping")
 fun TextView.shipping(shipping: String) {
     text = try {
-        "Yetkazib berish: " + formatCurrency(shipping.toLong())
+        formatCurrency(shipping.toLong())
     }catch (e:Exception) {
         shipping
     }
 }
 
 val defaultShipping = ShippingLocation().apply {
-    shippingCost = "Now shipping is more cheaper!"
-    adress = "We offer fast shipping it takes only for 1 hour to shipp your item \nSet your location to know cost of shipping"
+    cost = "----"
+    adress = "Qayerga dostavka?"
 }
 
 @BindingAdapter("shippingLocationCost")
@@ -116,9 +131,9 @@ fun TextView.shippingLocationCost(shippingLocationCost: Any?=null) {
     val shipping = currentUser?.shippingLocation
 
     if (shipping!=null) {
-        shipping(shipping.shippingCost)
+        shipping(shipping.cost)
     } else {
-        text =  defaultShipping.shippingCost
+        text =  defaultShipping.cost
     }
 }
 
@@ -131,6 +146,34 @@ fun TextView.shippingLocationAdress(shippingLocationAdress: Any?=null){
     } else {
         defaultShipping.adress
     }
+}
+
+fun parseCardNumber(cardNumber: Long): String {
+    val buffer = StringBuffer()
+    var offset = 0
+    cardNumber.toString().forEachIndexed { _, c ->
+        if(offset == 4) {
+            buffer.append(' ')
+            offset = 0
+        }
+        offset +=1
+        buffer.append(c)
+    }
+    return buffer.toString().trim()
+}
+
+@BindingAdapter("shippingType")
+fun TextView.shippingType(shippingType: Any ?= null) {
+    val location = currentUser?.shippingLocation
+
+    text = location?.type ?: defaultShipping.type
+}
+
+@BindingAdapter("shippingSpendTime")
+fun TextView.shippingSpendTime(time: Any ?= null) {
+    val location = currentUser?.shippingLocation
+    val spendTime = location?.timeSpendMinute ?: 24
+    text = "* $spendTime minut" + if (location == null) " (kamida)" else " (uzogi bilan)"
 }
 
 @BindingAdapter("discount")

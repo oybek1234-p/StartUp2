@@ -18,53 +18,19 @@ import com.example.market.viewUtils.toast
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
-class RegistratsiyaFragment : BaseFragment() {
-    override fun onBeginSlide() {
-
-    }
-
-    override fun isSwapBackEnabled(): Boolean {
-        return true
-    }
-
-    override fun onConnectionChanged(state: Boolean) {
-
-    }
-
-    override fun onBackPressed() {
-
-    }
-
-    override fun onViewFullyVisible() {}
-
-    override fun onViewFullyHiden() {
-    }
-
-    override fun onViewAttachedToParent() {
-    }
-
-    override fun onViewDetachedFromParent() {
-    }
-
-    override fun canBeginSlide(): Boolean {
-        return true
-    }
-    private var binding: FragmentRegistratsiyaBinding?=null
-
+class RegistratsiyaFragment : BaseFragment<FragmentRegistratsiyaBinding>(R.layout.fragment_registratsiya) {
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        binding = inflateBinding(container,R.layout.fragment_registratsiya)
-
-        binding?.apply {
-            backButton.setOnClickListener {
-                closeLastFragment()
-            }
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+        binding: FragmentRegistratsiyaBinding
+    ) {
+        binding.apply {
+            backButton.setOnClickListener { closeLastFragment() }
             accountBormiButton.setOnClickListener {
                 presentFragmentRemoveLast(LoginFragment(),true)
             }
+
             createAccountButton.setOnClickListener {
                 if (checkIsEmptyForParent(root as ViewGroup)) {
                     val name = ismKiritish.text!!.toString()
@@ -83,10 +49,6 @@ class RegistratsiyaFragment : BaseFragment() {
                 }
 
             }
-
         }
-
-        return binding?.root
     }
-
 }

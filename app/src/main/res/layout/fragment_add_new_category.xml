@@ -16,7 +16,7 @@
             android:id="@+id/action_bar"
             layout="@layout/action_bar" />
 
-        <com.example.market.viewUtils.ImageViewLoader
+        <ImageView
             android:id="@+id/category_photo_view"
             android:layout_width="64dp"
             android:layout_height="64dp"

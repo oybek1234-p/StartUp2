@@ -6,51 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.market.BaseFragment
 import com.example.market.R
+import com.example.market.databinding.FragmentZakazlarBinding
 
-class ZakazlarFragment : BaseFragment() {
-    override fun onBeginSlide() {
-
-    }
-
-    override fun isSwapBackEnabled(): Boolean {
-       return true
-    }
-
-    override fun onConnectionChanged(state: Boolean) {
-
-    }
-
-    override fun onBackPressed() {
-
-    }
-
-    override fun onViewFullyVisible() {
-
-    }
-
-    override fun onViewFullyHiden() {
-
-    }
-
-    override fun onViewAttachedToParent() {
-
-    }
-
-    override fun onViewDetachedFromParent() {
-
-    }
-
-    override fun canBeginSlide(): Boolean {
-        return true
-    }
-
+class ZakazlarFragment : BaseFragment<FragmentZakazlarBinding>(R.layout.fragment_zakazlar) {
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_zakazlar, container, false)
+        binding: FragmentZakazlarBinding,
+    ) {
+
     }
-
-
 }

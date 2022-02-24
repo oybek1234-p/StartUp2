@@ -3,19 +3,16 @@ buildscript {
     ext.hilt_version = '2.35'
     repositories {
         google()
-        maven { url "https://jitpack.io" }
-        jcenter()
-        maven { url "https://artifactory.img.ly/artifactory/imgly"
+        maven {
+            url "https://jitpack.io"
+            url = uri("https://plugins.gradle.org/m2/")
         }
+        jcenter()
     }
     dependencies {
-
-        classpath 'com.android.tools.build:gradle:7.0.0-alpha06'
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0'
+        classpath 'com.android.tools.build:gradle:7.1.1'
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.20-M1")
         classpath 'com.google.gms:google-services:4.3.10'
-      //  classpath 'ly.img.android.pesdk:plugin:9.1.1'
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
@@ -24,9 +21,7 @@ allprojects {
         google()
         jcenter()
         maven { url "https://jitpack.io"
-
         }
-        maven { url 'https://artifactory.img.ly/artifactory/imgly' }
     }
 }
 

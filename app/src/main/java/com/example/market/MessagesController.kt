@@ -3,9 +3,8 @@ package com.example.market
 import androidx.lifecycle.MutableLiveData
 import com.example.market.messages.MESSAGE_TYPE_ALL
 import com.example.market.messages.VIEW_TYPE_PROGRESS
-import com.example.market.model.Message
+import com.example.market.models.Message
 import com.example.market.utils.AndroidUtilities
-import com.example.market.utils.log
 import com.example.market.viewUtils.toast
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore

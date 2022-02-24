@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            layout="@layout/action_bar"
+            android:id="@+id/action_bar" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/card_number_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_margin="@dimen/grid_3"
+            app:errorTextColor="@color/red_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:hint="Card number"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/action_bar">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:maxLength="19"
+                android:digits="0123456789 "
+                android:inputType="phone"
+                style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/card_expiry_year_edit_text"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:errorTextColor="@color/red_color"
+            android:layout_marginHorizontal="@dimen/grid_3"
+            android:layout_marginVertical="@dimen/grid_1_5"
+            android:hint="Expiration date"
+            app:layout_constraintStart_toStartOf="@+id/card_number_edit_text"
+            app:layout_constraintTop_toBottomOf="@+id/card_number_edit_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="match_parent"
+                android:maxLength="5"
+                android:digits="0123456789/"
+                android:inputType="phone"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/card_cvv_edit_text"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/grid_3"
+            android:layout_marginEnd="@dimen/grid_1_5"
+            android:layout_marginVertical="@dimen/grid_1_5"
+            android:hint="CVV"
+            app:layout_constraintEnd_toStartOf="@+id/imageView19"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_expiry_year_edit_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="match_parent"
+                android:maxLength="3"
+                android:digits="0123456789"
+                android:inputType="phone|textFilter|textAutoComplete"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/imageView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/grid_3"
+            android:src="@drawable/card_png"
+            app:layout_constraintBottom_toBottomOf="@+id/card_cvv_edit_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/card_cvv_edit_text" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

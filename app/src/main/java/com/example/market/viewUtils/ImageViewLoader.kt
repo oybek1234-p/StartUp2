@@ -22,12 +22,13 @@ import com.example.market.binding.load
 import com.example.market.getUrlForImage
 import com.example.market.isImageKit
 import com.example.market.utils.log
+import com.google.android.material.imageview.ShapeableImageView
 import com.google.firebase.firestore.Blob
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class ImageViewLoader @JvmOverloads constructor(context: Context, attributeSet: AttributeSet, deffStyle: Int= 0) : androidx.appcompat.widget.AppCompatImageView(context,attributeSet,deffStyle) {
+class ImageViewLoader @JvmOverloads constructor(context: Context, attributeSet: AttributeSet, deffStyle: Int= 0) : ShapeableImageView(context,attributeSet,deffStyle) {
     var requestLayout = false
     var onMeasureCallback: OnMeasureCallback?=null
     var loadRunnable: Runnable?=null
@@ -35,7 +36,7 @@ class ImageViewLoader @JvmOverloads constructor(context: Context, attributeSet: 
     var url: String?=null
     var drawableResource:Int?=null
     var placeHolder: Int?=null
-    var circleCrop: Boolean?=null
+    var circleCrop: Boolean = false
     var fade: Boolean ?=null
     var overrideWidth: Int ?=null
     var overrideHeight: Int ?= null
@@ -53,12 +54,11 @@ class ImageViewLoader @JvmOverloads constructor(context: Context, attributeSet: 
     fun loadRequest() {
         if (url!=null||drawableResource!=null||placeHolder!=null){
             var loadUrl = url
-
+            var isImageKit = false
             if (loadUrl!=null&& isImageKit(loadUrl)) {
-                loadUrl = getUrlForImage(loadUrl,measuredWidth,measuredHeight)
-                log("ImageViewLoader $loadUrl")
+                isImageKit = true
+                loadUrl = getUrlForImage(loadUrl,measuredWidth,measuredHeight, circleCrop = circleCrop)
             }
-
             requestBuilder = Glide.with(context).load(if (loadUrl!=null&&loadUrl.isNotEmpty()) loadUrl else if (drawableResource!=null&&drawableResource!=0) drawableResource else placeHolder)
 
             if (overrideHeight!=null&&overrideWidth!=null) {
@@ -66,11 +66,11 @@ class ImageViewLoader @JvmOverloads constructor(context: Context, attributeSet: 
             }
             if (placeHolder!=null) {
                 requestBuilder = requestBuilder!!.placeholder(placeHolder!!)
+                toast("Set place holder")
             }
-            if (circleCrop!=null) {
-                requestBuilder = requestBuilder!!.circleCrop()
-            }
+
             requestBuilder = requestBuilder!!.transition(DrawableTransitionOptions.withCrossFade())
+            requestBuilder = requestBuilder!!.thumbnail(0.007f)
 
             if (thumbnailBlobObejct!=null) {
                 GlobalScope.launch {

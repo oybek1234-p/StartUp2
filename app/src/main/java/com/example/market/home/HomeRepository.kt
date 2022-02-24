@@ -3,8 +3,7 @@ package com.example.market.home
 import android.os.AsyncTask
 import androidx.annotation.Keep
 import androidx.lifecycle.MutableLiveData
-import com.example.market.model.Product
-import com.google.android.gms.tasks.Continuation
+import com.example.market.models.Product
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.coroutines.*
@@ -15,15 +14,7 @@ import kotlin.collections.ArrayList
     val BACKGROUND_EXECUTOR: Executor = AsyncTask.THREAD_POOL_EXECUTOR
 
     fun loadBannerList(liveData: MutableLiveData<ArrayList<Banner>>){
-//        FirebaseFirestore.getInstance().collection("bannerImages").get().addOnCompleteListener { it ->
-//            if (it.isSuccessful) {
-//                val list = ArrayList<Banner>()
-//                it.result?.documents?.forEach {
-//                    list.add(it!!.toObject(Banner::class.java)!!)
-//                }
-//                liveData.postValue(list)
-//            }
-//        }
+
     }
 
 

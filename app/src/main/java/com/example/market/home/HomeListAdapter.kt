@@ -1,25 +1,19 @@
 package com.example.market.home
 
-import android.graphics.BitmapFactory
 import android.view.Gravity
 import android.view.View
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.market.*
 import com.example.market.comment.CommentsFragment
 import com.example.market.databinding.*
-import com.example.market.model.Header
-import com.example.market.model.Product
+import com.example.market.models.Header
+import com.example.market.models.Product
 import com.example.market.recycler.*
 import com.example.market.utils.getString
-import com.example.market.utils.log
 import com.example.market.viewUtils.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import java.sql.Blob
 
 const val VIEW_TYPE_CATEGORY = 0
 const val VIEW_TYPE_PRODUCT = 1

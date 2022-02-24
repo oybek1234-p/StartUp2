@@ -6,7 +6,7 @@
     <data>
         <variable
             name="product"
-            type="com.example.market.model.Product" />
+            type="com.example.market.models.Product" />
         <variable
             name="likeOnClick"
             type="android.view.View.OnClickListener" />
@@ -190,19 +190,39 @@
                         tools:text="125.000 sum" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/grid_0_5"
+                    android:layout_marginTop="12dp"
+                    android:paddingHorizontal="18dp"
+                    android:background="@color/gray_f2f2f2"
+                    android:text="Yetkazib berish"
+                    />
                 <include
                     android:id="@+id/details_info_seller_info_shipping_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/grid_2"
-                    layout="@layout/dostavka_layout" />
-
-
+                    layout="@layout/dostavka_layout_material" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/grid_0_5"
+                    android:paddingHorizontal="18dp"
+                    android:background="@color/gray_f2f2f2"
+                    android:text="Magzin"
+                    />
                 <include
                     android:id="@+id/details_info_seller_info_layout"
-                    layout="@layout/yuklash_contact_info_layout" />
-
+                     layout="@layout/yuklash_contact_info_layout" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/grid_0_5"
+                    android:paddingHorizontal="18dp"
+                    android:background="@color/gray_f2f2f2"
+                    android:text="Boshqa malumotlar"
+                    />
                 <include
                     android:id="@+id/details_specification"
                     android:layout_width="match_parent"

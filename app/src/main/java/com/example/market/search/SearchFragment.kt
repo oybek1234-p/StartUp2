@@ -24,49 +24,48 @@ import com.example.market.viewUtils.toast
 import java.util.*
 import kotlin.collections.ArrayList
 
-class SearchFragment(private var searchText: String?=null) : BaseFragment() {
-    private val SEARCH_STATE_LOADING = 0
-    private val SEARCH_STATE_LOADED = 1
-    private val SEARCH_STATE_EMPTY = 2
-
+class SearchFragment(private var searchText: String = "") : BaseFragment<FragmentSearchBinding>(R.layout.fragment_search) {
     companion object {
-        const val EMPTY_TYPE = "empty"
+        private const val SEARCH_STATE_LOADING = 0
+        private const val SEARCH_STATE_LOADED = 1
+        private const val SEARCH_STATE_EMPTY = 2
     }
-
     private var searchState = SEARCH_STATE_LOADING
 
-    private var binding: FragmentSearchBinding?=null
     private var searchAdapter: SearchAdapter?=null
     private var searchList: ArrayList<SearchProduct>?=null
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
-        binding = inflateBinding(container,R.layout.fragment_search)
+        binding: FragmentSearchBinding,
+    ) {
+        binding.apply {
 
-        binding?.apply {
-            backButton.setOnClickListener {
-                closeLastFragment()
-            }
+            backButton.setOnClickListener { closeLastFragment() }
+
             searchButton.setOnClickListener {
-                if (searchEditText.text!=null&&searchEditText.text!!.isNotEmpty()&&searchText!=null) {
-                    presentFragmentRemoveLast(SearchResultsFragment(searchText!!),false)
+                val text = searchEditText.text
+                if (text!=null && text.isNotEmpty() && searchText!=null) {
+                    val sText = searchText
+                    presentFragmentRemoveLast(SearchResultsFragment(sText),false)
                 }
             }
-            searchEditText.doOnTextChanged { text, start, before, count ->
-                searchText = text?.toString()
+
+            searchEditText.doOnTextChanged { text, _, _, _ ->
+                searchText = text?.toString() ?: ""
                 doSearch()
             }
+
             recyclerView.apply {
                 itemAnimator = null
-                adapter = SearchAdapter().also {
-                    searchAdapter = it
-                    it.setClickListener(object : RecyclerItemClickListener{
+                adapter = SearchAdapter().apply {
+                    searchAdapter = this
+                    setClickListener(object : RecyclerItemClickListener{
                         override fun onClick(position: Int, type: Int) {
-                            val item = it.dataList?.getOrNull(position)
-                            if (item!=null) {
-                                presentFragmentRemoveLast(SearchResultsFragment(item.title),false)
+                            dataList.getOrNull(position)?.let {
+                                presentFragmentRemoveLast(SearchResultsFragment(it.title),false)
                             }
                         }
                     })
@@ -75,38 +74,39 @@ class SearchFragment(private var searchText: String?=null) : BaseFragment() {
                 searchAdapter?.setDataList(searchList)
             }
         }
-        return binding?.root
     }
 
     override fun onViewAttachedToParent() {
         super.onViewAttachedToParent()
-        binding?.searchEditText?.let {
-            getMainActivity().showKeyboard(it)
-        }
+        binding.searchEditText.let { getMainActivity().showKeyboard(it) }
     }
+
     private var emptyModel = SearchProduct().apply {
         id = System.currentTimeMillis().toString()
-        title = EMPTY_TYPE
+        title = "EMPTY"
     }
+
+    fun showProgress(show: Boolean) {
+
+    }
+
     fun updateState(state: Int){
         searchState = state
-        toast("State $state")
         when(searchState) {
             SEARCH_STATE_LOADING -> {
                 searchList = null
                 searchAdapter?.setDataList(null)
-                showProgress(true)
             }
             SEARCH_STATE_LOADED -> {
                 showProgress(false)
-                if (searchText==null||searchText!=null&&searchText!!.isEmpty()){
+                if (searchText.isEmpty()){
                     updateState(SEARCH_STATE_EMPTY)
                 }
                 searchAdapter?.setDataList(searchList)
             }
             SEARCH_STATE_EMPTY -> {
                 showProgress(false)
-                if (searchText==null||searchText!=null&&searchText!!.isEmpty()) {
+                if (searchText.isEmpty()) {
                     searchList = null
                     searchAdapter?.setDataList(null)
                     return
@@ -123,12 +123,11 @@ class SearchFragment(private var searchText: String?=null) : BaseFragment() {
         }
     }
     private var searchTimer: Timer?=null
-    private var searchRunnable: Runnable?=null
     private var searchReqId = 0
 
     fun doSearch() {
-        if (searchText!=null&&searchText!!.isNotEmpty()) {
-            searchText?.let {
+        if (searchText.isNotEmpty()) {
+            searchText.let {
                 searchTimer?.cancel()
                 searchTimer = null
                 cancellRequest(searchReqId)
@@ -163,56 +162,47 @@ class SearchFragment(private var searchText: String?=null) : BaseFragment() {
         }
     }
 
-    fun showProgress(show: Boolean) {
-//        binding?.shimmerLayout?.apply {
-//            if (show) {
-//                showShimmer(true)
-//            } else {
-//                hideShimmer()
-//            }
-//        }
-    }
-
  class SearchAdapter: DataBoundAdapter<ViewDataBinding,SearchProduct>(R.layout.search_item_layout) {
-     override fun onCreateViewHolder(
-         viewHolder: DataBoundViewHolder<ViewDataBinding>?,
-         viewType: Int,
-     ) {
-
-     }
-
      override fun getItemLayoutId(position: Int): Int {
-         return if (dataList!=null&&dataList[position].title == EMPTY_TYPE)
-             R.layout.empty_screen
-         else
-             super.getItemLayoutId(position)
+         val isEmpty = dataList.getOrNull(position)?.title == SEARCH_STATE_EMPTY.toString()
+         return if (isEmpty) R.layout.empty_screen else super.getItemLayoutId(position)
      }
 
      override fun bindItem(
-         holder: DataBoundViewHolder<ViewDataBinding>?,
+         holder: DataBoundViewHolder<ViewDataBinding>,
+         binding: ViewDataBinding,
          position: Int,
-         model: SearchProduct?,
+         model: SearchProduct
      ) {
-         holder?.binding?.apply {
+         binding.apply {
              if (this is EmptyScreenBinding) {
                  lottieView.setAnimation(R.raw.no_result_lottie)
                  lottieView.playAnimation()
 
-                 titleView.text = "No results found"
-                 subtitleView.text = "Please check your text and make sure it is right"
+                 titleView.text = MyApplication.appContext.getString(R.string.no_results)
+                 subtitleView.text = MyApplication.appContext.getString(R.string.provide_more_info)
                  addItemButton.visibility = View.GONE
 
                  root.apply {
                      scaleX = 0.8f
                      scaleY = 0.8f
                      alpha = 0f
-
-                     animate().scaleY(1f).scaleX(1f).setDuration(150).alpha(1f).setInterpolator(CubicBezierInterpolator.DEFAULT).start()
+                     animate()
+                         .scaleY(1f)
+                         .scaleX(1f)
+                         .setDuration(150)
+                         .alpha(1f)
+                         .setInterpolator(CubicBezierInterpolator.DEFAULT)
+                         .start()
                  }
              }
          }
      }
 
-
+     override fun onCreateViewHolder(
+         viewHolder: DataBoundViewHolder<ViewDataBinding>?,
+         viewType: Int,
+     ) {}
  }
+
 }

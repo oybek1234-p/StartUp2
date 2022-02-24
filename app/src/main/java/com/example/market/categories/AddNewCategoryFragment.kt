@@ -64,14 +64,8 @@ class Category {
     var productsCount = 0
     var options = listOf(ProductOption.BRAND)
 }
-class aa{
-    init {
-        val mainCategoryId = "kkkkkoooni"
 
-    }
-}
-class AddNewCategoryFragment(var category: Category = Category(),val newCategory: (newCategory: Category) -> Unit) : BaseFragment() {
-    private var binding: FragmentAddNewCategoryBinding?=null
+class AddNewCategoryFragment(var category: Category = Category(),val newCategory: (newCategory: Category) -> Unit) : BaseFragment<FragmentAddNewCategoryBinding>(R.layout.fragment_add_new_category) {
     private var optionsAdapter: CategoryOptionsAdapter?=null
     private var newPhotoPath = ""
 
@@ -182,20 +176,21 @@ class AddNewCategoryFragment(var category: Category = Category(),val newCategory
             }
         }
     }
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        binding = inflateBinding(container,R.layout.fragment_add_new_category)
-        binding?.apply {
+        binding: FragmentAddNewCategoryBinding
+    ) {
+        binding.apply {
             actionBar.apply {
                 backButton.setOnClickListener {
                     closeLastFragment()
                 }
                 titleContainer.gravity = Gravity.START
                 title.text = getString(R.string.addnewcategory)
-                options.setImageResource(R.drawable.msg_check)
+                options.setImageResource(R.drawable.floating_check)
                 options.setOnClickListener {
                     createCategory()
                 }
@@ -226,7 +221,6 @@ class AddNewCategoryFragment(var category: Category = Category(),val newCategory
                         }
                     }) } }
         }
-        return binding?.root
     }
 
     override fun onViewAttachedToParent() {
@@ -236,7 +230,7 @@ class AddNewCategoryFragment(var category: Category = Category(),val newCategory
     }
 
     fun setData() {
-        binding?.apply {
+        binding.apply {
             category.apply {
                 if (photo.isNotEmpty()) { categoryPhotoView.load(category.photo) }
                 categoryNameEditTextView.text?.apply {
@@ -244,7 +238,7 @@ class AddNewCategoryFragment(var category: Category = Category(),val newCategory
                         append(name)
                     }
                 }
-                optionsAdapter?.setDataList(options)
+                optionsAdapter?.setDataList(options,true)
             }
         }
     }
@@ -334,14 +328,13 @@ class CategoryOptionsAdapter(var checkedList: ArrayList<ProductOption>?=null,val
         automaticallySetData = false
     }
     private val checkedColor =  MyApplication.appContext.getColor(R.color.red_color)
-
-    @SuppressLint("Recycle")
     override fun bindItem(
-        holder: DataBoundViewHolder<CategoryOptionItemBinding>?,
+        holder: DataBoundViewHolder<CategoryOptionItemBinding>,
+        binding: CategoryOptionItemBinding,
         position: Int,
-        model: ProductOption?,
+        model: ProductOption,
     ) {
-        holder?.binding?.apply {
+        binding.apply {
             if (checkedList!=null) {
                 val tag = cardView.tag
                 if (tag!=null&&tag is ValueAnimator) {

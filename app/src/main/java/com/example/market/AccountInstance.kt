@@ -4,43 +4,31 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Looper
 import android.provider.MediaStore.Images
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
 import com.example.market.camera.DispatchQueue
 import com.example.market.categories.Category
 import com.example.market.comment.*
-import com.example.market.model.*
+import com.example.market.models.*
+import com.example.market.models.PaymentCard
 import com.example.market.utils.*
 import com.example.market.viewUtils.toast
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
-import com.google.android.gms.tasks.Tasks
-import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.google.firebase.database.Transaction
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.local.QueryResult
 import com.imagekit.ImageKitCallback
 import com.imagekit.android.entity.UploadError
 import com.imagekit.android.entity.UploadResponse
 import kotlinx.coroutines.*
-import kotlinx.coroutines.test.withTestContext
 import java.io.File
-import java.lang.reflect.Field
-import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutionException
-import java.util.concurrent.Executor
-import java.util.concurrent.Executors
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
@@ -66,6 +54,84 @@ const val SUBSCRIBERS = "subscribers"
 const val SUBSCRIBE_ID = "subscribe"
 const val NOT_EXISTS = "documentNotExists"
 const val SEARCH_PRODUCTS = "searchProducts"
+const val ORDERS = "orders"
+const val PAYMENT_CARDS = "paymentCards"
+var payCards = arrayListOf<PaymentCard>()
+var isCardGot = false
+
+fun getPaymentsCardsCollection() = FirebaseFirestore.getInstance().collection(PAYMENT_CARDS)
+
+fun getPaymentCards(result: ResultCallback<ArrayList<PaymentCard>>) {
+    if (checkCurrentUser()) {
+        if (isCardGot&& payCards.isNotEmpty()) {
+            result.onSuccess(payCards)
+            return
+        }
+        payCards.clear()
+        isCardGot = false
+        getPaymentsCardsCollection().whereEqualTo("userId", currentUser!!.id).get().addOnCompleteListener {
+            if (it.isSuccessful) {
+                isCardGot = true
+                it.result?.documents?.let { payCards = parseDocumentSnapshot(it, PaymentCard::class.java) }
+                result.onSuccess(payCards)
+            } else {
+                isCardGot = false
+                result.onFailed()
+            }
+        }
+    }
+}
+
+fun deletePaymentCard(id: String,result: Result?) {
+    getPaymentsCardsCollection().document(id).delete().addOnCompleteListener { if (it.isSuccessful) result?.onSuccess() else result?.onFailed() }
+}
+
+fun addNewPaymentCard(card: PaymentCard, result: Result) {
+    if (checkCurrentUser()) {
+        payCards.add(card)
+        getPaymentsCardsCollection().document(card.id).set(card).addOnCompleteListener { notifyResult(it,result) }
+    }
+}
+
+fun <T> notifyResult(task: Task<T>,result: Result?) {
+    result?.apply { if (task.isSuccessful) onSuccess() else onFailed() }
+}
+/**
+ * Orders
+ */
+fun addOrder(order: Order, result: Result) {
+    if (!checkCurrentUser()) {
+        result.onFailed()
+        return
+    }
+    getOrdersCollection().document(order.id).set(order).addOnCompleteListener {
+        if (it.isSuccessful) {
+            orders.add(0,order)
+            val newMessage = Message().apply {
+                id = order.id
+                type = if (order.state == OrderState.IN_CART) MESSAGE_TYPE_NEW_ORDER_ADDED_TO_CART_TO_SELLER else MESSAGE_TYPE_NEW_ORDER_TO_SELLER
+                recieverId = order.product!!.sellerId
+                user = currentUser
+                product = order.product
+            }
+            messageToSeller(newMessage,result)
+        } else {
+            result.onFailed()
+        }
+    }
+}
+
+fun getOrdersCollection() = FirebaseFirestore.getInstance().collection(ORDERS)
+
+fun deleteOrder(id: String,result: Result?=null) {
+    getOrdersCollection().document(id).delete().addOnCompleteListener {
+        if (it.isSuccessful) {
+            result?.onSuccess()
+        } else {
+            result?.onFailed()
+        }
+    }
+}
 
 class SearchProduct {
     var id = ""
@@ -137,6 +203,7 @@ set(value) {
  */
 var subscribedUsers = arrayListOf<String>()
 var products = ArrayList<Product>()
+var orders = ArrayList<Order>()
 var userLikedProducts: ArrayList<Like> = ArrayList()
 var categories: ArrayList<Category>?=null
 
@@ -154,7 +221,9 @@ fun uploadCategory(category: Category,result: Result) {
             }
         }
 }
-
+fun deleteCategory(categoryId: String) {
+    FirebaseFirestore.getInstance().collection(CATEGORIES).document(categoryId).delete()
+}
 fun getMainCategories(resultListener: ResultCallback<List<Category>?>): Int {
     categories?.apply {
         val mainList = filter { it.parentId == "" }
@@ -305,7 +374,6 @@ fun setShippingLocation(newShippingLocation: ShippingLocation,result: Result?) {
 
     }
 }
-
 
 @kotlin.annotation.Retention(AnnotationRetention.BINARY)
 @Target(AnnotationTarget.VALUE_PARAMETER)
@@ -1451,7 +1519,7 @@ suspend fun loadSellerInfo(@SellerInfo sellerId: String,result: ResultCallback<S
         }
     }
 
-    suspend fun uploadProduct(product: Product, description: String, photoList: ArrayList<String>, options: ArrayList<Specification>, result: Result,context: CoroutineScope){
+    suspend fun uploadProduct(product: Product, description: String, photoList: ArrayList<String>, options: ArrayList<Specification>, result: Result, context: CoroutineScope){
         context.launch(Dispatchers.IO){
                 val productID = System.currentTimeMillis().toString()
 

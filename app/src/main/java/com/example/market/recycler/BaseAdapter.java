@@ -77,7 +77,7 @@ abstract public class BaseAdapter<T extends ViewDataBinding,M>
     }
 
     @Override
-    public final int getItemViewType(int position) {
+    public int getItemViewType(int position) {
         return getItemLayoutId(position);
     }
 
