@@ -33,6 +33,8 @@
             android:textColor="?colorOnSurfaceHigh"
             android:layout_marginHorizontal="@dimen/dimen_12"
             android:layout_marginTop="@dimen/dimen_2"
+            android:lineHeight="20dp"
+            android:textFontWeight="500"
             app:layout_constraintStart_toEndOf="@+id/photo_view"
             app:layout_constraintTop_toTopOf="@+id/photo_view"
             tools:text="Oybek Qodirov" />
