@@ -11,59 +11,42 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_gravity="bottom"
-        android:paddingHorizontal="@dimen/grid_1_5"
-        android:background="@color/white"
-        android:elevation="@dimen/grid_1_5">
+        android:background="?attr/colorSurface"
+        android:paddingHorizontal="@dimen/dimen_12"
+     >
 
         <CheckBox
             android:id="@+id/checkBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="All"
-            android:theme="@style/CheckBoxStyle"
+            android:text="@string/all"
+            android:textColor="?attr/colorOnSurfaceHigh"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/left_text_view"
+            android:id="@+id/cost_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/roboto_medium"
-            android:text="19222 sum"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:layout_marginEnd="@dimen/grid_3"
+            style="@style/Text1_16"
+            tools:text="19222 sum"
+            android:textColor="?attr/colorOnSurfaceHigh"
+            android:layout_marginEnd="@dimen/dimen_12"
             app:layout_constraintBottom_toBottomOf="@+id/buy_now_button"
             app:layout_constraintEnd_toStartOf="@+id/buy_now_button"
             app:layout_constraintTop_toTopOf="@+id/buy_now_button" />
 
-        <FrameLayout
+        <Button
             android:id="@+id/buy_now_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_radius_filled_16"
-            android:backgroundTint="@color/colorRed"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?selectableItemBackground"
-            android:paddingHorizontal="@dimen/grid_1_5"
-            android:paddingVertical="@dimen/grid_1"
+            android:backgroundTint="?attr/colorSecondary"
+            android:text="@string/sotib_olish"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/right_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/roboto_bold"
-                android:text="@string/sotib_olish"
-                android:textColor="#FFFFFF"
-                android:textSize="15sp" />
-        </FrameLayout>
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

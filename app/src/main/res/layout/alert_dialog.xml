@@ -6,54 +6,61 @@
     <data>
         <variable
             name="data"
-            type="com.example.market.Alert" />
+            type="com.org.ui.actionbar.Alert" />
+
+        <import type="com.example.market.R"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingHorizontal="23sp"
-        android:paddingTop="23sp"
+        android:paddingHorizontal="@dimen/dimen_24"
+        android:paddingTop="@dimen/dimen_20"
         android:paddingBottom="18dp"
         >
 
-        <com.example.market.viewUtils.ImageViewLoader
-            android:id="@+id/icon_view"
-            url="@{data.iconUrl}"
-            android:scaleType="centerCrop"
-            app:shapeAppearanceOverlay="@style/circleImageViewStyle"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/title_view"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linearLayout11"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@{data.title}"
-            android:textColor="#222"
-            android:layout_marginStart="18dp"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/icon_view"
-            app:layout_constraintStart_toEndOf="@+id/icon_view"
-            app:layout_constraintTop_toTopOf="@+id/icon_view"
-            tools:text="Are you sure to delete?" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+            <com.org.ui.components.ImageViewLoader
+                android:id="@+id/icon_view"
+                android:layout_marginEnd="@dimen/dimen_18"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="@{data.isPhoto ? 0 : 24}"
+                android:scaleType="centerCrop"
+                app:shapeAppearanceOverlay="@style/circleImageViewStyle" />
+
+            <TextView
+                textColor="@{R.attr.colorOnSurfaceHigh}"
+                style="@style/Title2_20"
+                android:id="@+id/title_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{data.title}"
+                app:layout_constraintStart_toEndOf="@+id/icon_view"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Are you sure to delete?" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/description_view"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="23sp"
-            android:text="@{data.description}"
-            android:textColor="#222"
-            android:textSize="16sp"
+            android:layout_marginTop="@dimen/dimen_12"
+            android:text="@{data.message}"
+            style="@style/Text2_15"
+            textColor="@{R.attr.colorOnSurfaceMedium}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_view"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout11"
             tools:text="Do you realy want to delete this product,it will be removed from list" />
 
         <TextView
@@ -62,13 +69,11 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
-            android:fontFamily="@font/roboto_medium"
-            android:foreground="?attr/selectableItemBackground"
-            android:onClick="@{data.cancelOnClick}"
-            android:layout_marginEnd="18dp"
+            textColor="@{R.attr.colorSecondary}"
+            style="@style/Caption1_13"
+            android:layout_marginEnd="@dimen/dimen_18"
             android:text="@{data.cancelName}"
-            android:textColor="#4B91CA"
-            android:textSize="15sp"
+            tools:textColor="?attr/colorSecondary"
             app:layout_constraintBottom_toBottomOf="@+id/action_button"
             app:layout_constraintEnd_toStartOf="@+id/action_button"
             app:layout_constraintTop_toTopOf="@+id/action_button"
@@ -78,15 +83,10 @@
             android:id="@+id/action_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="23sp"
-            android:clickable="true"
-            android:focusable="true"
-            android:fontFamily="@font/roboto_medium"
-            android:foreground="?attr/selectableItemBackground"
-            android:onClick="@{data.actionOnClick}"
+            android:layout_marginTop="34dp"
+            textColor="@{R.attr.colorOnSurfaceHigh}"
+            style="@style/Caption1_13"
             android:text="@{data.actionName}"
-            android:textColor="#DE3A3A"
-            android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/description_view"

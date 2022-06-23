@@ -14,9 +14,9 @@
   -->
 <inset
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:inset="@dimen/grid_2">
+    >
   <shape android:shape="rectangle">
 
-    <size android:height="@dimen/divider_height"/>
+
   </shape>
 </inset>

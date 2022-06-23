@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            tools:listitem="@layout/pay_card_layout_mini"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            android:layout_marginBottom="80dp"
+            android:paddingBottom="16dp"
+            android:clipToPadding="false"
+            android:paddingHorizontal="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_gravity="bottom"
+            android:orientation="horizontal"
+            android:elevation="2dp"
+            >
+            <ImageView
+                android:id="@+id/add_card_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/menu_add"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                app:tint="#666" />
+            <TextView
+                android:id="@+id/add_card_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add card"
+                android:layout_marginStart="8dp"
+                android:layout_gravity="center"
+                android:textColor="#555"
+                />
+            <TextView
+                android:id="@+id/continue_button"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_margin="16dp"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@drawable/background_radius_filled"
+                android:text="Continue"
+                android:gravity="center"
+                />
+        </LinearLayout>
+        
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            />
+    </FrameLayout>
+</layout>

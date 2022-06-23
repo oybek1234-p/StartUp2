@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.example.market.R"/>
+        <variable
+            name="isSearch"
+            type="java.lang.Boolean" />
+        <variable
+            name="showBackButton"
+            type="java.lang.Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        tools:background="?attr/colorPrimary"
+        backgroundColor="@{!isSearch ? R.attr.colorPrimary : R.attr.colorSurface }"
+        android:paddingHorizontal="@dimen/dimen_12"
+        android:layout_height="56dp">
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/dimen_12"
+            android:src="@drawable/ic_ab_back"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            imageTint="@{isSearch ? R.attr.colorOnSurfaceHigh : R.attr.colorOnPrimaryHigh}"
+            app:tint="?attr/colorOnSurfaceHigh" />
+
+        <LinearLayout
+            android:id="@+id/search_view"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/dimen_12"
+            android:layout_marginVertical="10dp"
+            android:background="@drawable/background_radius_filled_16"
+            android:backgroundTint="#25CDCDCD"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/dimen_12"
+            app:layout_constraintEnd_toStartOf="@+id/menu_view"
+            app:layout_constraintStart_toEndOf="@+id/back_button">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                imageTint="@{isSearch ? R.attr.colorOnSurfaceMedium : R.attr.colorOnPrimaryMedium}"
+                android:src="@drawable/msg_search"
+                tools:tint="?attr/colorOnPrimaryMedium" />
+
+            <EditText
+                android:id="@+id/editText"
+                style="@style/Text2_15"
+                textColor="@{isSearch ? R.attr.colorOnSurfaceHigh : R.attr.colorOnPrimaryHigh}"
+                textColorHint="@{isSearch ? R.attr.colorOnSurfaceLow : R.attr.colorOnPrimaryMedium}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:clickable="@{isSearch}"
+                android:focusable="@{isSearch}"
+                android:focusableInTouchMode="@{isSearch}"
+                android:drawableBottom="@null"
+                android:layout_marginStart="@dimen/dimen_12"
+                android:hint="@string/search"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/menu_view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+             />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/menu_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/msg_list"
+            android:clickable="true"
+            imageTint="@{isSearch ? R.attr.colorOnSurfaceHigh : R.attr.colorOnPrimaryHigh}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="?attr/colorOnSurfaceHigh"
+            android:focusable="true" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

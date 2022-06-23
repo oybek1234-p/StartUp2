@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorSurface">
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/oval_grey"
+            android:backgroundTint="?attr/colorBackground"
+            android:padding="@dimen/dimen_8"
+            android:src="@drawable/plus"
+            android:rotation="45"
+            android:layout_margin="@dimen/dimen_12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="?attr/colorOnSurfaceMedium" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_view"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_marginBottom="@dimen/dimen_24"
+            app:lottie_autoPlay="true"
+            app:layout_constraintBottom_toTopOf="@+id/title_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/title_view"
+            style="@style/Title2_20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time to create an profile!"
+            android:layout_marginBottom="@dimen/dimen_24"
+            android:textColor="?attr/colorOnSurfaceHigh"
+            app:layout_constraintBottom_toTopOf="@+id/subtitle_view"
+            app:layout_constraintEnd_toEndOf="@+id/lottie_view"
+            app:layout_constraintStart_toStartOf="@+id/lottie_view" />
+
+        <TextView
+            android:id="@+id/subtitle_view"
+            android:textSize="17sp"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_24"
+            android:gravity="center"
+            android:layout_marginBottom="120dp"
+            android:text="Create profile to save your information and connect with people around world"
+            android:textColor="?attr/colorOnSurfaceLow"
+            app:layout_constraintBottom_toTopOf="@+id/create_profile_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/create_profile_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="@dimen/dimen_24"
+            android:backgroundTint="?attr/colorSecondary"
+            android:layout_marginBottom="@dimen/dimen_24"
+            android:text="Create profile"
+            app:layout_constraintBottom_toTopOf="@+id/login_button" />
+
+        <TextView
+            android:id="@+id/login_button"
+            style="@style/Title3_17"
+            android:layout_marginBottom="@dimen/dimen_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already have an account"
+            android:textColor="?attr/colorSecondary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

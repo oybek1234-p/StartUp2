@@ -64,11 +64,11 @@
             app:layout_constraintTop_toBottomOf="@+id/frameLayout3"
             tools:listitem="@layout/all_categories_mini_item" />
 
-        <com.example.market.recycler.EmptyRecyclerView
+        <com.org.ui.components.ImageViewLoader
             android:id="@+id/allCat_subRecyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:padding="@dimen/grid_1_5"
+
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

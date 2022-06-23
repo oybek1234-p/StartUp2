@@ -1,8 +1,6 @@
 package com.imagekit.retrofit
 
 import android.util.Log
-import com.example.market.utils.AndroidUtilities
-import com.example.market.viewUtils.toast
 import com.imagekit.android.entity.SignatureResponse
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -75,10 +73,6 @@ object NetworkManager {
         customCoordinates: String?,
         responseFields: String?
     ): Single<ResponseBody> {
-
-        AndroidUtilities.runOnUIThread {
-            toast("Start file upload")
-        }
 
         val commaSeparatedTags = getCommaSeparatedTagsFromTags(tags)
 

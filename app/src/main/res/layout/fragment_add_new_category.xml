@@ -10,95 +10,53 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?attr/colorSurface"
         tools:context=".categories.AddNewCategoryFragment">
 
-        <include
-            android:id="@+id/action_bar"
-            layout="@layout/action_bar" />
-
-        <ImageView
-            android:id="@+id/category_photo_view"
+        <com.org.ui.components.ImageViewLoader
+            android:id="@+id/photo_view"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:layout_marginStart="18dp"
-            android:scaleType="centerCrop"
-            android:layout_marginTop="18dp"
-            android:background="@drawable/oval_grey"
-            android:backgroundTint="@color/red_color"
+            android:padding="@dimen/dimen_12"
             android:src="@drawable/msg_gallery"
-            android:padding="@dimen/grid_2"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="@dimen/dimen_18"
+            android:background="@drawable/oval_grey"
+            android:backgroundTint="?attr/colorSecondary"
+            android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/action_bar" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/category_name_edit_text_view"
+            android:id="@+id/edit_text"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:layout_marginHorizontal="18dp"
             android:hint="Category name"
-            app:layout_constraintBottom_toBottomOf="@+id/category_photo_view"
+            android:textColorHint="?attr/colorOnSurfaceLow"
+            app:layout_constraintBottom_toBottomOf="@+id/photo_view"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/category_photo_view"
-            app:layout_constraintTop_toTopOf="@+id/category_photo_view" />
+            app:layout_constraintStart_toEndOf="@+id/photo_view"
+            app:layout_constraintTop_toTopOf="@+id/photo_view" />
 
         <View
             android:id="@+id/view7"
             android:layout_width="match_parent"
             android:layout_height="12dp"
             android:layout_marginTop="18dp"
-            android:background="#F0F0F0"
+            android:background="?attr/colorBackground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/category_photo_view" />
+            app:layout_constraintTop_toBottomOf="@+id/photo_view" />
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="18dp"
-            android:fontFamily="@font/roboto_medium"
-            android:text="Options"
-            android:textColor="@color/black"
-            android:textSize="17sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view7" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/options_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="18dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/grid_0_5"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@+id/textView7"
-            tools:listitem="@layout/category_option_item" />
-
-        <View
-            android:id="@+id/view8"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="18dp"
-            android:background="#F0F0F0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/options_recycler_view" />
-
-        <include
-            android:id="@+id/add_new_option_view"
-            layout="@layout/button_style_min"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/view8" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="#F0F0F0"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_new_option_view" />
-
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="24dp"
+            android:layout_height="@dimen/dimen_24"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/photo_view"
+            app:layout_constraintEnd_toEndOf="@+id/photo_view"
+            app:layout_constraintStart_toStartOf="@+id/photo_view"
+            app:layout_constraintTop_toTopOf="@+id/photo_view" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

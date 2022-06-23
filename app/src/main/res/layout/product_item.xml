@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.example.market.R"/>
+
+        <variable
+            name="product"
+            type="com.org.net.models.Product" />
+
+        <import type="com.org.market.ProductUtilsKt"/>
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/dimen_8"
+        app:cardElevation="0.4dp"
+        app:cardBackgroundColor="?attr/colorSurface"
+        backgroundColor="@{R.attr.colorSurface}"
+        >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dimen_8">
+
+        <com.org.ui.components.ImageViewLoader
+            android:id="@+id/photo_view"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            url="@{product.photo}"
+            thumbnail="@{true}"
+            fade="@{true}"
+            android:background="#F6F6F6"
+            android:scaleType="centerCrop"
+            android:src="@drawable/light_theme_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/hash_tag_view"
+            style="@style/Caption3_11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:shadowColor="#979797"
+            android:shadowDy="2"
+            android:paddingVertical="@dimen/dimen_2"
+            android:paddingHorizontal="@dimen/dimen_4"
+            android:background="#43000000"
+            android:shadowRadius="2"
+            tools:text="@string/hashtag"
+            android:text="@{product.hashtag}"
+            visibleOrGone="@{product.hashtag.isEmpty() ? false : true}"
+            android:layout_margin="@dimen/dimen_8"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/photo_view"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/title_view"
+            style="@style/Subtitle3_13"
+            textColor="@{R.attr.colorOnSurfaceMedium}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_12"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{product.title}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/photo_view"
+            app:layout_constraintTop_toBottomOf="@+id/photo_view"
+            tools:text="Gigabyte Msi Gtx 166"
+            tools:textColor="?attr/colorOnSurfaceMedium" />
+
+        <TextView
+            android:id="@+id/cost_view"
+            style="@style/Title3_17"
+            textColor="@{R.attr.colorOnSurfaceHigh}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{ProductUtilsKt.formatCurrency(product.cost)}"
+            app:layout_constraintStart_toStartOf="@+id/title_view"
+            app:layout_constraintTop_toBottomOf="@+id/title_view"
+            tools:text="180$"
+            tools:textColor="?attr/colorOnSurfaceHigh" />
+
+        <TextView
+            android:id="@+id/discount_view"
+            style="@style/Caption3_11"
+            textColor="@{R.attr.colorOnSurfaceLow}"
+            android:text="@{ProductUtilsKt.getDiscount(product.cost,product.discountPercent)}"
+            visibleOrGone="@{product.discountPercent == -1 ? false : true}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLength="12"
+            app:layout_constraintStart_toStartOf="@+id/cost_view"
+            app:layout_constraintTop_toBottomOf="@+id/cost_view"
+            tools:text="195 $"
+            android:layout_marginTop="@dimen/dimen_4"
+            tools:textColor="?attr/colorOnSurfaceLow" />
+
+        <TextView
+            android:id="@+id/discount_percent_view"
+            style="@style/Caption3_11"
+            textColor="@{R.attr.colorGreen}"
+            android:text="@{ProductUtilsKt.getDiscountPercent(product.discountPercent)}"
+            visibleOrGone="@{product.discountPercent == -1 ? false : true}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_4"
+            android:background="#2068FF00"
+            android:paddingHorizontal="@dimen/dimen_4"
+            android:paddingVertical="1dp"
+            app:layout_constraintBottom_toBottomOf="@+id/discount_view"
+            app:layout_constraintStart_toEndOf="@+id/discount_view"
+            app:layout_constraintTop_toTopOf="@+id/discount_view"
+            tools:text="-5%"
+            tools:textColor="?attr/colorGreen" />
+
+        <TextView
+            android:id="@+id/shipping_view"
+            style="@style/Caption2_12"
+            textColor="@{R.attr.colorOnSurfaceLow}"
+            visibleOrGone="@{product.shippingCost.isEmpty() ? false : true}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:background="#1B7C7C7C"
+            android:ellipsize="end"
+            android:maxLength="20"
+            android:maxLines="1"
+            android:paddingHorizontal="@dimen/dimen_4"
+            android:paddingVertical="@dimen/dimen_2"
+            android:text="@{ProductUtilsKt.getShippingText(product.shippingCost)}"
+            app:layout_constraintStart_toStartOf="@+id/discount_view"
+            app:layout_constraintTop_toBottomOf="@+id/discount_view"
+            tools:text="Shipping: 18$ yuyjyujuyjyjuyjuyjuyjyujyujyuj"
+            tools:textColor="?attr/colorOnSurfaceLow" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

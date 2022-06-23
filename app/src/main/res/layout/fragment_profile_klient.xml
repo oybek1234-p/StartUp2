@@ -30,10 +30,10 @@
                     android:id="@+id/edit_user_info_button"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
-                    android:layout_margin="@dimen/grid_1_5"
+
                     android:background="@drawable/oval_grey"
                     android:backgroundTint="#f2f2f2"
-                    android:padding="@dimen/grid_0_5"
+
                     android:visibility="@{currentUserBoolean ? View.VISIBLE : View.GONE}"
                     android:src="@drawable/msg_edit"
                     app:layout_constraintBottom_toTopOf="@+id/online_view"
@@ -69,10 +69,10 @@
                     android:layout_height="wrap_content"
                     android:text="Kirish"
                     android:background="@drawable/background_radius_filled"
-                    android:layout_marginTop="@dimen/grid_1_5"
+
                     android:backgroundTint="#1100"
                     android:textColor="#222"
-                    android:padding="@dimen/grid_1"
+
                     android:visibility="@{currentUserBoolean ? View.GONE : View.VISIBLE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -87,8 +87,7 @@
                     android:textColor="#333"
                     android:textSize="18sp"
                     android:visibility="@{currentUserBoolean ? View.VISIBLE : View.GONE}"
-                    android:layout_marginTop="@dimen/grid_1_5"
-                    app:layout_constraintEnd_toEndOf="@+id/user_photo"
+
                     app:layout_constraintStart_toStartOf="@+id/user_photo"
                     app:layout_constraintTop_toBottomOf="@+id/kirish_button" />
 
@@ -96,7 +95,7 @@
                     android:id="@+id/linearLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/grid_2"
+
                     android:orientation="horizontal"
                     android:layout_marginBottom="24dp"
                     app:layout_constraintBottom_toBottomOf="@+id/view4"
@@ -192,10 +191,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="@dimen/grid_1"
+
                 android:background="@drawable/background_radius_filled"
                 android:backgroundTint="@color/white"
-                android:padding="@dimen/grid_1_5">
+               >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -208,14 +207,14 @@
                     app:layout_constraintTop_toTopOf="parent" />
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:paddingVertical="@dimen/grid_1"
+
                     android:layout_height="wrap_content">
 
                     <ImageView
                         android:id="@+id/imageView13"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:layout_marginTop="@dimen/grid_1"
+
                         android:src="@drawable/zakaz_icon"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -236,7 +235,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:paddingVertical="@dimen/grid_1"
+
                     android:layout_height="wrap_content">
 
                     <ImageView
@@ -263,7 +262,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:paddingVertical="@dimen/grid_1"
+
                     android:layout_height="wrap_content">
 
                     <ImageView
@@ -290,7 +289,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:paddingVertical="@dimen/grid_1"
+
                     android:layout_height="wrap_content">
 
                     <ImageView
@@ -323,7 +322,7 @@
                     android:textColor="#0091EA"
                     android:textSize="14sp"
                     android:fontFamily="@font/roboto_regular"
-                    android:layout_marginTop="@dimen/grid_2"
+
                     />
             </LinearLayout>
         </LinearLayout>

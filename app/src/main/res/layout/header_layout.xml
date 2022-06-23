@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="com.example.market.R" />
+        <variable
+            name="data"
+            type="com.org.net.models.Header" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_12"
+        android:background="?attr/colorSurface"
+        >
+
+        <TextView
+            android:id="@+id/title_view"
+            style="@style/Title3_17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/title"
+            android:text="@{data.title}"
+            android:textColor="?attr/colorOnSurfaceHigh"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/action_text_view"
+            style="@style/Headline2_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/dimen_4"
+            android:drawableRight="@{data.actionButtonRes}"
+            android:textColor="?attr/colorSecondary"
+            app:drawableTint="?attr/colorSecondary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/title_view"
+            tools:drawableRight="@drawable/actionbtn_next"
+         />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

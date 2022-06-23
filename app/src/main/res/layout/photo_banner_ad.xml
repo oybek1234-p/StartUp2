@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_radius_filled"
+        android:backgroundTint="@color/white"
+        android:elevation="1dp"
+       >
+
+        <com.org.ui.components.ImageViewLoader
+            android:id="@+id/photo_view"
+            android:layout_width="180dp"
+            android:layout_height="120dp"
+            android:background="@drawable/background_radius_filled"
+            android:backgroundTint="#F3F3F3"
+
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/radiusImageViewStyle" />
+
+        <TextView
+            android:id="@+id/banner_type_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:fontFamily="@font/roboto_regular"
+            android:text="Photo banner"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/photo_view"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/views_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:fontFamily="@font/roboto_regular"
+            android:text="300 views in 3 days"
+            android:textColor="#666"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/banner_type_view"
+            app:layout_constraintTop_toBottomOf="@+id/banner_type_view" />
+
+        <TextView
+            android:id="@+id/banner_name_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:fontFamily="@font/roboto_regular"
+            android:text="Faster delivery"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/photo_view" />
+
+        <include
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/seller_info_chip_view"
+            layout="@layout/chip_item"
+
+            app:layout_constraintStart_toStartOf="@+id/banner_name_view"
+            app:layout_constraintTop_toBottomOf="@+id/banner_name_view" />
+
+        <ImageView
+            android:id="@+id/options_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="#444" />
+
+        <ImageView
+            android:id="@+id/edit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/msg_edit"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/options_button"
+            app:tint="#444" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

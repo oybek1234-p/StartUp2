@@ -36,12 +36,10 @@
             android:id="@+id/progressBar"
             android:layout_width="0dp"
             android:layout_height="8dp"
-            app:indicatorColor="@color/red_color"
+
             app:trackColor="#6DDADADA"
             app:trackThickness="12dp"
-            app:trackCornerRadius="@dimen/grid_0_5"
-            android:layout_marginTop="@dimen/grid_1_5"
-            android:layout_marginEnd="@dimen/grid_1_5"
+
             android:progress="50"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/close_view"
@@ -51,9 +49,9 @@
             android:id="@+id/close_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/grid_1_5"
+
             android:src="@drawable/ic_close_white"
-            android:layout_marginTop="@dimen/grid_1_5"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
@@ -68,23 +66,14 @@
             android:shadowDy="1"
             android:shadowColor="@color/black"
             android:shadowRadius="1"
-            android:paddingHorizontal="@dimen/grid_1_5"
-            android:paddingVertical="@dimen/grid_0_5"
+
             android:background="@drawable/background_radius_filled"
             android:backgroundTint="#66000000"
-            android:layout_marginBottom="@dimen/grid_2"
+
             app:layout_constraintBottom_toTopOf="@+id/start_recording_button"
             app:layout_constraintEnd_toEndOf="@+id/start_recording_button"
             app:layout_constraintStart_toStartOf="@+id/start_recording_button" />
 
-        <com.example.market.camera.ShutterView
-            android:id="@+id/start_recording_button"
-            android:layout_width="84dp"
-            android:layout_height="84dp"
-            android:layout_marginBottom="@dimen/grid_3"
-            app:layout_constraintBottom_toBottomOf="@+id/camera_view"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
             android:id="@+id/open_gallery_view"
@@ -107,7 +96,6 @@
             android:text="Загрузить"
             android:textColor="@color/white"
             android:textSize="12sp"
-            android:layout_marginTop="@dimen/grid_0_5"
             app:layout_constraintEnd_toEndOf="@+id/open_gallery_view"
             app:layout_constraintStart_toStartOf="@+id/open_gallery_view"
             app:layout_constraintTop_toBottomOf="@+id/open_gallery_view" />
@@ -116,15 +104,14 @@
             android:id="@+id/change_camera"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginEnd="@dimen/grid_3"
+
             android:background="@drawable/oval_grey"
             android:backgroundTint="#66000000"
-            android:padding="@dimen/grid_1"
+
             android:src="@drawable/camera_revert2"
             app:layout_constraintBottom_toBottomOf="@+id/start_recording_button"
-            app:layout_constraintEnd_toStartOf="@+id/start_recording_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/start_recording_button" />
+         />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

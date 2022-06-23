@@ -12,8 +12,7 @@
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:orientation="vertical"
-        android:elevation="@dimen/grid_0_5"
-        android:layout_marginVertical="@dimen/grid_0_5"
+
         android:paddingBottom="4dp">
 
         <androidx.recyclerview.widget.RecyclerView

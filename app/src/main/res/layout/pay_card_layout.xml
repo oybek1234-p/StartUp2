@@ -11,14 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        app:cardBackgroundColor="@null"
-        app:cardElevation="0dp"
+        app:cardCornerRadius="@dimen/dimen_12"
         >
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="38dp"
-            android:background="@drawable/sweet_rain_gradient_9"
+            android:padding="@dimen/dimen_24"
+            android:background="?attr/colorSurface"
             >
 
             <ImageView
@@ -33,14 +32,10 @@
                 android:id="@+id/card_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans_bold"
                 android:text="1456 6489 5445 5554"
-                android:textColor="@color/white"
-                android:shadowColor="#575757"
-                android:shadowDy="2"
-                android:shadowRadius="1"
-                android:textSize="22sp"
-                android:layout_marginVertical="@dimen/grid_1_5"
+                android:layout_marginTop="@dimen/dimen_12"
+                android:textColor="?attr/colorOnSurfaceHigh"
+                style="@style/Title2_20"
                 app:layout_constraintStart_toStartOf="@+id/imageView18"
                 app:layout_constraintTop_toBottomOf="@+id/imageView18" />
 
@@ -48,13 +43,10 @@
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/grid_1"
-                android:shadowColor="#8C8C8C"
-                android:shadowDy="1"
-                android:shadowRadius="1"
                 android:text="GOOD\nTHRU"
-                android:textSize="12sp"
-                android:textColor="#FFFFFF"
+                style="@style/Caption2_12"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:textColor="?attr/colorOnSurfaceLow"
                 app:layout_constraintStart_toStartOf="@+id/card_number"
                 app:layout_constraintTop_toBottomOf="@+id/card_number" />
 
@@ -62,14 +54,10 @@
                 android:id="@+id/year_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans_bold"
-                android:shadowColor="#8C8C8C"
-                android:shadowDy="1"
-                android:shadowRadius="1"
                 android:text="25/54"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:layout_marginStart="@dimen/grid_1"
+                android:layout_marginStart="@dimen/dimen_12"
+                android:textColor="?attr/colorOnSurfaceHigh"
+                style="@style/Text1_16"
                 app:layout_constraintBottom_toBottomOf="@+id/textView11"
                 app:layout_constraintStart_toEndOf="@+id/textView11"
                 app:layout_constraintTop_toTopOf="@+id/textView11" />
@@ -78,16 +66,21 @@
                 android:id="@+id/user_name_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/grid_1_5"
-                android:fontFamily="@font/open_sans_bold"
-                android:shadowColor="#575757"
-                android:shadowDy="2"
-                android:shadowRadius="1"
                 android:text="Oybek Qodirov"
-                android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textColor="?attr/colorOnSurfaceHigh"
+                style="@style/Text1_16"
+                android:layout_marginTop="@dimen/dimen_12"
                 app:layout_constraintStart_toStartOf="@+id/imageView18"
                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+            <ImageView
+                android:id="@+id/action_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/msg_actions"
+                android:tint="?attr/colorOnSurfaceHigh"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>

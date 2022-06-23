@@ -8,34 +8,26 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-
+        android:background="?attr/colorBackground"
         android:layout_height="match_parent"
         tools:context=".RasmYuklashFragment">
 
-        <include layout="@layout/action_bar" android:id="@+id/action_bar"/>
-
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/galery_images_recyclerView"
-            android:background="#F6F6F6"
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="56dp" />
+            android:layout_height="match_parent" />
 
-        <FrameLayout
-            android:background="#FFFFFF"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:paddingHorizontal="@dimen/grid_1_5"
-            android:layout_gravity="bottom">
-
-            <Button
-                android:id="@+id/rasmni_yuklash"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Yuklash"
-                android:backgroundTint="#55CA0A"
-                android:layout_gravity="end|center_vertical"
-                />
-        </FrameLayout>
+            android:background="?attr/colorSecondary"
+            android:id="@+id/done_button"
+            android:text="@string/done"
+            style="@style/Text1_16"
+            android:elevation="@dimen/grid_1"
+            android:layout_gravity="bottom"
+            android:textColor="?attr/colorOnPrimaryHigh"
+            android:gravity="center"
+            />
     </FrameLayout>
 </layout>

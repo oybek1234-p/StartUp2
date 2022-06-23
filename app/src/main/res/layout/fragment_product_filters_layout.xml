@@ -15,7 +15,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingVertical="@dimen/grid_1_5">
+       >
 
             <TextView
                 android:id="@+id/textView33"
@@ -25,7 +25,7 @@
                 android:text="Price range"
                 android:textColor="#333"
                 android:textSize="15sp"
-                android:layout_marginStart="@dimen/grid_1_5"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,23 +33,22 @@
                 android:id="@+id/min_price_editText"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/grid_1_5"
-                android:layout_marginTop="@dimen/grid_1"
+
                 android:background="@drawable/background_radius_stroke"
                 android:fontFamily="@font/roboto_regular"
                 android:hint="0"
                 android:inputType="numberDecimal"
-                android:padding="@dimen/grid_1"
+
                 android:textColor="#333"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView33" />
 
             <View
                 android:id="@+id/view3"
-                android:layout_width="@dimen/grid_1"
+
                 android:layout_height="2dp"
                 android:background="#999"
-                android:layout_marginStart="@dimen/grid_0_5"
+
                 app:layout_constraintBottom_toBottomOf="@+id/min_price_editText"
                 app:layout_constraintStart_toEndOf="@+id/min_price_editText"
                 app:layout_constraintTop_toTopOf="@+id/min_price_editText" />
@@ -58,13 +57,12 @@
                 android:id="@+id/max_price_editText"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/grid_1"
-                android:layout_marginStart="@dimen/grid_0_5"
+
                 android:inputType="numberDecimal"
                 android:background="@drawable/background_radius_stroke"
                 android:fontFamily="@font/roboto_regular"
                 android:hint="0"
-                android:padding="@dimen/grid_1"
+
                 android:textColor="#333"
                 app:layout_constraintStart_toEndOf="@+id/view3"
                 app:layout_constraintTop_toBottomOf="@+id/textView33" />
@@ -73,8 +71,7 @@
                 android:id="@+id/checkBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/grid_1_5"
-                android:layout_marginStart="@dimen/grid_1_5"
+
                 android:buttonTint="#999"
                 android:fontFamily="@font/roboto_regular"
                 android:text="Tekin yetkazib berish"
@@ -86,8 +83,7 @@
                 android:id="@+id/sort_type_auto_complete_text_view_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/grid_1_5"
-                android:layout_marginStart="@dimen/grid_1_5"
+
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/min_price_editText">
@@ -108,8 +104,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/grid_1"
-                android:layout_marginStart="@dimen/grid_1_5"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sort_type_auto_complete_text_view_layout">
 
@@ -127,9 +122,7 @@
                 android:id="@+id/button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/grid_0_5"
-                android:layout_marginTop="@dimen/grid_1_5"
-                android:backgroundTint="@color/black_3a3e4a"
+
                 android:fontFamily="@font/roboto_medium"
                 android:text="Tozalash"
                 app:layout_constraintEnd_toStartOf="@id/show_results"
@@ -140,8 +133,7 @@
                 android:id="@+id/show_results"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/grid_0_5"
-                android:backgroundTint="@color/A"
+
                 android:text="Show results"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/button"

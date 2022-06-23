@@ -30,7 +30,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="98dp"
-                    android:layout_marginHorizontal="@dimen/grid_1_5"
+
                     >
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/product_rating_option_view"
@@ -48,11 +48,11 @@
                             android:layout_height="40dp"
                             android:inputType="none"
                             android:backgroundTint="#FFFFFF"
-                            android:padding="@dimen/grid_1"
+
                             android:textColor="#333"
-                            android:drawablePadding="@dimen/grid_1"
+
                             android:fontFamily="@font/roboto_regular"
-                            android:drawableTint="@color/A"
+
                             android:text="Popular "
                             android:drawableEnd="@drawable/menu_date" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -62,7 +62,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/grid_1"
+
                         android:background="@color/white"
                         app:boxStrokeWidth="0dp"
                         app:hintEnabled="false"
@@ -77,11 +77,10 @@
                             android:autoSizeMinTextSize="12dp"
                             android:backgroundTint="@color/white"
                             android:drawableEnd="@drawable/folders_channel"
-                            android:drawablePadding="@dimen/grid_1"
-                            android:drawableTint="@color/A"
+
                             android:fontFamily="@font/roboto_regular"
                             android:inputType="none"
-                            android:padding="@dimen/grid_1"
+
                             android:text="Oshib borsin"
                             android:textColor="#333" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -91,7 +90,7 @@
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_gravity="end|center_vertical"
-                        android:padding="@dimen/grid_1"
+
                         android:src="@drawable/filter_drawable"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -119,7 +118,7 @@
             android:id="@+id/recylerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="@dimen/grid_1"
+
             android:clipToPadding="false"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
             />

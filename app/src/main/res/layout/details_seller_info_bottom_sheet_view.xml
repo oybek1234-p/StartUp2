@@ -4,14 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="data"
-            type="com.example.market.User" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:padding="@dimen/grid_1_5"
+
         android:layout_height="wrap_content">
 
         <ImageView
@@ -20,8 +18,7 @@
             android:layout_height="65dp"
             android:foreground="@drawable/oval_drawable_stroke"
             app:layout_constraintEnd_toEndOf="parent"
-            url="@{data.photo}"
-            circleCrop="@{true}"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,7 +26,7 @@
             android:id="@+id/details_seller_info_back_view"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:padding="@dimen/grid_1_5"
+
             android:src="@drawable/exit_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -41,7 +38,7 @@
             android:layout_marginTop="6dp"
             android:fontFamily="@font/roboto_medium"
             tools:text="@string/apple"
-            android:text="@{String.valueOf(data.name)}"
+
             android:textColor="@color/black"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="@+id/details_seller_info_icon_view"
@@ -52,7 +49,7 @@
             android:id="@+id/linearLayout2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/grid_3"
+
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"
                     tools:text="10.1k"
-                    android:text="@{String.valueOf(data.likes)}"
+
                     android:textColor="#222"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +80,7 @@
                     android:fontFamily="@font/roboto_regular"
                     android:gravity="center"
                     android:minWidth="70dp"
-                    android:paddingTop="@dimen/grid_0_5"
+
                     android:text="Likes"
                     android:textColor="#666"
                     android:textSize="13sp"
@@ -95,7 +92,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/grid_3"
+
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
@@ -105,7 +102,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"
                     tools:text="540"
-                    android:text="@{String.valueOf(data.subscribers)}"
+
                     android:textColor="#222"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -118,7 +115,7 @@
                     android:fontFamily="@font/roboto_regular"
                     android:gravity="center"
                     android:minWidth="70dp"
-                    android:paddingTop="@dimen/grid_0_5"
+
                     android:text="Products"
                     android:textColor="#666"
                     android:textSize="13sp"
@@ -130,7 +127,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/grid_3"
+
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
@@ -140,7 +137,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"
                     tools:text="8150"
-                    android:text="@{String.valueOf(data.subscribers)}"
+
                     android:textColor="#222"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -153,7 +150,7 @@
                     android:fontFamily="@font/roboto_regular"
                     android:gravity="center"
                     android:minWidth="70dp"
-                    android:paddingTop="@dimen/grid_0_5"
+
                     android:text="Subscribers"
                     android:textColor="#666"
                     android:textSize="13sp"
@@ -171,9 +168,7 @@
             android:text="@string/call"
             android:background="?attr/selectableItemBackground"
             android:textColor="#666"
-            app:drawableTint="@color/N"
-            android:drawablePadding="@dimen/grid_0_5"
-            android:layout_marginTop="@dimen/grid_3"
+
             app:drawableTopCompat="@drawable/ic_call"
             app:layout_constraintEnd_toStartOf="@id/details_seller_info_message_view"
             app:layout_constraintStart_toStartOf="@+id/linearLayout2"
@@ -183,9 +178,7 @@
             android:id="@+id/details_seller_info_message_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/grid_3"
-            android:drawablePadding="@dimen/grid_0_5"
-            android:focusable="true"
+
             android:clickable="true"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/message"
@@ -196,7 +189,7 @@
             app:layout_constraintHorizontal_bias="0.807"
             app:layout_constraintStart_toEndOf="@+id/details_seller_info_call_view"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-            app:drawableTint="@color/N" />
+          />
 
         <TextView
             android:id="@+id/details_seller_info_subscribe_view"
@@ -205,12 +198,10 @@
             android:background="@drawable/background_radius_filled"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/subscribe"
-            android:backgroundTint="@color/A_orange"
+
             android:gravity="center_vertical|center_horizontal"
             android:textColor="@color/white"
-            android:paddingVertical="@dimen/grid_1"
-            android:paddingHorizontal="@dimen/grid_2"
-            android:drawablePadding="@dimen/grid_1"
+
             android:clickable="true"
             android:foreground="?attr/selectableItemBackgroundBorderless"
             android:textSize="14sp"
@@ -224,7 +215,7 @@
             android:id="@+id/details_seller_info_view_view"
             android:layout_width="120dp"
             android:layout_height="40dp"
-            android:layout_marginTop="@dimen/grid_3"
+
             android:background="@drawable/background_radius_filled"
             android:backgroundTint="#F4F4F4"
             android:fontFamily="@font/roboto_medium"
@@ -232,7 +223,6 @@
             android:text="@string/view"
             android:clickable="true"
             android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:textColor="@color/A"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/details_seller_info_subscribe_view"
             app:layout_constraintStart_toStartOf="parent"

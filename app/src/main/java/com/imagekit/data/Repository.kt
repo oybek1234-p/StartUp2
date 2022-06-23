@@ -2,10 +2,6 @@ package com.imagekit.data
 
 import android.annotation.SuppressLint
 import android.content.Context
-import com.example.market.utils.AndroidUtilities
-import com.example.market.utils.GenerateSignature
-import com.example.market.utils.log
-import com.example.market.viewUtils.toast
 import com.google.gson.Gson
 import com.imagekit.ImageKitCallback
 import com.imagekit.android.entity.SignatureResponse
@@ -14,6 +10,9 @@ import com.imagekit.android.entity.UploadResponse
 import com.imagekit.retrofit.NetworkManager
 import com.imagekit.util.LogUtil
 import com.imagekit.android.util.SharedPrefUtil
+import com.org.market.GenerateSignature
+import com.org.market.runOnUiThread
+import com.org.market.toast
 import io.reactivex.plugins.RxJavaPlugins
 import retrofit2.HttpException
 import java.util.concurrent.TimeUnit
@@ -70,9 +69,7 @@ class Repository @Inject constructor(
         val token = GenerateSignature.getUUID()
         val signatureResponse = SignatureResponse(token,GenerateSignature.generateHashWithHmac256(token+expire.toString(),"private_JZ3L13IXnw2Ll10+872CR+YISKk="), expire = expire.toInt())
 
-        AndroidUtilities.runOnUIThread {
-            toast("Signature" + signatureResponse.signature)
-        }
+        runOnUiThread({ toast("Signature" + signatureResponse.signature)})
 
         NetworkManager.getFileUploadCall(
             publicKey,
@@ -86,9 +83,6 @@ class Repository @Inject constructor(
             customCoordinates,
             responseFields
         ).doOnError { e ->
-            AndroidUtilities.runOnUIThread {
-                toast("Error")
-            }
             if (e is HttpException) {
                 e.response()?.let {
                     try {
@@ -109,9 +103,6 @@ class Repository @Inject constructor(
                     }
                 }
             } else {
-                AndroidUtilities.runOnUIThread {
-                    toast("Error")
-                }
                 e.message?.let {
                     imageKitCallback.onError(UploadError(true, message = it))
                 } ?: run {
@@ -125,7 +116,7 @@ class Repository @Inject constructor(
             if (it==null) {
                 imageKitCallback.onSuccess(null)
             } else {
-                log(it.toString())
+
                 imageKitCallback.onSuccess(Gson().fromJson(it.string(),UploadResponse::class.java))
             }
         },{ LogUtil.logError(it)})

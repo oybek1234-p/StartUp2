@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.example.market.R"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:focusableInTouchMode="true"
+        android:background="?attr/colorSurface"
+        backgroundColor="@{R.attr.colorSurface}"
+        tools:context=".auth.RegistratsiyaFragment">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="84dp"
+            app:layout_constraintEnd_toEndOf="@+id/textView"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_repeatCount="4"
+            app:lottie_url="https://assets1.lottiefiles.com/packages/lf20_myor1trh.json" />
+
+        <TextView
+            android:id="@+id/skip_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_radius_filled"
+            android:backgroundTint="#F8F8F8"
+            android:drawableTint="#666"
+            android:text="@string/keyinroq"
+            android:visibility="gone"
+            android:textColor="#333"
+            app:drawableStartCompat="@drawable/msg_arrowright"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_24"
+            style="@style/Title2_20"
+            tools:textColor="?attr/colorOnSurfaceHigh"
+            textColor="@{R.attr.colorOnSurfaceHigh}"
+            android:text="@string/accountga_kirish"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lottieAnimationView" />
+
+        <TextView
+            android:id="@+id/textView17"
+            style="@style/Subtitle1_14"
+            textColor="@{R.attr.colorOnSurfaceMedium}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_4"
+            android:text="@string/login_subtitle"
+            android:textColor="?attr/colorOnSurfaceMedium"
+            app:layout_constraintEnd_toEndOf="@+id/textView"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout6"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_24"
+            android:layout_marginTop="@dimen/dimen_12"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeColor="?attr/colorSecondary"
+            app:boxBackgroundColor="#05919191"
+            android:textColorHint="?attr/colorOnSurfaceMedium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="none"
+                android:gravity="top"
+                style="@style/Text2_15"
+                textColor="@{R.attr.colorOnSurfaceHigh}"
+                android:textColor="?attr/colorOnSurfaceHigh"
+                android:hint="@string/parol"
+                android:singleLine="false"
+                android:textColorHint="#8A8A8A" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout5"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_24"
+            android:textColorHint="?attr/colorOnSurfaceMedium"
+            app:boxBackgroundColor="#05919191"
+            app:boxStrokeColor="?attr/colorSecondary"
+            app:boxStrokeWidth="1dp"
+            app:hintEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView17">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email_view"
+                style="@style/Text2_15"
+                textColor="@{R.attr.colorOnSurfaceHigh}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="none"
+                android:gravity="top"
+                android:hint="@string/email"
+                android:singleLine="false"
+                android:textColor="?attr/colorOnSurfaceHigh" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/log_in_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginHorizontal="50dp"
+            tools:backgroundTint="?attr/colorSecondary"
+            backgroundTint="@{R.attr.colorSecondary}"
+            android:text="@string/login"
+            style="@style/Caption1_13"
+            tools:textColor="?attr/colorOnSecondaryHigh"
+            textColor="@{R.attr.colorOnSecondaryHigh}"
+            android:layout_marginTop="@dimen/dimen_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout6"
+            tools:targetApi="lollipop" />
+
+        <TextView
+            android:id="@+id/sign_up_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/accountingiz_yuqmi"
+            tools:textColor="?attr/colorSecondary"
+            textColor="@{R.attr.colorSecondary}"
+            style="@style/Subtitle2_14"
+            app:layout_constraintBottom_toBottomOf="@+id/log_in_view"
+            app:layout_constraintStart_toStartOf="@+id/textInputLayout6"
+            app:layout_constraintTop_toTopOf="@+id/log_in_view" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="@dimen/dimen_24"
+            android:layout_height="@dimen/dimen_24"
+            android:alpha="0"
+            android:elevation="@dimen/dimen_4"
+            android:indeterminateTint="?attr/colorOnSecondaryHigh"
+            app:layout_constraintBottom_toBottomOf="@+id/log_in_view"
+            app:layout_constraintEnd_toEndOf="@+id/log_in_view"
+            app:layout_constraintStart_toStartOf="@+id/log_in_view"
+            app:layout_constraintTop_toTopOf="@+id/log_in_view" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

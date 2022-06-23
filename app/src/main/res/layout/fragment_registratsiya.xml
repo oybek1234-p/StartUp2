@@ -4,77 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="com.example.market.R"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="24dp"
+        android:background="?attr/colorSurface"
+        android:fitsSystemWindows="true"
+        backgroundColor="@{R.attr.colorSurface}"
         tools:context=".auth.RegistratsiyaFragment">
 
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/icon_confirm_order_user"
-            app:layout_constraintBottom_toTopOf="@+id/textView"
-            android:layout_marginBottom="@dimen/grid_3"
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="84dp"
             app:layout_constraintEnd_toEndOf="@+id/textView"
             app:layout_constraintStart_toStartOf="@+id/textView"
-            app:tint="#666" />
-
-        <ImageView
-            android:id="@+id/back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/grid_1_5"
-            android:rotation="90"
-            android:src="@drawable/arrow_more"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="#F8F8F8"
-            android:padding="@dimen/grid_0_5"
-            app:tint="#666" />
-
-        <TextView
-            android:id="@+id/skip_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background_radius_filled"
-            android:backgroundTint="#F8F8F8"
-            android:drawableTint="#666"
-            android:padding="@dimen/grid_1"
-            android:text="@string/keyinroq"
-            android:visibility="gone"
-            android:layout_margin="@dimen/grid_1_5"
-            android:textColor="#333"
-            app:drawableStartCompat="@drawable/msg_arrowright"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:lottie_autoPlay="true"
+            app:lottie_repeatCount="4"
+            app:lottie_url="https://assets1.lottiefiles.com/packages/lf20_myor1trh.json" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="136dp"
-            android:fontFamily="@font/open_sans_semi_bold"
+            android:layout_marginTop="@dimen/dimen_24"
+            style="@style/Title2_20"
+            tools:textColor="?attr/colorOnSurfaceHigh"
+            textColor="@{R.attr.colorOnSurfaceHigh}"
             android:text="@string/account_ochish"
-            android:textColor="#333"
-            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/lottieAnimationView" />
 
         <TextView
+            android:id="@+id/textView17"
+            style="@style/Subtitle1_14"
+            textColor="@{R.attr.colorOnSurfaceMedium}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_regular"
-            android:text="Hush kelibsiz!"
-            android:textColor="#333"
-            android:textSize="16sp"
-            android:layout_marginTop="@dimen/grid_1"
+            android:layout_marginTop="@dimen/dimen_4"
+            android:text="@string/register_subtitle"
+            android:textColor="?attr/colorOnSurfaceMedium"
             app:layout_constraintEnd_toEndOf="@+id/textView"
             app:layout_constraintStart_toStartOf="@+id/textView"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -84,21 +59,27 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/grid_3"
-            android:layout_marginTop="@dimen/grid_1_5"
+            android:layout_marginHorizontal="@dimen/dimen_24"
+            android:layout_marginTop="@dimen/dimen_12"
             app:boxStrokeWidth="1dp"
+            app:boxStrokeColor="?attr/colorSecondary"
+            app:boxBackgroundColor="#05919191"
+            android:textColorHint="?attr/colorOnSurfaceMedium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/password_kiritish"
+                android:id="@+id/password_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="none"
                 android:gravity="top"
-                android:hint="Parolni tering"
+                style="@style/Text2_15"
+                textColor="@{R.attr.colorOnSurfaceHigh}"
+                android:textColor="?attr/colorOnSurfaceHigh"
+                android:hint="@string/parol"
                 android:singleLine="false"
                 android:textColorHint="#8A8A8A" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -106,24 +87,29 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout7"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_marginTop="56dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/grid_3"
+            android:layout_margin="@dimen/dimen_24"
             app:boxStrokeWidth="1dp"
+            app:boxStrokeColor="?attr/colorSecondary"
+            app:boxBackgroundColor="#05919191"
+            android:textColorHint="?attr/colorOnSurfaceMedium"
             app:hintEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView">
+            app:layout_constraintTop_toBottomOf="@+id/textView17">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ism_kiritish"
+                android:id="@+id/name_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="none"
+                style="@style/Text2_15"
+                textColor="@{R.attr.colorOnSurfaceHigh}"
+                tools:textColor="?attr/colorOnSurfaceHigh"
                 android:gravity="top"
-                android:hint="Ismingizni kiriting"
+                android:hint="@string/ism"
                 android:singleLine="false" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -132,49 +118,69 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/grid_3"
+            android:layout_marginHorizontal="@dimen/dimen_24"
+            android:layout_marginTop="@dimen/dimen_12"
             app:boxStrokeWidth="1dp"
+            app:boxStrokeColor="?attr/colorSecondary"
+            app:boxBackgroundColor="#05919191"
+            android:textColorHint="?attr/colorOnSurfaceMedium"
             app:hintEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.494"
-            android:layout_marginTop="@dimen/grid_1_5"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout7">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/email_kiritish"
+                android:id="@+id/email_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="none"
                 android:gravity="top"
-                android:hint="Email yoki mobil nomer"
+                style="@style/Text2_15"
+                textColor="@{R.attr.colorOnSurfaceHigh}"
+                android:textColor="?attr/colorOnSurfaceHigh"
+                android:hint="@string/email"
                 android:singleLine="false" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/create_account_button"
+            android:id="@+id/create_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
             android:layout_marginHorizontal="50dp"
-            android:backgroundTint="#29CC05"
+            tools:backgroundTint="?attr/colorSecondary"
+            backgroundTint="@{R.attr.colorSecondary}"
             android:text="@string/ochish"
-            android:layout_marginTop="@dimen/grid_3"
+            style="@style/Caption1_13"
+            tools:textColor="?attr/colorOnSecondaryHigh"
+            textColor="@{R.attr.colorOnSecondaryHigh}"
+            android:layout_marginTop="@dimen/dimen_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout6"
             tools:targetApi="lollipop" />
 
         <TextView
-            android:id="@+id/account_bormi_button"
+            android:id="@+id/log_in_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/grid_3"
-            android:fontFamily="@font/roboto_medium"
             android:text="@string/accountinigiz_bormi"
-            android:textColor="#29CC05"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/create_account_button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/create_account_button" />
+            tools:textColor="?attr/colorSecondary"
+            textColor="@{R.attr.colorSecondary}"
+            style="@style/Subtitle2_14"
+            app:layout_constraintBottom_toBottomOf="@+id/create_view"
+            app:layout_constraintStart_toStartOf="@+id/textInputLayout6"
+            app:layout_constraintTop_toTopOf="@+id/create_view" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="@dimen/dimen_24"
+            android:layout_height="@dimen/dimen_24"
+            android:alpha="0"
+            android:elevation="@dimen/dimen_4"
+            android:indeterminateTint="?attr/colorOnSecondaryHigh"
+            app:layout_constraintBottom_toBottomOf="@+id/create_view"
+            app:layout_constraintEnd_toEndOf="@+id/create_view"
+            app:layout_constraintStart_toStartOf="@+id/create_view"
+            app:layout_constraintTop_toTopOf="@+id/create_view" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

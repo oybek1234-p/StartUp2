@@ -4,47 +4,139 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="user"
+            type="com.org.net.models.UserFull" />
 
     </data>
 
-    <ScrollView
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?attr/colorBackground"
         tools:context=".ProfileFragment">
 
-        <LinearLayout
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="#A6F1F1F1">
-
+            app:elevation="0dp"
+            android:background="@null"
+            android:fitsSystemWindows="true"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_scrollFlags="scroll"
+                >
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="24dp"
-                android:background="#FFFFFF">
+                android:background="?attr/colorSurface"
+                android:paddingBottom="@dimen/dimen_24">
 
-                <ImageView
-                    android:id="@+id/imageView12"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:src="@drawable/oval_grey"
+                <com.org.ui.components.ImageViewLoader
+                    android:id="@+id/photo_view"
+                    android:layout_width="84dp"
+                    android:layout_height="84dp"
+                    url="@{user.user.photo}"
+                    circleCrop="@{true}"
+                    thumbnail="@{true}"
+                    android:scaleType="centerCrop"
+                    style="@style/circleImageViewStyle"
+                    android:background="@drawable/oval_grey"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.498"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="#1000" />
+                    android:backgroundTint="?attr/colorBackground" />
 
-                <TextView
-                    android:id="@+id/textView36"
+                <LinearLayout
+                    android:id="@+id/linearLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="online"
-                    android:textColor="#49C30C"
-                    android:textSize="14sp"
+                    android:layout_marginTop="@dimen/dimen_18"
+                    android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="@+id/textView35"
                     app:layout_constraintStart_toStartOf="@+id/textView35"
-                    app:layout_constraintTop_toBottomOf="@+id/textView35" />
+                    app:layout_constraintTop_toBottomOf="@+id/status_view">
+
+                    <LinearLayout
+                        android:id="@+id/subscribers_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/Title3_17"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@{String.valueOf(user.user.subscribers)}"
+                            android:textColor="?attr/colorOnSurfaceHigh"
+                            tools:text="0" />
+
+                        <TextView
+                            style="@style/Subtitle1_14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Subscribers"
+                            android:textColor="?attr/colorOnSurfaceLow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/likes_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/Title3_17"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@{String.valueOf(user.user.likes)}"
+                            android:textColor="?attr/colorOnSurfaceHigh"
+                            tools:text="0" />
+
+                        <TextView
+                            style="@style/Subtitle1_14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Likes"
+                            android:textColor="?attr/colorOnSurfaceLow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/subcriptions_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/Title3_17"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@{String.valueOf(user.user.subscriptions)}"
+                            android:textColor="?attr/colorOnSurfaceHigh"
+                            tools:text="0" />
+
+                        <TextView
+                            style="@style/Subtitle1_14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Subscriptions"
+                            android:textColor="?attr/colorOnSurfaceLow" />
+                    </LinearLayout>
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/button2"
@@ -54,139 +146,91 @@
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+                    app:layout_constraintTop_toBottomOf="@+id/photo_view" />
 
                 <TextView
                     android:id="@+id/textView35"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="Oybek Qodirov"
-                    android:textColor="#333"
-                    android:textSize="18sp"
-                    android:layout_marginTop="@dimen/grid_1_5"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView12"
-                    app:layout_constraintStart_toStartOf="@+id/imageView12"
+                    style="@style/Title2_20"
+                    android:layout_marginTop="@dimen/dimen_12"
+                    tools:text="Oybek Qodirov"
+                    android:text="@{user.user.name}"
+                    android:textColor="?attr/colorOnSurfaceHigh"
+                    app:layout_constraintEnd_toEndOf="@+id/photo_view"
+                    app:layout_constraintStart_toStartOf="@+id/photo_view"
                     app:layout_constraintTop_toBottomOf="@+id/button2" />
 
-                <LinearLayout
-                    android:id="@+id/linearLayout"
+                <TextView
+                    android:id="@+id/status_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/grid_2"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="24dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/view4"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.491"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView36">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/roboto_bold"
-                            android:text="0"
-                            android:textColor="#222"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="Podpischiklar"
-                            android:textColor="#666"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="24dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/roboto_bold"
-                            android:text="0"
-                            android:textColor="#222"
-                            android:textSize="16dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="Layk"
-                            android:textColor="#666"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/roboto_bold"
-                            android:text="0"
-                            android:textColor="#222"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="Podpiskalar"
-                            android:textColor="#666"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/view4"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="#1111"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <LinearLayout
-                android:id="@+id/services_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="@dimen/grid_1"
-                android:background="@drawable/background_radius_filled"
-                android:backgroundTint="@color/white"
-                android:padding="@dimen/grid_1_5">
+                    tools:text="online"
+                    android:text="@{user.user.status == 0 ? @string/online : @string/offline}"
+                    style="@style/Caption1_13"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:textColor="?attr/colorGreen"
+                    app:layout_constraintEnd_toEndOf="@+id/textView35"
+                    app:layout_constraintStart_toStartOf="@+id/textView35"
+                    app:layout_constraintTop_toBottomOf="@+id/textView35" />
 
                 <TextView
+                    android:id="@+id/bio_view"
+                    style="@style/Text1_16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="Servislar"
-                    android:textColor="#222"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:text="@{user.bio}"
+                    android:layout_marginTop="@dimen/dimen_18"
+                    android:textColor="?attr/colorOnSurfaceHigh"
+                    app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+                    app:layout_constraintStart_toStartOf="@+id/linearLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                    tools:text="Hey i am oybek" />
 
-                <include layout="@layout/button_style_min" />
-
-                <include layout="@layout/button_style_min" />
-
-                <include layout="@layout/button_style_min" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dimen_12"
+                    android:background="?attr/colorSurface"
+                    android:layout_marginTop="@dimen/dimen_12"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Products"
+                        android:textColor="?attr/colorSecondary"
+                        style="@style/Title3_17"
+                        android:layout_gravity="start"
+                        />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/create_product_view"
+                        android:src="@drawable/msg_addfolder"
+                        android:layout_gravity="end"
+                        app:tint="?colorOnSurfaceMedium" />
+                </FrameLayout>
             </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/recycler_shimmer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            >
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/recycler_view"
+                tools:itemCount="10"
+                android:clipToPadding="false"
+                android:paddingBottom="64dp"
+                tools:listitem="@layout/profile_product_item"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="3"
+                />
+        </com.facebook.shimmer.ShimmerFrameLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

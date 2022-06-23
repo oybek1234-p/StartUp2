@@ -3,70 +3,96 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+        <variable
+            name="shipping"
+            type="com.org.net.models.ShippingLocation" />
+    </data>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:paddingHorizontal="18dp"
+        android:id="@+id/shimmer_layout"
+        app:shimmer_base_alpha="0.5"
+        >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSurface"
+        android:padding="@dimen/dimen_12"
         android:clickable="true"
-        android:elevation="2dp"
         android:focusable="true"
-        android:layout_marginVertical="@dimen/grid_0_5"
-        android:paddingVertical="@dimen/grid_1_5"
         android:foreground="?attr/selectableItemBackground"
         >
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:layout_width="51dp"
-            android:layout_height="51dp"
+        <TextView
+            android:id="@+id/type_view"
+            style="@style/Headline3_15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_radius_stroke"
+            android:backgroundTint="#DFFFF1"
+            android:paddingHorizontal="@dimen/dimen_12"
+            android:layout_marginTop="@dimen/dimen_12"
+            android:paddingVertical="@dimen/dimen_4"
+            android:text="Delivery type"
+            android:textColor="#4FB383"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:lottie_autoPlay="true"
-            app:lottie_repeatCount="5"
-            app:lottie_url="https://assets10.lottiefiles.com/packages/lf20_iebai3g6.json"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/shipping_adress_view"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
-        <TextView
-            android:id="@+id/shipping_cost_view"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:layout_marginEnd="18dp"
-            android:textColor="#222"
-            android:textSize="16sp"
-
-            app:layout_constraintEnd_toStartOf="@+id/imageView2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/_14_500" />
-
-        <TextView
-            android:id="@+id/shipping_adress_view"
-            android:layout_width="240dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textSize="14sp"
-            android:maxWidth="180dp"
-            android:maxLines="2"
-            android:ellipsize="end"
-            shippingLocationAdress="@{null}"
-            app:layout_constraintStart_toStartOf="parent"
-            android:textColor="#666"
-            tools:text="Zangiotaga Daliguzarga uzogi bilan 2 kunda yetkaziladi"
-            app:layout_constraintTop_toBottomOf="@+id/shipping_cost_view" />
+            app:layout_constraintStart_toStartOf="@+id/cost_view"
+            app:layout_constraintTop_toBottomOf="@+id/address_view" />
 
         <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/call_arrow_right"
-            app:layout_constraintBottom_toBottomOf="@+id/shipping_cost_view"
+            android:id="@+id/info_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/log_info"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/shipping_cost_view"
-            app:tint="#000000"
-            tools:ignore="ContentDescription" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="?attr/colorOnSurfaceLow" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/background_radius_filled_16"
+            android:backgroundTint="?colorBackground"
+            android:padding="@dimen/dimen_4"
+            android:layout_marginEnd="@dimen/dimen_12"
+            android:src="@drawable/yandex_car_icon"
+            app:layout_constraintEnd_toStartOf="@+id/info_button"
+            app:layout_constraintTop_toTopOf="@+id/cost_view"
+            app:lottie_autoPlay="true"
+            app:lottie_repeatCount="5"
+            app:lottie_url="https://assets10.lottiefiles.com/packages/lf20_iebai3g6.json" />
+
+        <TextView
+            android:id="@+id/cost_view"
+            style="@style/Title3_17"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_12"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="?attr/colorOnSurfaceHigh"
+            app:layout_constraintEnd_toStartOf="@+id/lottieAnimationView2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Press to choose a location" />
+
+        <TextView
+            android:id="@+id/address_view"
+            style="@style/Subtitle1_14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:text="Zangiota tumani"
+            android:textColor="?attr/colorOnSurfaceLow"
+            app:layout_constraintEnd_toEndOf="@+id/cost_view"
+            app:layout_constraintStart_toStartOf="@+id/cost_view"
+            app:layout_constraintTop_toBottomOf="@+id/cost_view" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
 </layout>

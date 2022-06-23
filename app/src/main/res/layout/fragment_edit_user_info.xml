@@ -18,7 +18,7 @@
             android:id="@+id/name_edtxt"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:layout_margin="@dimen/grid_1_5"
+
             android:hint="Ism (shart)"
             android:backgroundTint="#1000"
             android:textColorHint="#999"
@@ -27,8 +27,7 @@
             android:id="@+id/about_edtxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/grid_1_5"
-            android:hint="Ozingiz haqida malumot"
+
             android:inputType="text"
             android:minHeight="56dp"
             android:backgroundTint="#1000"
@@ -38,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ozingiz haqida yozishingiz mumkin.Profilni ochadigan har bir kishi bu matnn koradi."
-            android:layout_marginHorizontal="@dimen/grid_1_5"
+
             android:fontFamily="@font/roboto_regular"
             android:textColor="#666"
             />

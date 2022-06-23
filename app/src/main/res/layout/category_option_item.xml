@@ -4,9 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable
-            name="data"
-            type="com.example.market.categories.ProductOptionData" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,16 +18,14 @@
             android:layout_width="72dp"
             android:layout_height="72dp"
             app:cardBackgroundColor="#F6F6F6"
-            app:cardCornerRadius="@dimen/grid_1"
+
             app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.example.market.viewUtils.ImageViewLoader
+            <com.org.ui.components.ImageViewLoader
                 android:id="@+id/option_photo_view"
-                url="@{data.photo}"
-                android:layout_margin="@dimen/grid_1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </androidx.cardview.widget.CardView>
@@ -38,8 +34,7 @@
             android:id="@+id/option_name_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingVertical="@dimen/grid_0_5"
-            android:text="@{data.title}"
+
             android:gravity="center"
             android:textColor="#282828"
             android:textSize="17sp"

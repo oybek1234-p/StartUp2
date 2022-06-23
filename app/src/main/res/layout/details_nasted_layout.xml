@@ -5,243 +5,234 @@
 
     <data>
         <variable
-            name="product"
-            type="com.example.market.models.Product" />
-        <variable
-            name="likeOnClick"
-            type="android.view.View.OnClickListener" />
-        <variable
-            name="fullInfo"
-            type="java.lang.String" />
-        <import type="com.example.market.binding.BindingAdaptersKt"/>
+            name="data"
+            type="com.org.net.models.Product" />
 
+        <import type="com.org.market.ProductUtilsKt"/>
+
+        <variable
+            name="liked"
+            type="java.lang.Boolean" />
+
+        <import type="com.example.market.R"/>
     </data>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fillViewport="true"
- >
-            <LinearLayout
-                android:id="@+id/nested_scrollView_container"
+        android:layout_height="match_parent"
+        android:background="?attr/colorBackground"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/container_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:clipToPadding="false"
-                android:clipToOutline="false"
-                android:clipChildren="false"
-                android:fitsSystemWindows="true">
+                android:background="?attr/colorSurface"
+                android:paddingHorizontal="@dimen/dimen_12"
+                android:paddingTop="@dimen/dimen_12"
+                android:paddingBottom="@dimen/dimen_16"
+                >
 
-                <TextView
-                    android:id="@+id/details_product_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:gravity="start"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="8dp"
-                    android:text="@{fullInfo}"
-                    android:textColor="#222"
-                    android:textSize="15sp"
-                    tools:text="Something " />
-
-                <TextView
+                <LinearLayout
+                    android:id="@+id/comment_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:layout_marginHorizontal="16dp"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="@{BindingAdaptersKt.hashTag(product.kategoriya)}"
-                    android:textColor="#222"
-                    android:textSize="14sp"
-                    tools:text="#Telefonlar #Popular" />
+                    android:layout_gravity="end"
+                    android:clickable="true"
+                    android:layout_marginEnd="@dimen/dimen_12"
+                    android:focusable="true"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="@+id/like_view"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginStart="16dp"
-                    android:background="#f2f2f2" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="16dp">
-
-                    <LinearLayout
-                        android:id="@+id/details_comment_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <ImageView
+                        android:id="@+id/details_comment_icon_view"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
                         android:layout_gravity="end"
                         android:clickable="true"
                         android:focusable="true"
-                        android:gravity="center_horizontal"
-                        android:onClick="@{likeOnClick}"
-                        android:orientation="vertical"
-                        app:layout_constraintEnd_toStartOf="@+id/linearLayout4"
-                        app:layout_constraintTop_toTopOf="@+id/linearLayout4">
-
-                        <ImageView
-                            android:id="@+id/details_comment_icon_view"
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:layout_gravity="end"
-                            android:layout_marginTop="@dimen/grid_1"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:padding="8dp"
-                            android:src="@drawable/comment_icon"
-                            android:stateListAnimator="@animator/item_press_animator"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:tint="#222" />
-
-                        <TextView
-                            android:id="@+id/details_comment_count_view"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{String.valueOf(product.commentCount)}"
-                            android:textColor="#5C5C5C"
-                            tools:text="68" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/linearLayout4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:gravity="center_horizontal"
-                        android:onClick="@{likeOnClick}"
-                        android:orientation="vertical"
+                        android:padding="8dp"
+                        android:src="@drawable/comment_icon"
+                        android:stateListAnimator="@animator/item_press_animator"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <ImageView
-                            android:id="@+id/details_like_view"
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:layout_gravity="end"
-                            android:layout_marginTop="@dimen/grid_1"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:padding="8dp"
-                            android:src="@drawable/like_icon"
-                            android:stateListAnimator="@animator/item_press_animator"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:tint="#222" />
-
-                        <TextView
-                            android:id="@+id/details_like_count_view"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{String.valueOf(product.likesCount)}"
-                            android:textColor="#5C5C5C"
-                            tools:text="68" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/textView16"
-                        percent="@{product.discount}"
-                        percentChange="@{true}"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:textColor="@color/red_4747"
-                        android:textSize="12sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView26"
-                        app:layout_constraintStart_toEndOf="@+id/textView26"
-                        app:layout_constraintTop_toTopOf="@+id/textView26"
-                        tools:text="-15%" />
-
-                    <TextView
-                        android:id="@+id/details_cost_view"
-                        cost="@{product.narxi}"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginTop="12dp"
-                        android:fontFamily="@font/roboto_bold"
-                        android:maxLength="18"
-                        android:textColor="#222"
-                        android:textSize="24sp"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:text="@string/_135_000_sum" />
+                        app:tint="?attr/colorOnSurfaceLow" />
 
                     <TextView
-                        android:id="@+id/textView26"
-                        discount="@{product}"
-                        android:layout_width="0dp"
-                        android:layout_height="14dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:foreground="@drawable/strike_through_drawable"
-                        android:textColor="#666"
-                        android:textSize="12sp"
-                        app:layout_constraintStart_toStartOf="@+id/details_cost_view"
-                        app:layout_constraintTop_toBottomOf="@+id/details_cost_view"
-                        tools:text="125.000 sum" />
+                        android:id="@+id/details_comment_count_view"
+                        style="@style/Subtitle2_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:shadowColor="#65323232"
+                        android:shadowDx="1"
+                        android:shadowDy="1"
+                        android:shadowRadius="2"
+                        android:text="@{String.valueOf(data.commentsCount)}"
+                        android:textColor="?attr/colorOnSurfaceMedium"
+                        tools:text="68" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
+
+
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/title_view"
+                    style="@style/Text2_15"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:paddingVertical="@dimen/grid_0_5"
-                    android:layout_marginTop="12dp"
-                    android:paddingHorizontal="18dp"
-                    android:background="@color/gray_f2f2f2"
-                    android:text="Yetkazib berish"
-                    />
-                <include
-                    android:id="@+id/details_info_seller_info_shipping_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    layout="@layout/dostavka_layout_material" />
+                    android:layout_marginEnd="@dimen/dimen_12"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    tools:text="Iphone 13 24"
+                    android:text="@{data.title}"
+                    android:textColor="?attr/colorOnSurfaceHigh"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/subtitle_view"
+                    style="@style/Title2_20"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="@dimen/dimen_8"
                     android:layout_height="wrap_content"
-                    android:paddingVertical="@dimen/grid_0_5"
-                    android:paddingHorizontal="18dp"
-                    android:background="@color/gray_f2f2f2"
-                    android:text="Magzin"
-                    />
-                <include
-                    android:id="@+id/details_info_seller_info_layout"
-                     layout="@layout/yuklash_contact_info_layout" />
+                    tools:text="@string/_150_000_sum"
+                    android:text="@{ProductUtilsKt.formatCurrency(data.cost)}"
+                    android:textColor="?attr/colorOnSurfaceHigh"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/title_view" />
+
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/discount_view"
+                    style="@style/Caption4_11"
+                    android:layout_width="0dp"
+                    visibleOrGone="@{data.discountPercent>0}"
                     android:layout_height="wrap_content"
-                    android:paddingVertical="@dimen/grid_0_5"
-                    android:paddingHorizontal="18dp"
-                    android:background="@color/gray_f2f2f2"
-                    android:text="Boshqa malumotlar"
-                    />
-                <include
-                    android:id="@+id/details_specification"
-                    android:layout_width="match_parent"
+                    android:padding="@dimen/dimen_4"
+                    android:foreground="@drawable/strike_through_drawable"
+                    tools:text="165 000 sum"
+                    android:text="@{ProductUtilsKt.getDiscount(data.cost,data.discountPercent)}"
+                    android:textColor="?attr/colorOnSurfaceUltraLow"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/subtitle_view" />
+
+                <TextView
+                    android:id="@+id/discount_percent_view"
+                    style="@style/Caption1_13"
+                    visibleOrGone="@{data.discountPercent>0}"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/grid_2"
-                    layout="@layout/details_item" />
+                    android:layout_marginStart="@dimen/dimen_8"
+                    tools:text="-48%"
+                    android:padding="@dimen/dimen_4"
+                    android:text="@{ProductUtilsKt.getDiscountPercent(data.discountPercent)}"
+                    android:textColor="?attr/colorSecondary"
+                    app:layout_constraintBottom_toBottomOf="@+id/discount_view"
+                    app:layout_constraintStart_toEndOf="@+id/discount_view"
+                    app:layout_constraintTop_toTopOf="@+id/discount_view" />
 
-                <com.example.market.viewUtils.RecyclerView
-                    android:id="@+id/more_products_list_view"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:id="@+id/like_view"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/grid_2"
-                    android:paddingHorizontal="@dimen/grid_0_5"
-                    android:paddingVertical="4dp"
-                    app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-                    app:spanCount="2"
-                    tools:listitem="@layout/home_product_item" />
+                    android:layout_gravity="end"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            </LinearLayout>
+                    <ImageView
+                        android:id="@+id/like_image_view"
+                        android:layout_gravity="end"
+                        android:clickable="true"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        app:tint="?attr/colorOnSurfaceLow"
+                        android:focusable="true"
+                        android:padding="8dp"
+                        android:src="@drawable/like_icon"
+                        android:stateListAnimator="@animator/item_press_animator"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
+                    <TextView
+                        android:id="@+id/like_text_view"
+                        style="@style/Subtitle2_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:shadowColor="#65323232"
+                        android:shadowDx="1"
+                        android:shadowDy="1"
+                        android:shadowRadius="2"
+                        android:text="@{String.valueOf(data.likes)}"
+                        android:textColor="?attr/colorOnSurfaceMedium"
+                        tools:text="120" />
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <include
+                android:id="@+id/seller_info_layout"
+                layout="@layout/seller_info_layout_material"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp" />
+
+            <include android:id="@+id/description_button"
+                layout="@layout/header_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/description_textView"
+                android:paddingBottom="@dimen/dimen_12"
+                android:paddingHorizontal="@dimen/dimen_12"
+                android:background="@color/white"
+                style="@style/Text2_15"
+                android:textColor="?attr/colorOnSurfaceMedium"
+                android:text="Top uzbekistondagi eng zor soatlardan biri airpods"
+                android:maxLines="2"
+                android:ellipsize="end"
+                />
+            <include
+                android:id="@+id/more_products_header"
+                layout="@layout/header_layout"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/more_products_recycler_view"
+                app:spanCount="2"
+                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                tools:itemCount="6"
+                tools:listitem="@layout/home_product_item"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/more_empty_view"
+                android:text="No more products"
+                android:padding="@dimen/dimen_12"
+                android:gravity="center"
+                style="@style/Text1_16"
+                android:textColor="?colorOnBackground"
+                android:visibility="gone"
+                />
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
 </layout>

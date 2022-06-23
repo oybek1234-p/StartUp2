@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="data"
-            type="com.example.market.SearchProduct" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,29 +13,29 @@
         android:focusable="true"
         android:clickable="true"
         android:foreground="?selectableItemBackground"
-        android:paddingBottom="@dimen/grid_2"
-        android:paddingHorizontal="@dimen/grid_2">
+        android:background="?attr/colorSurface"
+        android:padding="@dimen/dimen_12"
+       >
 
         <ImageView
             android:id="@+id/imageView6"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_ab_search"
-            android:tint="#444"
-            android:layout_marginTop="@dimen/grid_2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="?attr/colorOnSurfaceMedium" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/grid_2"
+            android:layout_marginStart="@dimen/dimen_12"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@{data.title}"
-            android:textColor="@color/black"
-            android:textSize="16sp"
+            style="@style/Title3_17"
+            android:textColor="?attr/colorOnSurfaceHigh"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView6"
             app:layout_constraintTop_toTopOf="@+id/imageView6"

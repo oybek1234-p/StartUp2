@@ -1,43 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="com.example.market.R" />
+
         <variable
             name="data"
-            type="com.example.market.home.MainCategory" />
+            type="com.org.net.models.Category" />
     </data>
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:layout_margin="8dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="vertical">
 
-        <com.example.market.viewUtils.ImageViewLoader
-            android:id="@+id/home_main_category_image"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@drawable/oval_grey"
-            android:scaleType="centerCrop"
-            url="@{data.photo}"
+        <com.org.ui.components.ImageViewLoader
+            android:id="@+id/photo_view"
             circleCrop="@{true}"
             fade="@{true}"
-            />
+            url="@{data.photo}"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/circle"
+            android:backgroundTint="?attr/colorOnSurfaceUltraLow"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/circleImageViewStyle" />
 
         <TextView
-            android:id="@+id/home_main_category_textview"
-            android:layout_width="80dp"
+            android:id="@+id/name_view"
+            style="@style/Subtitle3_13"
+            textColor="@{R.attr.colorOnSurfaceMedium}"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Kategoriya"
-            android:textSize="14sp"
-            android:textColor="#202020"
-            android:maxLines="2"
+            android:layout_marginTop="@dimen/dimen_4"
             android:gravity="center"
-            android:ellipsize="end"
-            android:layout_marginTop="4dp"
-            android:text="@{data.title}"
-            android:fontFamily="@font/roboto_medium" />
+            android:maxWidth="60dp"
+            android:text="@{data.name}"
+            tools:text="Mobile phones"
+            tools:textColor="?attr/colorOnSurfaceMedium" />
+
     </LinearLayout>
+
 </layout>

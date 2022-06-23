@@ -7,87 +7,84 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:clipChildren="false"
         android:clipToPadding="false"
+        android:background="?attr/colorBackground"
         tools:context=".SearchResultsFragment">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:paddingHorizontal="@dimen/grid_1_5"
-            android:paddingVertical="@dimen/grid_1"
-            android:elevation="@dimen/grid_0_5"
-            android:background="@color/white"
-            android:layout_height="56dp">
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:elevation="0dp"
+            app:elevation="1dp"
+            >
 
-
-            <ImageView
-                android:id="@+id/back_button"
-                android:layout_width="wrap_content"
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_arrow_down"
-                android:tint="@color/black"
-                android:rotation="90"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_scrollFlags="exitUntilCollapsed"
+                android:background="@null"
+                android:elevation="0dp"
+                >
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="57dp"
+                    android:paddingStart="@dimen/dimen_12"
+                    android:background="?attr/colorSurface"
+                    android:paddingVertical="@dimen/dimen_6">
 
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_marginHorizontal="@dimen/grid_2"
-                android:background="@drawable/home_search_background"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/filter_button"
-                app:layout_constraintStart_toEndOf="@+id/back_button"
-                app:layout_constraintTop_toTopOf="parent">
+                   <com.google.android.material.textfield.TextInputLayout
+                       android:id="@+id/filter_by_view"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       app:hintEnabled="false"
+                       app:boxCornerRadiusTopStart="@dimen/dimen_24"
+                       app:boxCornerRadiusTopEnd="@dimen/dimen_24"
+                       app:boxCornerRadiusBottomStart="@dimen/dimen_24"
+                       app:boxCornerRadiusBottomEnd="@dimen/dimen_24"
+                       style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                       >
+                       <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="@string/popular"
+                           android:textColor="?attr/colorOnSurfaceHigh"
+                           />
+                   </com.google.android.material.textfield.TextInputLayout>
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/free_shipping"
+                        android:id="@+id/free_ship_view"
+                        android:layout_marginEnd="@dimen/dimen_12"
+                        android:paddingEnd="@dimen/dimen_8"
+                        android:layout_gravity="end"
+                        android:textColor="?attr/colorOnSurfaceHigh"
+                        />
+                </FrameLayout>
+                <include
+                    layout="@layout/home_search_bar"
+                    app:layout_collapseMode="pin"
+                    />
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-                <EditText
-                    android:id="@+id/search_edit_text"
-                    android:layout_width="304dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="56dp"
-                    android:layout_marginStart="@dimen/grid_2"
-                    android:background="@null"
-                    android:hint="@string/nima_qidiryapsiz"
-                    android:textColor="@color/black"
-                    android:textColorHint="#959595"
-                    android:textSize="16sp" />
+        </com.google.android.material.appbar.AppBarLayout>
 
-                <ImageView
-                    android:id="@+id/search_button"
-                    android:layout_width="45dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="end"
-                    android:layout_margin="4dp"
-                    android:background="@drawable/home_search_icon_background"
-                    android:padding="6dp"
-                    android:src="@drawable/ic_ab_search"
-                    app:tint="#FFFFFF" />
-
-            </FrameLayout>
-
-            <ImageView
-                android:id="@+id/filter_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_filter"
-                android:tint="#222"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:padding="@dimen/dimen_12"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:spanCount="2"
+            tools:listitem="@layout/home_product_item"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
             />
-    </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

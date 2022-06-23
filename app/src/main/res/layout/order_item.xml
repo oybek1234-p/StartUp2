@@ -10,24 +10,24 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardElevation="1dp"
-        android:layout_marginHorizontal="@dimen/grid_1"
-        android:layout_marginTop="@dimen/grid_1_5"
-        app:cardCornerRadius="@dimen/grid_1_5"
-        android:background="@color/white">
+        app:cardElevation="0.4dp"
+        app:cardCornerRadius="@dimen/dimen_12"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:backgroundTint="?attr/colorSurface">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/dimen_12"
             >
 
-            <com.example.market.viewUtils.ImageViewLoader
+            <com.org.ui.components.ImageViewLoader
                 android:id="@+id/photo_view"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:layout_margin="@dimen/grid_1"
-                android:background="#E4E4E4"
+                android:background="?attr/colorBackground"
                 android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:shapeAppearanceOverlay="@style/radiusImageViewStyle" />
@@ -36,13 +36,12 @@
                 android:id="@+id/name_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/grid_1_5"
+                android:layout_marginHorizontal="@dimen/dimen_12"
                 android:ellipsize="end"
-                android:fontFamily="@font/roboto_regular"
                 android:maxLines="2"
                 android:text="This text is name of the order."
-                android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textColor="?attr/colorOnSurfaceMedium"
+                style="@style/Subtitle1_14"
                 app:layout_constraintEnd_toStartOf="@+id/check_box"
                 app:layout_constraintStart_toEndOf="@+id/photo_view"
                 app:layout_constraintTop_toTopOf="@+id/photo_view" />
@@ -51,11 +50,10 @@
             android:id="@+id/cost_text_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
             android:text="246000 sum"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:layout_marginVertical="@dimen/grid_1_5"
+            android:textColor="?attr/colorOnSurfaceHigh"
+            style="@style/Text1_16"
+            android:layout_marginTop="@dimen/dimen_4"
             app:layout_constraintStart_toStartOf="@+id/name_view"
             app:layout_constraintTop_toBottomOf="@+id/name_view" />
 
@@ -63,82 +61,80 @@
                 android:id="@+id/linearLayout5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/grid_1_5"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/photo_view">
+                app:layout_constraintTop_toBottomOf="@+id/store_photo_view">
 
                 <ImageView
                     android:id="@+id/decrease_count_view"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
+                    android:layout_marginHorizontal="@dimen/dimen_8"
                     android:background="@drawable/background_radius_filled"
-                    android:backgroundTint="#1000"
-                    android:padding="@dimen/grid_1"
+                    android:backgroundTint="?attr/colorBackground"
+                    android:padding="@dimen/dimen_6"
                     android:src="@drawable/zoom_minus"
-                    app:tint="#666" />
+                    app:tint="?attr/colorOnSurfaceMedium" />
                 <TextView
                     android:id="@+id/count_view"
+                    style="@style/Text1_16"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginHorizontal="@dimen/grid_2"
-                    android:fontFamily="@font/roboto_medium"
                     android:gravity="center_vertical"
-                    android:paddingHorizontal="@dimen/grid_0_5"
                     android:text="1"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:textColor="?attr/colorOnSurfaceHigh" />
                 <ImageView
                     android:id="@+id/increase_count_view"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
+                    android:layout_marginStart="@dimen/dimen_8"
                     android:background="@drawable/background_radius_filled"
-                    android:backgroundTint="#1000"
-                    android:padding="@dimen/grid_1"
+                    android:backgroundTint="?attr/colorBackground"
+                    android:padding="@dimen/dimen_6"
                     android:src="@drawable/zoom_plus"
-                    app:tint="#666" />
+                    app:tint="?attr/colorOnSurfaceMedium" />
+
             </LinearLayout>
 
-            <com.example.market.viewUtils.ImageViewLoader
+            <com.org.ui.components.ImageViewLoader
                 android:id="@+id/store_photo_view"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                app:shapeAppearanceOverlay="@style/circleImageViewStyle"
                 android:background="@drawable/oval_grey"
-                android:layout_margin="@dimen/grid_1_5"
-                app:layout_constraintStart_toEndOf="@+id/photo_view"
-                app:layout_constraintTop_toBottomOf="@+id/cost_text_view" />
+                android:backgroundTint="?attr/colorOnSurfaceUltraLow"
+                android:layout_marginTop="@dimen/dimen_8"
+                app:layout_constraintStart_toStartOf="@+id/cost_text_view"
+                app:layout_constraintTop_toBottomOf="@+id/cost_text_view"
+                app:shapeAppearanceOverlay="@style/circleImageViewStyle" />
 
             <TextView
                 android:id="@+id/store_name_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/grid_1_5"
-                android:fontFamily="@font/roboto_regular"
+                android:layout_marginStart="@dimen/dimen_8"
+                style="@style/Caption1_13"
                 android:text="Store"
-                android:textColor="#333"
-                android:textSize="15sp"
+                android:textColor="?attr/colorOnSurfaceMedium"
                 app:layout_constraintBottom_toBottomOf="@+id/store_photo_view"
                 app:layout_constraintStart_toEndOf="@+id/store_photo_view"
                 app:layout_constraintTop_toTopOf="@+id/store_photo_view" />
+
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/check_box"
-            android:layout_width="34dp"
-            android:layout_height="wrap_content"
-            android:theme="@style/CheckBoxStyle"
-            android:layout_marginEnd="@dimen/grid_1"
-            android:checked="false"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nechta"
-                android:layout_marginEnd="@dimen/grid_1_5"
-                android:textColor="#999"
+                android:text="Nechta:"
+                android:layout_marginEnd="@dimen/dimen_8"
+                style="@style/Caption2_12"
+                android:textColor="?attr/colorOnSurfaceHigh"
                 app:layout_constraintBottom_toBottomOf="@+id/linearLayout5"
                 app:layout_constraintEnd_toStartOf="@+id/linearLayout5"
                 app:layout_constraintTop_toTopOf="@+id/linearLayout5" />

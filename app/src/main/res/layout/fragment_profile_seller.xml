@@ -5,6 +5,7 @@
 
     <data>
         <import type="android.view.View"/>
+
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -42,10 +43,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans_regular"
-                        android:text="Be happy always."
+                        tools:text="Be happy always."
+
                         android:textColor="#202020"
                         android:textSize="15sp"
-                        android:layout_marginTop="@dimen/grid_2"
+
                         app:layout_constraintEnd_toEndOf="@+id/name"
                         app:layout_constraintStart_toStartOf="@+id/name"
                         app:layout_constraintTop_toBottomOf="@+id/subscribe_button" />
@@ -63,12 +65,14 @@
                         app:layout_constraintStart_toEndOf="@+id/name"
                         app:layout_constraintTop_toTopOf="@+id/name"
                         app:tint="#333" />
-                    <ImageView
+
+                    <com.org.ui.components.ImageViewLoader
                         android:id="@+id/user_photo"
                         android:layout_width="84dp"
                         android:layout_height="84dp"
-                        android:src="@drawable/poll_add_plus"
-                        android:background="@drawable/oval_grey"
+                        android:scaleType="centerCrop"
+
+                        app:shapeAppearanceOverlay="@style/circleImageViewStyle"
                         android:backgroundTint="#f2f2f2"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.498"
@@ -84,10 +88,8 @@
                         android:backgroundTint="#f2f2f2"
                         android:clickable="true"
                         android:focusable="true"
-                        android:layout_marginTop="@dimen/grid_2"
                         android:foreground="?selectableItemBackground"
-                        android:paddingHorizontal="@dimen/grid_2"
-                        android:paddingVertical="@dimen/grid_1"
+
                         android:text="Subscribed"
                         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
                         app:layout_constraintStart_toStartOf="@+id/linearLayout"
@@ -107,9 +109,10 @@
                         android:id="@+id/name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/grid_1_5"
+
                         android:fontFamily="@font/roboto_medium"
-                        android:text="Oybek Qodirov"
+
+                        tools:text="Oybek Qodirov"
                         android:textColor="#000000"
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="@+id/user_photo"
@@ -121,7 +124,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="24dp"
-                        android:layout_marginTop="@dimen/grid_2"
+
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="@+id/name"
                         app:layout_constraintHorizontal_bias="0.491"
@@ -140,7 +143,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:fontFamily="@font/roboto_bold"
-                                android:text="0"
+                                tools:text="0"
+
                                 android:textColor="#222"
                                 android:textSize="20sp" />
 
@@ -166,7 +170,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:fontFamily="@font/roboto_bold"
-                                android:text="0"
+                                tools:text="0"
+
                                 android:textColor="#222"
                                 android:textSize="20sp" />
 
@@ -191,7 +196,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:fontFamily="@font/roboto_bold"
-                                android:text="0"
+                                tools:text="0"
+
                                 android:textColor="#222"
                                 android:textSize="20sp" />
 
@@ -218,7 +224,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
-                        android:layout_marginVertical="@dimen/grid_1_5"
+
                         android:fontFamily="@font/roboto_medium"
                         android:text="Products"
                         android:textColor="@color/black"
@@ -244,11 +250,5 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <com.example.market.recycler.EmptyRecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-            />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

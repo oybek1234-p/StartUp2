@@ -10,53 +10,46 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gray_f2f2f2"
         android:id="@+id/ppp"
-        tools:context=".cart.KorzinaFragment">
+        android:background="?attr/colorBackground">
 
-        <include
-            android:id="@+id/action_bar"
-            layout="@layout/action_bar"
-            android:layout_width="match_parent"
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/recycler_view"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/recycler_view" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:clipToPadding="false"
+            tools:listitem="@layout/order_item"
+            android:padding="@dimen/dimen_12"
             android:paddingBottom="68dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/action_bar" />
-
-        <include
-            android:id="@+id/delete_layout"
-            layout="@layout/cart_bottom_layout"
-            android:layout_width="match_parent"
-            android:elevation="@dimen/grid_0_5"
-            android:visibility="gone"
-            android:layout_height="56dp"
-            app:layout_constraintBottom_toBottomOf="@+id/recycler_view" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <include
             android:id="@+id/dostavka_layout"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            layout="@layout/dostavka_layout_2"
-            android:visibility="gone"
+            layout="@layout/dostavka_layout"
+            android:layout_marginBottom="1dp"
             app:layout_constraintBottom_toTopOf="@+id/delete_layout" />
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminateTint="@color/red_color"
+        <include
+            android:id="@+id/delete_layout"
+            layout="@layout/cart_bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
             app:layout_constraintBottom_toBottomOf="@+id/recycler_view"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/action_bar" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

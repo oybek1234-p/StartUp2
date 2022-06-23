@@ -1,0 +1,68 @@
+package com.org.net.models
+
+//User
+const val USERS = "users"
+const val USER = "user"
+const val ID = "id"
+const val NAME = "name"
+const val PHOTO = "photo"
+const val PHOTOS = "photos"
+const val BIO = "bio"
+const val PHONE = "phone"
+const val LAST_SEEN_TIME = "lastSeenTime"
+const val STATUS = "status"
+
+const val LOCATIONS = "locations"
+const val LOCATION = "location"
+const val ADDRESS = "address"
+
+const val EMAIL = "email"
+const val PASSWORD = "password"
+
+const val LIKES = "likes"
+const val LIKED_PRODUCTS = "likedProducts"
+const val GIFTS = "gifts"
+const val SUBSCRIBERS = "subscribers"
+const val SUBSCRIPTIONS = "subscriptions"
+
+const val MESSAGES = "messages"
+const val UNREAD_MESSAGES = "unreadMessages"
+
+const val ACTIVE_ORDERS = "activeOrders"
+const val ORDERS_IN_CART = "ordersInCart"
+
+const val PRODUCTS = "products"
+const val COMMENTS = "comments"
+const val COMMENT = "comment"
+const val SPECIFICATIONS = "specifications"
+//Product
+const val PHOTO_SCALE_RATIO = "photoScaleRatio"
+const val TITLE = "title"
+const val COST = "cost"
+const val TYPE = "type"
+const val SHIPPING_COST = "shippingCost"
+const val SELLER_ID = "sellerId"
+const val SELLER_PHOTO = "sellerPhoto"
+const val SELLER_NAME = "sellerName"
+const val SELLER_LIKES = "sellerLikes"
+const val SELLER_PRODUCTS = "sellerProducts"
+const val SELLER_SUBSCRIBERS_COUNT = "sellerSubscribersCount"
+const val COUNT = "count"
+const val CATEGORY = "category"
+const val CATEGORIES = "categories"
+const val CATEGORY_ID = "categoryId"
+const val DISCOUNT_PERCENT = "discountPercent"
+const val COMMENT_COUNT = "commentCount"
+const val SOLD_COUNT = "soldCount"
+const val VIEWS_COUNT = "viewsCount"
+const val UPLOADED_DATE = "uploadedDate"
+const val BRAND = "brand"
+const val FREE_SHIPPING = "freeShipping"
+const val PRODUCT_SEARCHES = "productSearches"
+const val TEXT = "text"
+const val REQUESTS_COUNT = "requestsCount"
+
+const val BANNERS = "banners"
+
+const val PAY_CARDS = "payCards"
+const val PARENT_ID = "parentId"

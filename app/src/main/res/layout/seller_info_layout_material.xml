@@ -8,42 +8,161 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="349dp"
-        android:layout_height="107dp"
-        android:background="@drawable/background_radius_filled"
-        android:backgroundTint="@color/white"
-        android:elevation="@dimen/grid_2"
-        android:padding="14dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSurface"
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="@dimen/dimen_12">
 
-        <com.google.android.material.imageview.ShapeableImageView
+        <com.org.ui.components.ImageViewLoader
             android:id="@+id/photo_view"
-            android:layout_width="41dp"
-            android:layout_height="41dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/oval_grey"
+            android:scaleType="centerCrop"
+            android:src="@drawable/user_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/circleImageViewStyleBorder"
+            app:strokeColor="?colorBackground"
+            app:strokeWidth="1dp" />
+
+        <TextView
+            android:id="@+id/name_view"
+            style="@style/Title3_17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/colorOnSurfaceHigh"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/photo_view"
+            tools:text="Oybek Qodirov" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/subscribers_textView"
+            style="@style/Subtitle3_13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_bold"
-            android:text="Oybek Qodirov"
-            android:textColor="@color/black"
-            android:textSize="17sp"
-            android:layout_marginStart="14dp"
-            app:layout_constraintStart_toEndOf="@+id/photo_view"
-            app:layout_constraintTop_toTopOf="@+id/photo_view" />
-
-        <TextView
+            android:text="150k subscribers"
+            android:layout_marginTop="@dimen/dimen_4"
+            android:textColor="?attr/colorOnSurfaceMedium"
+            app:layout_constraintStart_toStartOf="@+id/name_view"
+            app:layout_constraintTop_toBottomOf="@+id/name_view" />
+        <LinearLayout
+            android:id="@+id/linearLayout4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:text="Sales agent"
-            android:textColor="#A3A3A3"
-            android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="@+id/textView6"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dimen_12"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@id/view14"
+            app:layout_constraintStart_toStartOf="@+id/name_view"
+            app:layout_constraintTop_toBottomOf="@+id/subscribe_button">
 
+            <ImageView
+                android:id="@+id/products_imageView"
+                android:layout_width="@dimen/dimen_24"
+                android:layout_height="@dimen/dimen_24"
+                android:src="@drawable/product_icon"
+                app:tint="?attr/colorOnSurfaceHigh" />
+
+            <TextView
+                android:id="@+id/products_textView"
+                style="@style/Caption2_12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="1k products"
+                android:textColor="?attr/colorOnSurfaceLow" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view14"
+            android:layout_width="1dp"
+            android:layout_height="30dp"
+            app:layout_constraintEnd_toStartOf="@id/dostavka_layout"
+            android:background="?attr/colorBackground"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout4"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout4"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout4" />
+
+        <LinearLayout
+            android:id="@+id/dostavka_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@id/v15"
+            app:layout_constraintStart_toEndOf="@+id/view14"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout4">
+
+            <ImageView
+                android:id="@+id/dostavka_imageView"
+                android:layout_width="@dimen/dimen_24"
+                android:layout_height="@dimen/dimen_24"
+                android:src="@drawable/dostavka_icon"
+                app:tint="?attr/colorOnSurfaceHigh" />
+
+            <TextView
+                android:id="@+id/dostavka_textView"
+                style="@style/Caption2_12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="14.000 sum"
+                android:textColor="?attr/colorOnSurfaceLow" />
+
+        </LinearLayout>
+        <View
+            android:id="@+id/v15"
+            android:layout_width="1dp"
+            android:layout_height="30dp"
+            app:layout_constraintEnd_toStartOf="@id/likes_layout"
+            android:background="?attr/colorBackground"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout4"
+            app:layout_constraintStart_toEndOf="@+id/dostavka_layout"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout4" />
+
+        <LinearLayout
+            android:id="@+id/likes_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_18"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/photo_view"
+            app:layout_constraintStart_toEndOf="@+id/v15"
+            app:layout_constraintTop_toTopOf="@+id/dostavka_layout">
+
+            <ImageView
+                android:id="@+id/likes_imageView"
+                android:layout_width="@dimen/dimen_24"
+                android:layout_height="@dimen/dimen_24"
+                android:src="@drawable/like_icon"
+                app:tint="?attr/colorOnSurfaceHigh" />
+
+            <TextView
+                android:id="@+id/likes_textView"
+                style="@style/Caption2_12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="150 likes"
+                android:textColor="?attr/colorOnSurfaceLow" />
+
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/subscribe_button"
+            android:layout_width="@dimen/dimen_24"
+            android:layout_height="@dimen/dimen_24"
+            android:background="@drawable/oval_grey"
+            android:backgroundTint="?attr/colorRed"
+            android:padding="4dp"
+            android:src="@drawable/zoom_plus"
+            app:layout_constraintBottom_toBottomOf="@+id/photo_view"
+            app:layout_constraintEnd_toEndOf="@+id/photo_view"
+            app:layout_constraintStart_toStartOf="@+id/photo_view"
+            app:layout_constraintTop_toBottomOf="@+id/photo_view"
+            app:tint="@color/white" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -5,7 +5,7 @@
     android:paddingHorizontal="18dp"
     android:clickable="true"
     android:focusable="true"
-    android:layout_marginVertical="@dimen/grid_0_5"
+
     android:foreground="?attr/selectableItemBackground"
     android:layout_height="45dp">
 

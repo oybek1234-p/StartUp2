@@ -9,16 +9,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:paddingHorizontal="@dimen/grid_1"
-        android:paddingTop="@dimen/grid_1"
-        android:paddingBottom="@dimen/grid_1_5"
+
         android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/choose_shipping_adress_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/grid_0_5"
+
             android:fontFamily="@font/roboto_medium"
             android:text="Choose location"
             android:textColor="#222"
@@ -31,7 +29,7 @@
             android:id="@+id/choose_shipping_adress_exit"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:padding="@dimen/grid_1_5"
+
             android:src="@drawable/exit_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -55,12 +53,12 @@
             android:background="@drawable/background_radius_filled"
             android:backgroundTint="#222"
             android:clickable="true"
-            android:drawablePadding="@dimen/grid_0_5"
+
             android:focusable="true"
-            android:layout_marginTop="@dimen/grid_1_5"
+
             android:fontFamily="@font/roboto_medium"
             android:foreground="?attr/selectableItemBackground"
-            android:padding="@dimen/grid_1"
+
             android:text="@string/add_new_adress"
             android:textColor="#FFFFFF"
             android:textSize="14sp"
@@ -74,10 +72,10 @@
             android:id="@+id/choose_shipping_adress_progres_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/grid_3"
+
             android:layoutAnimation="@anim/layout_animation_bottom_to_top"
             android:orientation="horizontal"
-            android:padding="@dimen/grid_0_5"
+
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@+id/choose_shipping_adress_title"
             tools:layout_editor_absoluteX="8dp" />
@@ -89,7 +87,7 @@
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:visibility="gone"
-            android:layout_marginTop="@dimen/grid_3"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/choose_shipping_adress_progres_bar"
             app:layout_constraintTop_toBottomOf="@+id/choose_shipping_adress_title">
@@ -103,7 +101,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/grid_0_5"
+
                 android:fontFamily="@font/roboto_medium"
                 android:text="Add your first location"
                 android:textColor="#666" />
@@ -112,9 +110,9 @@
             android:id="@+id/choose_shipping_adress_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/grid_3"
+
             android:orientation="horizontal"
-            android:padding="@dimen/grid_0_5"
+
             android:visibility="gone"
             tools:itemCount="10"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

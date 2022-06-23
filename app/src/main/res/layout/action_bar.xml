@@ -1,77 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="com.example.market.R"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:elevation="4dp"
-        android:background="#FFFFFF"
+        tools:background="?attr/colorPrimary"
+        backgroundColor="@{R.attr.colorPrimary}"
         >
 
         <ImageView
-            android:id="@+id/backButton"
+            android:id="@+id/back_button"
+            imageTint="@{R.attr.colorOnPrimaryHigh}"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start|center_vertical"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            android:padding="16dp"
-            android:rotation="90"
-            android:src="@drawable/arrow_more"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="@dimen/dimen_18"
+            android:src="@drawable/ic_ab_back"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/black" />
+            tools:tint="?attr/colorOnPrimaryHigh" />
+
+        <com.org.ui.components.ImageViewLoader
+            android:id="@+id/avatar_view"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:visibility="gone"
+            android:background="@drawable/oval_grey"
+            tools:backgroundTint="?attr/colorOnPrimaryMedium"
+            android:layout_marginStart="@dimen/dimen_8"
+            backgroundTint="@{R.attr.colorOnPrimaryMedium}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/back_button"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
-            android:id="@+id/title_container"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:gravity="center"
             android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@+id/options"
-            app:layout_constraintStart_toEndOf="@+id/backButton"
+            android:layout_marginStart="@dimen/dimen_12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/avatar_view"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.example.market.viewUtils.ImageViewLoader
-                android:id="@+id/icon"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:background="@drawable/oval_grey"
-                android:visibility="gone" />
-
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/title_view"
+                style="@style/Title2_20"
+                textColor="@{R.attr.colorOnPrimaryHigh}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:fontFamily="@font/roboto_medium"
-                android:foreground="?attr/selectableItemBackground"
-                android:padding="@dimen/grid_2"
-                android:text="@string/produktlar"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:drawableTint="@color/black" />
+                app:layout_constraintBottom_toTopOf="@+id/subtitle_view"
+                app:layout_constraintStart_toEndOf="@+id/avatar_view"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Actionbar title"
+                tools:textColor="?attr/colorOnPrimaryHigh" />
+
+            <TextView
+                android:id="@+id/subtitle_view"
+                style="@style/Subtitle1_14"
+                textColor="@{R.attr.colorOnPrimaryMedium}"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/title_view"
+                app:layout_constraintTop_toBottomOf="@+id/title_view"
+                tools:text="bot"
+                tools:textColor="?attr/colorOnPrimaryMedium" />
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/options"
-            android:layout_width="56dp"
+        <LinearLayout
+            android:id="@+id/menu_container"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="end|center_vertical"
-            android:clickable="true"
-            android:padding="16dp"
-            android:focusable="true"
-            android:src="@drawable/ic_ab_other"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="#333" />
+            app:layout_constraintTop_toTopOf="parent" >
+
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

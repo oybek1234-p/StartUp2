@@ -9,31 +9,30 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="?attr/colorSurface"
         android:layout_height="match_parent">
-
-        <include
-            layout="@layout/action_bar"
-            android:id="@+id/action_bar" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/card_number_edit_text"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_margin="@dimen/grid_3"
-            app:errorTextColor="@color/red_color"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/dimen_18"
             android:hint="Card number"
+            android:textColorHint="?attr/colorOnSurfaceLow"
+            android:layout_marginHorizontal="@dimen/dimen_18"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/action_bar">
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
                 android:layout_width="match_parent"
-                android:maxLength="19"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/colorOnSurfaceHigh"
                 android:digits="0123456789 "
                 android:inputType="phone"
-                style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
-                android:layout_height="wrap_content" />
+                android:maxLength="19" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -42,10 +41,10 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:errorTextColor="@color/red_color"
-            android:layout_marginHorizontal="@dimen/grid_3"
-            android:layout_marginVertical="@dimen/grid_1_5"
+            android:layout_marginHorizontal="@dimen/dimen_18"
+            android:layout_marginTop="@dimen/dimen_12"
             android:hint="Expiration date"
+            android:textColorHint="?attr/colorOnSurfaceLow"
             app:layout_constraintStart_toStartOf="@+id/card_number_edit_text"
             app:layout_constraintTop_toBottomOf="@+id/card_number_edit_text">
 
@@ -53,6 +52,7 @@
                 style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
                 android:layout_width="match_parent"
                 android:maxLength="5"
+                android:textColor="?attr/colorOnSurfaceHigh"
                 android:digits="0123456789/"
                 android:inputType="phone"
                 android:layout_height="wrap_content" />
@@ -64,10 +64,10 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/grid_3"
-            android:layout_marginEnd="@dimen/grid_1_5"
-            android:layout_marginVertical="@dimen/grid_1_5"
+            android:layout_marginHorizontal="@dimen/dimen_18"
+            android:layout_marginTop="@dimen/dimen_12"
             android:hint="CVV"
+            android:textColorHint="?attr/colorOnSurfaceLow"
             app:layout_constraintEnd_toStartOf="@+id/imageView19"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/card_expiry_year_edit_text">
@@ -75,10 +75,11 @@
             <com.google.android.material.textfield.TextInputEditText
                 style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
                 android:layout_width="match_parent"
-                android:maxLength="3"
+                android:layout_height="wrap_content"
                 android:digits="0123456789"
+                android:textColor="?attr/colorOnSurfaceHigh"
                 android:inputType="phone|textFilter|textAutoComplete"
-                android:layout_height="wrap_content" />
+                android:maxLength="3" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -86,10 +87,22 @@
             android:id="@+id/imageView19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/grid_3"
+            android:layout_marginEnd="@dimen/dimen_18"
+            android:layout_marginStart="@dimen/dimen_12"
             android:src="@drawable/card_png"
             app:layout_constraintBottom_toBottomOf="@+id/card_cvv_edit_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/card_cvv_edit_text" />
+
+        <View
+            android:id="@+id/view8"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_12"
+            android:layout_marginTop="@dimen/dimen_24"
+            android:background="?attr/colorBackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_cvv_edit_text" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

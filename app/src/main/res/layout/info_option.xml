@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.example.market.R"/>
+     </data>
+
+    <com.org.ui.cells.ConstraintLayoutCell
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?attr/selectableItemBackground"
+        tools:background="?attr/colorSurface"
+        android:minHeight="48dp"
+        backgroundColor="@{R.attr.colorSurface}"
+     >
+        <ImageView
+            android:id="@+id/icon_view"
+            imageTint="@{R.attr.colorOnSurfaceLow}"
+            android:layout_marginStart="@dimen/dimen_20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/msg_list"
+            tools:tint="?attr/colorOnSurfaceLow" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_20"
+            android:layout_marginVertical="@dimen/dimen_12"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/icon_view"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/title_view"
+                style="@style/Text2_15"
+                textColor="@{R.attr.colorOnSurfaceHigh}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/subtitle_view"
+                app:layout_constraintStart_toEndOf="@+id/icon_view"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Specifications"
+                tools:textColor="?attr/colorOnSurfaceHigh" />
+
+            <TextView
+                android:id="@+id/subtitle_view"
+                style="@style/Subtitle1_14"
+                textColor="@{R.attr.colorOnSurfaceLow}"
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/dimen_2"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/title_view"
+                app:layout_constraintTop_toBottomOf="@+id/title_view"
+                tools:text="Change notification"
+                tools:textColor="?attr/colorOnSurfaceLow" />
+        </LinearLayout>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:visibility="gone"
+            android:layout_marginEnd="@dimen/dimen_20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </com.org.ui.cells.ConstraintLayoutCell>
+</layout>

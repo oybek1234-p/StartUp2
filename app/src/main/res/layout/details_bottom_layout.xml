@@ -10,7 +10,7 @@
         android:layout_height="56dp"
         android:layout_gravity="bottom"
         android:background="@color/white"
-        android:elevation="@dimen/grid_1_5">
+     >
 
         <ImageView
             android:id="@+id/open_store_button"
@@ -20,7 +20,7 @@
             android:layout_marginTop="6dp"
             android:focusable="true"
             android:clickable="true"
-            android:padding="@dimen/grid_2"
+
             android:background="@color/white"
             android:src="@drawable/shop_icon" />
 

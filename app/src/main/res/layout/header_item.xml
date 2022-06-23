@@ -4,58 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="data"
-            type="com.example.market.models.Header" />
-        <variable
-            name="clickListener"
-            type="android.view.View.OnClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{clickListener}"
-        android:padding="@dimen/grid_1">
+        android:paddingHorizontal="@dimen/dimen_12"
+        android:paddingVertical="8dp"
+        >
 
         <TextView
-            android:id="@+id/header_title"
+            android:id="@+id/title_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:fontFamily="@font/roboto_medium"
             android:maxLines="2"
-            android:text="@{data.title}"
             tools:text="@string/header_title"
-            android:textColor="#222"
-            android:textSize="19sp"
+            android:textColor="?attr/colorOnSurfaceHigh"
+            style="@style/Headline3_15"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/header_subtitle"
+            android:id="@+id/subtitle_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="@string/header_subtitle"
-            android:text="@{data.subtitle}"
-            android:textColor="#666"
-            android:textSize="14sp"
+            android:textColor="?attr/colorOnSurfaceMedium"
+            style="@style/Subtitle1_14"
             android:maxLines="2"
-            android:fontFamily="@font/roboto_regular"
-            android:layout_marginTop="@dimen/grid_0_5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/header_title" />
+            android:layout_marginTop="@dimen/dimen_2"
+            app:layout_constraintTop_toBottomOf="@+id/title_view" />
 
         <ImageView
-            android:id="@+id/header_arrow"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:padding="@dimen/grid_1"
-            android:src="@drawable/arrow_right"
-            visibleOrGone="@{data.hasArrow}"
+            android:id="@+id/icon_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_more"
+            android:rotation="-90"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="#666" />
+            android:tint="?attr/colorOnSurfaceMedium" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

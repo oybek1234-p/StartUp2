@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
-<item android:id="@+id/home"
-    android:title="@string/home"
-    android:icon="@drawable/home_icon"
-    />
-    <item android:id="@+id/zakazlar"
-        android:title="@string/zakazlar"
-        android:icon="@drawable/heart_icon"
-        />
-    <item android:id="@+id/korzina"
-        android:title=""
-        />
-    <item android:id="@+id/messages"
-        android:title="Messages"
-        android:icon="@drawable/profile_newmsg"
-        />
-    <item android:id="@+id/profile"
-        android:title="Profile"
-        android:icon="@drawable/seller_profile_icon"
-        />
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/outline_home_24"
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/orders"
+        android:icon="@drawable/outline_shopping_cart_24"
+        android:title="@string/orders" />
+
+    <item
+        android:id="@+id/messages"
+        android:icon="@drawable/outline_question_answer_24"
+        android:title="@string/messages" />
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/outline_account_circle_24"
+        android:title="@string/profile" />
 </menu>

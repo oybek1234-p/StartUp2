@@ -5,9 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="data"
-            type="com.example.market.models.Product" />
+
 
     </data>
 
@@ -16,7 +14,7 @@
         android:layout_height="550dp"
         android:clipToPadding="false"
         android:layout_marginTop="8dp"
-        android:elevation="@dimen/grid_1"
+
         android:background="@drawable/bottom_sheet_background"
         android:clipChildren="false"
         >
@@ -25,7 +23,7 @@
             android:id="@+id/close_view"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:padding="@dimen/grid_1_5"
+
             android:layout_margin="4dp"
             android:src="@drawable/ic_close_black"
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,20 +34,20 @@
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:clipToPadding="false"
-            app:cardCornerRadius="@dimen/grid_1"
+
             android:layout_marginTop="18dp"
             android:layout_marginStart="18dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" >
 
-            <com.example.market.viewUtils.ImageViewLoader
+            <com.org.ui.components.ImageViewLoader
                 android:id="@+id/photo_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                url="@{data.photo}"
+
                 fade="@{true}"
                 android:scaleType="centerCrop"
-                android:src="@color/colorAccent" />
+          />
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -59,7 +57,7 @@
             android:fontFamily="@font/roboto_medium"
             android:textColor="#222"
             android:textSize="18sp"
-            cost="@{data.narxi}"
+
             android:layout_marginStart="18dp"
             app:layout_constraintStart_toEndOf="@+id/cardView2"
             app:layout_constraintTop_toTopOf="@+id/cardView2"
@@ -69,18 +67,18 @@
             android:id="@+id/linearLayout8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/grid_1"
+
             android:background="@drawable/background_radius_filled_stroke"
             android:backgroundTint="#F6F6F6"
             android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/grid_1"
+
             android:paddingVertical="2dp"
             app:layout_constraintStart_toStartOf="@+id/textView31"
             app:layout_constraintTop_toBottomOf="@+id/textView31">
 
             <TextView
                 android:id="@+id/textView26"
-                discount="@{data}"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"
@@ -92,13 +90,11 @@
 
             <TextView
                 android:id="@+id/textView16"
-                percent="@{data.discount}"
-                percentChange="@{true}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/roboto_regular"
-                android:textColor="@color/AliBlackText"
+
                 android:textSize="12sp"
                 tools:text="-15%" />
 
@@ -143,7 +139,6 @@
                 android:background="@drawable/background_radius_filled"
                 android:backgroundTint="#1000"
 
-                android:padding="@dimen/grid_1"
                 android:src="@drawable/zoom_minus"
                 app:tint="#666" />
             <TextView
@@ -151,10 +146,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginHorizontal="@dimen/grid_2"
+
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="center_vertical"
-                android:paddingHorizontal="@dimen/grid_0_5"
+
                 android:text="1"
                 android:textColor="#000000"
                 android:textSize="18sp" />
@@ -164,7 +159,7 @@
                 android:layout_height="24dp"
                 android:background="@drawable/background_radius_filled"
                 android:backgroundTint="#1000"
-                android:padding="@dimen/grid_1"
+
                 android:src="@drawable/zoom_plus"
                 app:tint="#666" />
         </LinearLayout>
@@ -212,7 +207,7 @@
                 android:layout_marginHorizontal="18dp"
                 android:layout_marginVertical="12dp"
                 android:background="@drawable/background_radius_filled"
-                android:backgroundTint="@color/A_orange"
+
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="center"
                 android:padding="16dp"
@@ -224,7 +219,7 @@
                 android:textSize="18dp" />
         </FrameLayout>
 
-        <com.example.market.viewUtils.MeasureText
+        <com.org.ui.components.ImageViewLoader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="18dp"

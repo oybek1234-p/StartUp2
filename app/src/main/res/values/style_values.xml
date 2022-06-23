@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <attr name="colorPrimary" format="color"/>
+    <attr name="colorPrimaryVariant" format="color"/>
+
+    <attr name="colorSecondary" format="color"/>
+    <attr name="colorSecondaryVariant" format="color"/>
+
+    <attr name="colorBackground" format="color|reference"/>
+    <attr name="colorOnBackground" format="color"/>
+
+    <attr name="colorSurface" format="color"/>
+    <attr name="colorSurfaceVariant" tools:override="true" format="color"/>
+
+    <attr name="colorOnSurfaceHigh" format="color"/>
+    <attr name="colorOnSurfaceMedium" format="color"/>
+    <attr name="colorOnSurfaceLow" format="color"/>
+    <attr name="colorOnSurfaceUltraLow" format="color"/>
+
+    <attr name="colorOnPrimaryHigh" format="color"/>
+    <attr name="colorOnPrimaryMedium" format="color"/>
+    <attr name="colorOnPrimaryLow" format="color"/>
+
+    <attr name="colorOnSecondaryHigh" format="color"/>
+    <attr name="colorOnSecondaryMedium" format="color"/>
+    <attr name="colorOnSecondaryLow" format="color"/>
+    <attr name="colorOnSecondaryUltraLow" format="color"/>
+
+    <attr name="colorGreen" format="color"/>
+    <attr name="colorRed" format="color"/>
+    <attr name="colorOrange" format="color"/>
+    <attr name="colorYellow" format="color"/>
+    <attr name="colorPink" format="color"/>
+
+</resources>

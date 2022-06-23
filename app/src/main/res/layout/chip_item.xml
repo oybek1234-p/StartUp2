@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingVertical="@dimen/grid_0_5"
-        android:paddingHorizontal="@dimen/grid_1"
+
         android:gravity="center"
         android:clickable="true"
-        android:elevation="@dimen/grid_1"
+
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
-        android:layout_marginStart="@dimen/grid_1"
-        android:background="@drawable/background_radius_filled"
-        android:backgroundTint="#00C853">
 
-        <ImageView
+        android:background="@drawable/background_radius_filled_stroke"
+       >
+
+        <com.org.ui.components.ImageViewLoader
             android:id="@+id/icon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/msg_location" />
+            android:background="@drawable/oval_grey"
+            app:shapeAppearanceOverlay="@style/circleImageViewStyle"
+             />
 
         <TextView
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="You location is here"
-            android:textColor="#FFFFFF"
-            android:fontFamily="@font/roboto_regular"
-            android:layout_marginStart="@dimen/grid_1"
+            android:textColor="@color/black"
+
             android:textSize="14sp" />
     </LinearLayout>
 </layout>

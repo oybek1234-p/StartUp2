@@ -4,25 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="com.example.market.R"/>
 
+        <variable
+            name="isSelected"
+            type="java.lang.Boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="94dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="?attr/colorSurface"
+        backgroundColor="@{isSelected ? R.attr.colorPrimary : R.attr.colorSurface}"
+        android:padding="@dimen/dimen_4"
         >
 
-        <com.example.market.viewUtils.ImageViewLoader
+        <com.org.ui.components.ImageViewLoader
             android:id="@+id/photo_view"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
             android:layout_gravity="center"
             android:background="@drawable/oval_grey"
-            android:backgroundTint="#DCDCDC"
+            android:backgroundTint="?attr/colorOnSurfaceUltraLow"
             android:scaleType="centerCrop"
             app:shapeAppearanceOverlay="@style/circleImageViewStyle"
-            android:layout_marginTop="@dimen/grid_1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -33,12 +38,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:layout_marginTop="@dimen/grid_0_5"
+            android:layout_marginTop="@dimen/dimen_4"
             android:ellipsize="end"
             android:fontFamily="@font/roboto_regular"
             android:maxLines="1"
-            android:paddingHorizontal="@dimen/grid_0_5"
-            android:textColor="@color/black"
+            textColor="@{isSelected ? R.attr.colorOnPrimaryHigh : R.attr.colorOnSurfaceHigh}"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,23 +53,16 @@
             android:id="@+id/product_count_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/grid_1"
-            android:layout_marginTop="@dimen/grid_0_5"
+            android:layout_marginTop="@dimen/dimen_4"
             tools:text="126"
-            android:textSize="12sp"
+            android:textSize="13sp"
             android:fontFamily="@font/roboto_medium"
-            android:textColor="#000000"
+            textColor="@{isSelected ? R.attr.colorOnPrimaryHigh : R.attr.colorOnSurfaceHigh}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/name_view"
             app:layout_constraintStart_toStartOf="@+id/name_view"
             app:layout_constraintTop_toBottomOf="@+id/name_view" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:background="#F2F2F2"
-            app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

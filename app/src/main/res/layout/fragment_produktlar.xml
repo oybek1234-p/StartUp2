@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        tools:context=".ProduktlarFragment">
+     >
 
         <include android:id="@+id/action_bar" layout="@layout/action_bar" />
 

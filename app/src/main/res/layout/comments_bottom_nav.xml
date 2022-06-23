@@ -6,24 +6,23 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="?attr/colorSurface"
         android:minHeight="56dp"
-        android:paddingBottom="@dimen/grid_1"
         android:layout_gravity="bottom">
 
         <EditText
             android:id="@+id/comment_edit_text"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/grid_1"
+            android:layout_margin="@dimen/dimen_8"
             android:autofillHints="@null"
             android:background="@drawable/background_radius_filled"
             android:fitsSystemWindows="true"
-            android:padding="@dimen/grid_1"
-            android:layout_marginStart="@dimen/grid_1_5"
-            android:backgroundTint="#F3F3F3"
+            android:textColor="?attr/colorOnSurfaceHigh"
+            android:paddingHorizontal="@dimen/dimen_12"
+            android:backgroundTint="?attr/colorBackground"
             android:fontFamily="@font/roboto_regular"
-            android:textColorHint="#999"
+            android:textColorHint="?attr/colorOnSurfaceLow"
             android:hint="@string/add_comment"
             android:inputType="textMultiLine"
             android:textSize="15sp"
@@ -37,40 +36,36 @@
             android:layout_width="45dp"
             android:layout_height="match_parent"
             android:contentDescription="@string/attach_document"
-            android:padding="@dimen/grid_1"
+            android:layout_marginHorizontal="@dimen/dimen_12"
             android:src="@drawable/input_attach"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/attach_stricker_button"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="#666" />
+            app:tint="?attr/colorOnSurfaceMedium"  />
 
         <ImageView
             android:id="@+id/attach_stricker_button"
             android:layout_width="45dp"
             android:layout_height="match_parent"
-            android:contentDescription="@string/attach_sticker"
-            android:padding="@dimen/grid_1"
+            android:contentDescription="@string/attach_sticker"       android:padding="@dimen/grid_1"
             android:src="@drawable/input_sticker"
+            android:layout_marginHorizontal="@dimen/dimen_12"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/comment_send_button"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="#666" />
+            app:tint="?attr/colorOnSurfaceMedium" />
 
         <ImageView
             android:id="@+id/comment_send_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/oval_grey"
-            android:backgroundTint="@color/red"
-            android:contentDescription="@string/send_comment"
-            android:padding="@dimen/grid_1"
-            android:layout_marginEnd="@dimen/grid_1_5"
             android:src="@drawable/ic_send"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:padding="@dimen/dimen_12"
             app:layout_constraintVertical_bias="0.526"
-            app:tint="#FFFFFF" />
+            app:tint="?attr/colorSecondary" />
 
         <View
             android:id="@+id/view"

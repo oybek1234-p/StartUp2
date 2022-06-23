@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.example.market.R"/>
+    </data>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/bottom_sheet_container"
+            android:minHeight="56dp"
+            android:paddingVertical="@dimen/dimen_12"
+            tools:backgroundTint="?attr/colorSurface"
+            android:background="@drawable/bottom_sheet_background"
+            backgroundTint="@{R.attr.colorSurface}"
+            >
+            <FrameLayout
+                android:id="@+id/action_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/dimen_12"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Headline3_15"
+                    android:text="Title"
+                    android:textColor="?attr/colorOnSurfaceHigh"
+                    android:id="@+id/title_view"
+                    android:layout_gravity="center"
+                    />
+                <ImageView
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/action_button"
+                    android:src="@drawable/msg_search"
+                    app:tint="?colorOnSurfaceMedium" />
+
+            </FrameLayout>
+        </LinearLayout>
+</layout>

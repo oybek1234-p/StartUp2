@@ -7,7 +7,7 @@
         android:layout_gravity="center"
         android:gravity="start|center_vertical"
         android:fontFamily="@font/roboto_medium"
-        android:padding="@dimen/grid_1"
+
         android:text="UZS"
         android:textSize="16dp"
         android:textColor="#333" />

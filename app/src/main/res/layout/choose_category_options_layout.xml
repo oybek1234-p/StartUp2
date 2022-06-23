@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="400dp"
             app:spanCount="4"
-            android:padding="@dimen/grid_1"
+
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
             tools:listitem="@layout/category_option_item"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -40,7 +40,7 @@
             android:id="@+id/apply_button_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorRed"
+
             android:text="Apply"
             android:layout_margin="18dp"
             app:layout_constraintBottom_toBottomOf="parent"

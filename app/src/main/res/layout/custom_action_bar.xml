@@ -9,7 +9,7 @@
     android:layout_width="56dp"
     android:layout_height="56dp"
     android:src="@drawable/search_arrow"
-    app:tint="@color/black_3a3d4a"
+
     android:rotation="180"
     android:scaleY="0.4"
     android:scaleX="0.4"

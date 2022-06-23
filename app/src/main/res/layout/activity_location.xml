@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:map="http://schemas.android.com/apk/res-auto"
-   >
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
 
     </data>
@@ -9,66 +9,111 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?attr/colorBackground"
+        android:clipToPadding="false"
+        android:clipChildren="false"
+        android:clipToOutline="false"
         >
 
         <fragment
             android:id="@+id/map_fragment"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:name="com.org.ui.LocationFragment$SupportMapFragmentMy"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <ImageView
-            android:id="@+id/marker"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_gravity="center"
-            android:src="@drawable/map_pin2"
-            android:layout_marginBottom="28dp"
-            android:stateListAnimator="@animator/marker_animator"
-            map:layout_constraintBottom_toBottomOf="@+id/map"
+            android:layout_height="match_parent"
+            map:layout_anchor="@+id/marker"
+            map:layout_anchorGravity="bottom|center"
+            map:layout_constraintBottom_toBottomOf="parent"
             map:layout_constraintEnd_toEndOf="parent"
-            map:layout_constraintStart_toStartOf="@+id/map"
-            map:layout_constraintTop_toBottomOf="@+id/address_text" />
+            map:layout_constraintStart_toStartOf="parent"
+            map:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/marker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginBottom="94dp"
+            android:gravity="center"
+            >
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/time_shimmer_layout"
+                >
+                <TextView
+                    android:id="@+id/time_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:paddingVertical="@dimen/dimen_8"
+                    android:paddingHorizontal="@dimen/dimen_12"
+                    android:text="0 min"
+                    android:elevation="@dimen/dimen_4"
+                    android:background="@drawable/smiles_popup"
+                    android:textColor="?attr/colorOnSurfaceHigh"
+                    android:backgroundTint="?attr/colorSurface"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="@dimen/dimen_8"
+                    />
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <ImageView
+                android:id="@+id/marker_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/map_pin2"
+                android:stateListAnimator="@animator/marker_animator" />
+
+            <View
+                android:id="@+id/marker_dot"
+                android:layout_width="@dimen/dimen_8"
+                android:layout_height="@dimen/dimen_8"
+                android:background="@drawable/oval_grey"
+                android:backgroundTint="#423D3D"
+                android:elevation="@dimen/dimen_8"
+                />
+
+        </LinearLayout>
         <ImageView
             android:id="@+id/back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/msg_arrowright"
-            android:rotation="180"
-            android:background="@drawable/oval_grey"
-            android:padding="@dimen/grid_1"
-            android:elevation="@dimen/grid_1"
             android:layout_margin="12dp"
-            map:tint="@color/black" />
+            android:background="@drawable/oval_grey"
+            android:backgroundTint="?attr/colorSurface"
+            android:src="@drawable/calls_back"
+            android:padding="@dimen/dimen_4"
+            android:elevation="@dimen/dimen_4"
+            map:layout_constraintStart_toStartOf="parent"
+            map:layout_constraintTop_toTopOf="parent"
+            map:tint="?attr/colorOnSurfaceHigh" />
+
         <ImageView
             android:id="@+id/current_location_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/location_current"
-            android:rotation="180"
             android:layout_gravity="bottom|end"
-            android:layout_marginBottom="297dp"
             android:background="@drawable/oval_grey"
-            android:padding="@dimen/grid_1"
-            android:elevation="@dimen/grid_1"
-            android:layout_marginEnd="12dp"
-            map:tint="@color/black" />
-        <TextView
-            android:id="@+id/adress_view"
-            android:layout_width="wrap_content"
+            android:backgroundTint="?attr/colorSurface"
+            android:padding="@dimen/dimen_8"
+            android:elevation="@dimen/dimen_4"
+            android:rotation="180"
+            android:layout_marginBottom="274dp"
+            android:layout_marginEnd="@dimen/dimen_12"
+            android:src="@drawable/location_current"
+            map:layout_constraintBottom_toTopOf="@+id/bottomSheet"
+            map:layout_constraintEnd_toEndOf="parent"
+            map:tint="?attr/colorOnSurfaceHigh" />
+
+        <include
+            android:id="@+id/bottomSheet"
+            layout="@layout/location_bottom_sheet"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Your adress: \n Daliguzar 10-uy"
-            android:textSize="16sp"
-            android:textColor="#333"
-            android:maxWidth="250dp"
-            android:maxLines="2"
-            android:ellipsize="end"
-            android:fontFamily="@font/roboto_medium"
-            android:gravity="center"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="12dp"
-            />
-        <include map:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior" android:id="@+id/bottomSheet" layout="@layout/location_bottom_sheet"
-            android:layout_height="wrap_content" android:layout_width="match_parent" />
+            map:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+            map:layout_constraintBottom_toBottomOf="parent"
+            map:layout_constraintEnd_toEndOf="parent"
+            map:layout_constraintStart_toStartOf="parent" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

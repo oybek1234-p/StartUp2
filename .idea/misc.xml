@@ -3,40 +3,162 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/drawable/background_radius_filled.xml" value="0.2595" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/drawable/background_radius_filled_stroke.xml" value="0.209" />
         <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/drawable/background_radius_stroke.xml" value="0.1705" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/drawable/bottom_sheet_background.xml" value="0.2595" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/drawable/bottom_sheet_radius_background.xml" value="0.134" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/drawable/dot_oval_drawable.xml" value="0.134" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/drawable/ecommerce_back.xml" value="0.134" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/drawable/ecommerce_background.xml" value="0.134" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/drawable/ecommerce_ship_background.xml" value="0.134" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/drawable/home_search_background.xml" value="0.134" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/drawable/home_search_icon_background.xml" value="0.134" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/drawable/home_top_background.xml" value="0.134" />
         <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/drawable/ic_add.xml" value="0.1705" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/drawable/image_border.xml" value="0.134" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/drawable/inset_divider.xml" value="0.134" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/drawable/more_btn_background.xml" value="0.134" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/drawable/outline_account_circle_24.xml" value="0.217" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/drawable/outline_home_24.xml" value="0.217" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/drawable/outline_question_answer_24.xml" value="0.217" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/drawable/outline_shopping_cart_24.xml" value="0.217" />
         <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/drawable/oval_drawable_stroke.xml" value="0.8" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/drawable/oval_grey.xml" value="0.2595" />
         <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/drawable/stroked_course_image_placeholder.xml" value="0.2703125" />
-        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/action_bar.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/activity_location.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/drawable/transparent.xml" value="0.128" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/action_bar.xml" value="0.19342053111375346" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/activity_location.xml" value="0.2" />
         <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/activity_main.xml" value="0.20863616930312098" />
-        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/cart_bottom_layout.xml" value="0.8" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/add_ad_fragment.xml" value="0.264" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/add_photo_layout.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/advertising_fragment.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/alert_dialog.xml" value="0.264" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/all_categories_mini_item.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/auto_complete_item_view.xml" value="0.176" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/bottom_sheet_container.xml" value="0.264" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/bottom_sheet_header.xml" value="0.2" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/bottom_sheet_view.xml" value="0.21403508771929824" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/button_style_2.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/button_style_min.xml" value="0.264" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/camer_fragment.xml" value="0.21403508771929824" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/cart_bottom_layout.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/category_item.xml" value="0.176" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/category_layout.xml" value="0.2" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/category_option_item.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/chip_item.xml" value="0.176" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/choose_category_options_layout.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/choose_shipping_adress_layout.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/comment_item.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/comment_loading_layout.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/comment_single_text_view.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/comments_bottom_nav.xml" value="0.2" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/compone.xml" value="0.19709277469003847" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/create_product_fragment.xml" value="0.264" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/create_seller_account_1.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/create_seller_account_2.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/create_seller_account_3.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/custom_action_bar.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/custom_snackbar.xml" value="0.8" />
-        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/details_bottom_layout.xml" value="0.8" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/details_bottom_layout.xml" value="0.45770567786790267" />
         <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/details_item.xml" value="0.8" />
-        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/details_nasted_layout.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/dostavka_layout.xml" value="0.8" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/details_nasted_layout.xml" value="0.16799999999999998" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/details_photo_pager_item.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/details_seller_info_bottom_sheet_view.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/dostavka_layout.xml" value="0.2" />
         <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/dostavka_layout_2.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/dostavka_layout_material.xml" value="0.8" />
-        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/empty_screen.xml" value="0.136" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/dostavka_layout_material.xml" value="0.176" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/dropdown_item.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/empty_screen.xml" value="0.176" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_add_new_category.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_add_pay_card.xml" value="0.2" />
         <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_add_to_cart.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_all_categories_activity.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_boshlash.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_categories.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_details.xml" value="0.8" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_chat.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_comments.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_container_layout.xml" value="0.12" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_details.xml" value="0.176" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_details2.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_edit_user_info.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_favourite.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_fill_location_info.xml" value="0.20863616930312098" />
-        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_home.xml" value="0.20863616930312098" />
-        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_korzina.xml" value="0.14151410192973776" />
-        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_produkt_yuklash.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_home.xml" value="0.2" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_kirish.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_korzina.xml" value="0.2" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_location.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_messages.xml" value="0.2" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_orders.xml" value="0.19342053111375346" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_product_filters_layout.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_produkt_yuklash.xml" value="0.2" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_produktlar.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_profile.xml" value="0.152" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_profile_klient.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_profile_seller.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_rasm_yuklash.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_rasmyuklash.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_registratsiya.xml" value="0.176" />
         <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_search.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_search_results.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_seller_shop.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_seller_shop2.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/fragment_zakazlar.xml" value="0.20863616930312098" />
-        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/order_item.xml" value="0.8" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/header_item.xml" value="0.20599409033347404" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/header_layout.xml" value="0.136" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/header_recycler_view.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/home_banner_item.xml" value="0.176" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/home_banner_layout.xml" value="0.264" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/home_category_item.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/home_category_layout.xml" value="0.17961405244928252" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/home_main_category_item.xml" value="0.264" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/home_main_category_layout.xml" value="0.264" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/home_product_item.xml" value="0.2" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/home_product_more.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/home_search_bar.xml" value="0.264" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/home_search_layout.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/image_view_checkable.xml" value="0.20557197129590546" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/info_option.xml" value="0.2" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/loading_recycler_view.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/location_activity_modern.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/location_bottom_sheet.xml" value="0.264" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/location_saved_view.xml" value="0.264" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/login_fragment.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/login_splash_layout.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/messages_action_bar.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/messages_item.xml" value="0.264" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/optisya_qoshish_button.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/optsiya_item.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/order_confirmed_layout.xml" value="0.2" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/order_item.xml" value="0.264" />
         <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/pay_card_layout.xml" value="0.2" />
-        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/payment_fragment.xml" value="0.18406729341909944" />
-        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/seller_message_layout.xml" value="0.8" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/pay_card_layout_mini.xml" value="0.19581017528858485" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/payment_fragment.xml" value="0.2" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/payment_sheet_layout.xml" value="0.2" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/photo_banner_ad.xml" value="0.176" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/popular_products_item.xml" value="0.152" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/popular_products_layout.xml" value="0.264" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/product_item.xml" value="0.19342053111375346" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/product_simple.xml" value="0.20599409033347404" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/product_yuklash_photos_item.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/profile_product_item.xml" value="0.176" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/profile_register_layout.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/rasm_yuklash_item.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/sample_shutter_view.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/search_item_layout.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/selected_photo_item.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/seller_info_layout_material.xml" value="0.16944444444444445" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/seller_message_layout.xml" value="0.45770567786790267" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/shipping_adress_item_layout.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/shipping_offer_item.xml" value="0.264" />
         <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/simple_progress_layout.xml" value="0.20863616930312098" />
-        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/yuklash_contact_info_layout.xml" value="0.8" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/specifications_layout.xml" value="0.15729166666666666" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/subscribers_fragment.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/toast_layout.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/upload_video_fragment.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/video_edit_layout.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/layout/yuklash_contact_info_layout.xml" value="0.45770567786790267" />
+        <entry key="..\:/Users/yoqub/AndroidStudioProjects/Startup2/app/src/main/res/menu/menu.xml" value="0.19342053111375346" />
       </map>
     </option>
   </component>

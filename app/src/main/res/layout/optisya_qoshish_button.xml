@@ -2,9 +2,7 @@
 <Button xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="56dp"
-    android:text="+ Optsiya qoshish"
-    android:textColor="#4DC600"
-    android:layout_marginTop="8dp"
-    android:fontFamily="@font/open_sans_semi_bold"
-    style="@style/Widget.MaterialComponents.Button.OutlinedButton">
-</Button>
+    android:backgroundTint="?attr/colorSecondary"
+    android:text="@string/add_specification"
+    android:textColor="?attr/colorOnSecondaryHigh"
+    />

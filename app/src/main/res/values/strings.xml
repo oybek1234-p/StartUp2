@@ -7,8 +7,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="online_bozor">Online bozor</string>
     <string name="account_ochish">Account ochish</string>
-    <string name="ism">Ism</string>
-    <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="ochish">Ochish</string>
     <string name="accountinigiz_bormi">Accountinigiz bormi?</string>
@@ -40,8 +38,7 @@
     <string name="top_rated">Top rated</string>
     <string name="nima_qidiryapsiz">Nima qidiryapsiz?</string>
     <string name="zakazlar">Zakazlar</string>
-    <string name="messages">Messages</string>
-    <string name="profile">Profile</string>
+
     <string name="sevimli">Sevimli</string>
     <string name="korzina">Korzina</string>
     <string name="sum">sum</string>
@@ -59,7 +56,7 @@
     <string name="sotib_olish">КУПИТЬ</string>
     <string name="details_photo_pager_view">details_photo_pager_view</string>
     <string name="_1_1">1/1</string>
-    <string name="_14_500">Доставка: 14.500 сум</string>
+    <string name="_14_500">14.500 сум * 30min</string>
     <string name="apple_online">Apple Online</string>
     <string name="oybek">Oybek</string>
     <string name="_9989_97_774_14_15">+9989 97 774 14 15</string>
@@ -104,7 +101,7 @@
     <string name="adres">\"Adress: \"</string>
     <string name="magazin_adresini_kiritish">Magazin adresini kiritish</string>
     <string name="more_products">More products</string>
-    <string name="popular">Popular</string>
+
     <string name="increase">Increase</string>
     <string name="sort_by">Sort by</string>
     <string name="sort_direction">Sort direction</string>
@@ -117,5 +114,61 @@
     <string name="card_empty">Your cards is empty</string>
     <string name="card_empty_subtitle">Add your bank card to purchese online</string>
     <string name="pay_cards">Payment cards</string>
+    <string name="add_ad">Add ad</string>
+    <string name="add_photo">Add photo</string>
+    <string name="advertising">Advertising</string>
+    <string name="banner_empty">Banners is empty</string>
+    <string name="add_new_banner">Tap below button to add new banner</string>
+    <string name="new_banner">New banner</string>
+    <string name="ok">OK</string>
+    <string name="orders">Orders</string>
+    <string name="messages">Messages</string>
+    <string name="profile">Profile</string>
+    <string name="register_subtitle">Turli xil produktlardan zavq oling</string>
+    <string name="ism">Ism</string>
+    <string name="email">Email</string>
+    <string name="parol">Parol</string>
+    <string name="login_subtitle">Salom! Hush kelibsiz</string>
+    <string name="login">Login</string>
+    <string name="hashtag">#hashTag</string>
+    <string name="free">Bepul</string>
+    <string name="search">Search</string>
+    <string name="categories">Categories</string>
+    <string name="see_all">See all</string>
+    <string name="popular_products">Popular products</string>
+    <string name="products_empty">Products empty, add your first item</string>
+    <string name="cost">Cost</string>
+    <string name="usd">USD</string>
+    <string name="uzs">UZS</string>
+    <string name="photos">Photos</string>
+    <string name="add_product">Add product</string>
+    <string name="delete">Delete</string>
+
+    <string name="subtitle">Subtitle</string>
+    <string name="cost_2">Cost:</string>
+    <string name="quantity">Quantity</string>
+    <string name="if_u_h_m_u">If you have problem with uploading, connect with us</string>
+    <string name="name_value">Name/Value</string>
+    <string name="sp_example">Masalan: Rangi</string>
+    <string name="sp_example_v">Qora</string>
+    <string name="add_specification">+ Add specification</string>
+    <string name="choose_cat">Choose category</string>
+    <string name="title">Title</string>
+    <string name="comments">Comments</string>
+    <string name="done">Done</string>
+    <string name="popular">Popular</string>
+    <string name="all">All</string>
+    <string name="products">Products</string>
+    <string name="free_shipping">Free shipping</string>
+    <string name="online">online</string>
+    <string name="offline">offline</string>
+    <string name="now">Now</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="this_week">This week</string>
+    <string name="this_month">This month</string>
+    <string name="this_year">This year</string>
+    <string name="long_time_ago">Long time ago</string>
+    <string name="new_">New</string>
 
 </resources>

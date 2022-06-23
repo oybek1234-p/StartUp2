@@ -24,8 +24,7 @@
         android:clickable="true"
         android:fontFamily="@font/roboto_bold"
         android:textColor="#86878B"
-        android:paddingHorizontal="@dimen/grid_2"
-        android:paddingVertical="@dimen/grid_0_5"
+
         >
     </TextView>
 </layout>

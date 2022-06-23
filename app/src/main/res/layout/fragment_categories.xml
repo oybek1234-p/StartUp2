@@ -9,41 +9,53 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <include
-            android:id="@+id/action_bar"
-            layout="@layout/action_bar" />
+        android:layout_height="match_parent"
+        android:background="?attr/colorBackground"
+        >
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/main_shimmer_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            app:shimmer_repeat_count="100"
+            android:layout_width="72dp"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/action_bar">
+            app:layout_constraintTop_toTopOf="parent"
+            android:elevation="1dp"
+            android:background="?attr/colorSurface"
+            android:clipChildren="false"
+            app:shimmer_repeat_count="100">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/main_recycler_view"
-                android:layout_width="94dp"
+                android:layout_width="72dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 tools:listitem="@layout/category_item" />
         </com.facebook.shimmer.ShimmerFrameLayout>
 
+        <TextView
+            android:id="@+id/subCat_title"
+            style="@style/Title3_17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sub categories"
+            android:layout_margin="@dimen/dimen_12"
+            android:textColor="?attr/colorSecondary"
+            app:layout_constraintStart_toEndOf="@+id/main_shimmer_layout"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/sub_recycler_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#F8F8F8"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            android:layout_marginTop="@dimen/dimen_12"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/main_shimmer_layout"
-            app:layout_constraintTop_toBottomOf="@+id/action_bar"
-            app:spanCount="3"
-            tools:listitem="@layout/category_item" />
+            app:layout_constraintTop_toBottomOf="@+id/subCat_title"
+            tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:listitem="@layout/category_item"
+            tools:spanCount="3" />
 
         <include
             android:id="@+id/emptyScreen"
@@ -54,7 +66,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/main_shimmer_layout"
-            app:layout_constraintTop_toTopOf="@+id/sub_recycler_view" />
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ProgressBar
             android:id="@+id/subProgressBar"
             android:layout_width="wrap_content"
